@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Core" Version="4.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\__OrgName__.__ProjectName__.__ModuleName__.Abstraction\__OrgName__.__ProjectName__.__ModuleName__.Abstraction.csproj" />
   </ItemGroup>
 
 </Project>

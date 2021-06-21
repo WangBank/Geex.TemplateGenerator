@@ -14,6 +14,8 @@ namespace Geex.TemplateGenerator
             var projectName = Console.ReadLine().Trim();
             Console.WriteLine("enter module name.");
             var moduleName = Console.ReadLine().Trim();
+            Console.WriteLine("enter default aggregate name.");
+            var aggregateName = Console.ReadLine().Trim();
             Console.WriteLine("enter template path, press enter if it's current directory");
             var cwd = Console.ReadLine() ?? Directory.GetCurrentDirectory();
             var target = Path.Combine(cwd, "generated");
@@ -23,7 +25,8 @@ namespace Geex.TemplateGenerator
                 var destEntry = renameEntry.Replace(cwd, target)
                     .Replace("__OrgName__", orgName)
                     .Replace("__ProjectName__", projectName)
-                    .Replace("__ModuleName__", moduleName);
+                    .Replace("__ModuleName__", moduleName)
+                    .Replace("__AggregateName__", aggregateName);
                 if (File.Exists(renameEntry))
                 {
                     var srcFile = new FileInfo(renameEntry);
@@ -40,7 +43,8 @@ namespace Geex.TemplateGenerator
                         sw.WriteLine(line
                             .Replace("__OrgName__", orgName)
                             .Replace("__ProjectName__", projectName)
-                            .Replace("__ModuleName__", moduleName));
+                            .Replace("__ModuleName__", moduleName)
+                            .Replace("__AggregateName__", aggregateName));
                     }
                 }
                 else

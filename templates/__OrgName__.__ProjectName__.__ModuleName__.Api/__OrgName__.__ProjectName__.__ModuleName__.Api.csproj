@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\__OrgName__.__ProjectName__.__ModuleName__.Abstraction\__OrgName__.__ProjectName__.__ModuleName__.Abstraction.csproj" />
+    <ProjectReference Include="..\__OrgName__.__ProjectName__.__ModuleName__.Core\__OrgName__.__ProjectName__.__ModuleName__.Core.csproj" />
   </ItemGroup>
 
 </Project>

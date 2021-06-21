@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "__OrgName__.__ProjectName__.__ModuleName__.Abstraction", "__OrgName__.__ProjectName__.__ModuleName__.Abstraction\__OrgName__.__ProjectName__.__ModuleName__.Abstraction.csproj", "{1CAF6F80-DCD9-4A6B-A84C-49A93C7A4199}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "__OrgName__.__ProjectName__.__ModuleName__.Module", "__OrgName__.__ProjectName__.__ModuleName__.Api\__OrgName__.__ProjectName__.__ModuleName__.Module.csproj", "{8B1EB785-DA6B-4436-95EB-25CDB085366B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "__OrgName__.__ProjectName__.__ModuleName__.Api", "__OrgName__.__ProjectName__.__ModuleName__.Api\__OrgName__.__ProjectName__.__ModuleName__.Api.csproj", "{8B1EB785-DA6B-4436-95EB-25CDB085366B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "__OrgName__.__ProjectName__.__ModuleName__.Core", "__OrgName__.__ProjectName__.__ModuleName__.Core\__OrgName__.__ProjectName__.__ModuleName__.Core.csproj", "{12D94818-94FB-414A-A93B-1BCBAD44D17B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "__OrgName__.__ProjectName__.__ModuleName__.Infrastructure", "__OrgName__.__ProjectName__.__ModuleName__.Infrastructure\__OrgName__.__ProjectName__.__ModuleName__.Infrastructure.csproj", "{03629E73-09B8-4407-B062-6AA0CF0B57A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "__OrgName__.__ProjectName__.__ModuleName__", "__OrgName__.__ProjectName__.__ModuleName__\__OrgName__.__ProjectName__.__ModuleName__.csproj", "{413DC0D3-505E-421C-B2C0-6CF7068810DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,18 @@ Global
 		{03629E73-09B8-4407-B062-6AA0CF0B57A1}.Release|x64.Build.0 = Release|Any CPU
 		{03629E73-09B8-4407-B062-6AA0CF0B57A1}.Release|x86.ActiveCfg = Release|Any CPU
 		{03629E73-09B8-4407-B062-6AA0CF0B57A1}.Release|x86.Build.0 = Release|Any CPU
+		{413DC0D3-505E-421C-B2C0-6CF7068810DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{413DC0D3-505E-421C-B2C0-6CF7068810DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{413DC0D3-505E-421C-B2C0-6CF7068810DD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{413DC0D3-505E-421C-B2C0-6CF7068810DD}.Debug|x64.Build.0 = Debug|Any CPU
+		{413DC0D3-505E-421C-B2C0-6CF7068810DD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{413DC0D3-505E-421C-B2C0-6CF7068810DD}.Debug|x86.Build.0 = Debug|Any CPU
+		{413DC0D3-505E-421C-B2C0-6CF7068810DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{413DC0D3-505E-421C-B2C0-6CF7068810DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{413DC0D3-505E-421C-B2C0-6CF7068810DD}.Release|x64.ActiveCfg = Release|Any CPU
+		{413DC0D3-505E-421C-B2C0-6CF7068810DD}.Release|x64.Build.0 = Release|Any CPU
+		{413DC0D3-505E-421C-B2C0-6CF7068810DD}.Release|x86.ActiveCfg = Release|Any CPU
+		{413DC0D3-505E-421C-B2C0-6CF7068810DD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
