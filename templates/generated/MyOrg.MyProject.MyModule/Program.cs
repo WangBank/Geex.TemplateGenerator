@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using __OrgName__.__ProjectName__.__ModuleName__.Api;
+using MyOrg.MyProject.MyModule.Api;
 using Autofac.Extensions.DependencyInjection;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
@@ -15,7 +15,7 @@ using GeexBox.ElasticSearch.Zero.Logging.Elasticsearch;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.DependencyInjection;
 
-namespace __OrgName__.__ProjectName__.__ModuleName__
+namespace MyOrg.MyProject.MyModule
 {
     public class Program
     {

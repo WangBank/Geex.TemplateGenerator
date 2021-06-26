@@ -1,13 +1,13 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "__OrgName__.__ProjectName__.__ModuleName__.Api", "__OrgName__.__ProjectName__.__ModuleName__.Api\__OrgName__.__ProjectName__.__ModuleName__.Api.csproj", "{8B1EB785-DA6B-4436-95EB-25CDB085366B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyOrg.MyProject.MyModule.Api", "MyOrg.MyProject.MyModule.Api\MyOrg.MyProject.MyModule.Api.csproj", "{8B1EB785-DA6B-4436-95EB-25CDB085366B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "__OrgName__.__ProjectName__.__ModuleName__.Core", "__OrgName__.__ProjectName__.__ModuleName__.Core\__OrgName__.__ProjectName__.__ModuleName__.Core.csproj", "{12D94818-94FB-414A-A93B-1BCBAD44D17B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyOrg.MyProject.MyModule.Core", "MyOrg.MyProject.MyModule.Core\MyOrg.MyProject.MyModule.Core.csproj", "{12D94818-94FB-414A-A93B-1BCBAD44D17B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "__OrgName__.__ProjectName__.__ModuleName__", "__OrgName__.__ProjectName__.__ModuleName__\__OrgName__.__ProjectName__.__ModuleName__.csproj", "{413DC0D3-505E-421C-B2C0-6CF7068810DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyOrg.MyProject.MyModule", "MyOrg.MyProject.MyModule\MyOrg.MyProject.MyModule.csproj", "{413DC0D3-505E-421C-B2C0-6CF7068810DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

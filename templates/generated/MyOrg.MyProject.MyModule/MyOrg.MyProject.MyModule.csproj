@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\__OrgName__.__ProjectName__.__ModuleName__.Api\__OrgName__.__ProjectName__.__ModuleName__.Api.csproj" />
-    <ProjectReference Include="..\__OrgName__.__ProjectName__.__ModuleName__.Core\__OrgName__.__ProjectName__.__ModuleName__.Core.csproj" />
+    <ProjectReference Include="..\MyOrg.MyProject.MyModule.Api\MyOrg.MyProject.MyModule.Api.csproj" />
+    <ProjectReference Include="..\MyOrg.MyProject.MyModule.Core\MyOrg.MyProject.MyModule.Core.csproj" />
   </ItemGroup>
 
 </Project>

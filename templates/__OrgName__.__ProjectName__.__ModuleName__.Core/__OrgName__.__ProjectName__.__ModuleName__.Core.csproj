@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Core" Version="4.3.2" />
+    <PackageReference Include="Geex.Common" Version="1.0.6" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\__OrgName__.__ProjectName__.__ModuleName__.Abstraction\__OrgName__.__ProjectName__.__ModuleName__.Abstraction.csproj" />
+    <ProjectReference Include="..\__OrgName__.__ProjectName__.__ModuleName__.Api\__OrgName__.__ProjectName__.__ModuleName__.Api.csproj" />
   </ItemGroup>
 
 </Project>
