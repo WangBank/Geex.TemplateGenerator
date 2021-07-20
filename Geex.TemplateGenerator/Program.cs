@@ -17,16 +17,20 @@ namespace Geex.TemplateGenerator
             Console.WriteLine("enter default aggregate name.");
             var aggregateName = Console.ReadLine().Trim();
             Console.WriteLine("enter template path, press enter if it's current directory");
-            var cwd = Console.ReadLine() ?? Directory.GetCurrentDirectory();
-            var target = Path.Combine(cwd, "generated");
-            var renameEntries = Directory.GetFileSystemEntries(cwd, "*", SearchOption.AllDirectories);
+            var input = Console.ReadLine();
+            var cwd = string.IsNullOrEmpty(input) ? Directory.GetCurrentDirectory() : input;
+            Console.WriteLine("enter template path, press enter if it's current directory");
+            input = Console.ReadLine();
+            var target = Path.Combine(string.IsNullOrEmpty(input) ? cwd : input, "generated");
+            var templatePath = cwd + "/templates";
+            var renameEntries = Directory.GetFileSystemEntries(templatePath, "*", SearchOption.AllDirectories);
             Parallel.ForEach(renameEntries, renameEntry =>
             {
-                var destEntry = renameEntry.Replace(cwd, target)
-                    .Replace("__OrgName__", orgName)
-                    .Replace("__ProjectName__", projectName)
-                    .Replace("__ModuleName__", moduleName)
-                    .Replace("__AggregateName__", aggregateName);
+                var destEntry = renameEntry.Replace(templatePath, target)
+                    .Replace("_org_", orgName)
+                    .Replace("_proj_", projectName)
+                    .Replace("_mod_", moduleName)
+                    .Replace("_aggregate_", aggregateName);
                 if (File.Exists(renameEntry))
                 {
                     var srcFile = new FileInfo(renameEntry);
@@ -41,10 +45,10 @@ namespace Geex.TemplateGenerator
                     while ((line = sr.ReadLine()) != null)
                     {
                         sw.WriteLine(line
-                            .Replace("__OrgName__", orgName)
-                            .Replace("__ProjectName__", projectName)
-                            .Replace("__ModuleName__", moduleName)
-                            .Replace("__AggregateName__", aggregateName));
+                            .Replace("_org_", orgName)
+                            .Replace("_proj_", projectName)
+                            .Replace("_mod_", moduleName)
+                            .Replace("_aggregate_", aggregateName));
                     }
                 }
                 else
