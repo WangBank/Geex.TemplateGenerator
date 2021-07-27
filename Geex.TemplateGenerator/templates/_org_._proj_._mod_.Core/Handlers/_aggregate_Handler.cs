@@ -38,20 +38,20 @@ namespace _org_._proj_._mod_.Core.Handlers
 
         public async Task<I_aggregate_> Handle(Create_aggregate_Request request, CancellationToken cancellationToken)
         {
-            var message = new _aggregate_(request.Name);
-            DbContext.AttachContextSession(message);
-            await message.SaveAsync(cancellation: cancellationToken);
-            return message;
+            var entity = new _aggregate_(request.Name);
+            DbContext.Attach(entity);
+            await entity.SaveAsync(cancellation: cancellationToken);
+            return entity;
         }
 
         public async Task<Unit> Handle(Edit_aggregate_Request request, CancellationToken cancellationToken)
         {
-            var message = await DbContext.Find<_aggregate_>().MatchId(request.Id).ExecuteSingleAsync(cancellationToken);
+            var entity = await DbContext.Find<_aggregate_>().MatchId(request.Id).ExecuteSingleAsync(cancellationToken);
             if (!request.Name.IsNullOrEmpty())
             {
-                message.Name = request.Name;
+                entity.Name = request.Name;
             }
-            await message.SaveAsync(cancellation: cancellationToken);
+            await entity.SaveAsync(cancellation: cancellationToken);
             return Unit.Value;
         }
 
