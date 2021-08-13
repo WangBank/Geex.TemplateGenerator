@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Geex.Common" Version="1.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\_org_._proj_._mod_.Api\_org_._proj_._mod_.Api.csproj" />
   </ItemGroup>
 
