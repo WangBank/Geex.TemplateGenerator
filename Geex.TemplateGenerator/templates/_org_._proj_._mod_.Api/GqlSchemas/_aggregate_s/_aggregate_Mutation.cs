@@ -14,7 +14,7 @@ using MongoDB.Entities;
 
 namespace _org_._proj_._mod_.Api.GqlSchemas._aggregate_s
 {
-    public class _aggregate_Mutation : QueryTypeExtension<_aggregate_Mutation>
+    public class _aggregate_Mutation : MutationTypeExtension<_aggregate_Mutation>
     {
         /// <summary>
         /// 创建_aggregate_
