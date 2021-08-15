@@ -5,6 +5,7 @@
     /// </summary>
     public interface I_aggregate_
     {
+        public string Id { get; set; }
         public string Name { get; set; }
     }
 }
