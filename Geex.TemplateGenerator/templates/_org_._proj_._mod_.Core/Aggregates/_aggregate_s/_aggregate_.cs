@@ -1,4 +1,6 @@
 ﻿using _org_._proj_._mod_.Api.Aggregates._aggregate_s;
+
+using Geex.Common.Abstraction.Storage;
 using Geex.Common.Abstractions;
 
 namespace _org_._proj_._mod_.Core.Aggregates._aggregate_s

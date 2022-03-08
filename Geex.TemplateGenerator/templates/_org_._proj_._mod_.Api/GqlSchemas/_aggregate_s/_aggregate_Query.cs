@@ -22,7 +22,7 @@ namespace _org_._proj_._mod_.Api.GqlSchemas._aggregate_s
     {
         protected override void Configure(IObjectTypeDescriptor<_aggregate_Query> descriptor)
         {
-            descriptor.ResolveMethod(x => x._aggregate_s(default))
+            descriptor.ConfigQuery(x => x._aggregate_s(default))
             .UseOffsetPaging<_aggregate_GqlType>()
             .UseFiltering<I_aggregate_>(x =>
             {

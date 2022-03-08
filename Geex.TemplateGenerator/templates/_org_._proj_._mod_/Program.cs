@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 using _org_._proj_._mod_.Api;
 using Autofac.Extensions.DependencyInjection;
 using Geex.Common.Abstraction;
-using GeexBox.ElasticSearch.Zero.Logging.Elasticsearch;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.DependencyInjection;
+using GeexBox.ElasticSearch.Zero.Logging.Elasticsearch;
 
 namespace _org_._proj_._mod_
 {

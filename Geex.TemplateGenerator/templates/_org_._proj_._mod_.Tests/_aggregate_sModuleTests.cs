@@ -30,7 +30,7 @@ using Xunit;
 
 namespace _org_._proj_._mod_.Tests
 {
-    public class _mod_ModuleTests : ModuleTestBase<_org__aggregate_sCoreModule>
+    public class _mod_ModuleTests : ModuleTestBase<_proj__mod_CoreModule>
     {
         private readonly IMediator _mediator;
 
