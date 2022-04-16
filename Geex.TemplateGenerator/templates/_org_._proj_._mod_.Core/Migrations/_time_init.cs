@@ -10,7 +10,7 @@ namespace _org_._proj_._mod_.Core.Migrations
 {
     //public class _time_init : IMigration
     //{
-    //    public async Task UpgradeAsync(DbContext dbContext)
+    //    public override async Task UpgradeAsync(DbContext dbContext)
     //    {
     //        var _aggregate_Entity = new _aggregate_()
     //        {

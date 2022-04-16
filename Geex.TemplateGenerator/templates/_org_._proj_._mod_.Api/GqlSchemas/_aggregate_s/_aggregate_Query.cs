@@ -18,7 +18,7 @@ using MongoDB.Entities;
 
 namespace _org_._proj_._mod_.Api.GqlSchemas._aggregate_s
 {
-    public class _aggregate_Query : QueryTypeExtension<_aggregate_Query>
+    public class _aggregate_Query : Query<_aggregate_Query>
     {
         protected override void Configure(IObjectTypeDescriptor<_aggregate_Query> descriptor)
         {

@@ -23,7 +23,7 @@ namespace _org_._proj_._mod_.Tests
 
         public class _637632330490465147_TestDataMigration : IMigration
         {
-            public async Task UpgradeAsync(DbContext dbContext)
+            public override async Task UpgradeAsync(DbContext dbContext)
             {
                 dbContext.Attach(_aggregate_s);
                 await _aggregate_s.SaveAsync();
