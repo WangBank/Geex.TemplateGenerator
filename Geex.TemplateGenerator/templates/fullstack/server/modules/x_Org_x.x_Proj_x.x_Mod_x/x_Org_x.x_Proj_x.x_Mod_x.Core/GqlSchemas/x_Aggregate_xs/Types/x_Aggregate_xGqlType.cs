@@ -9,6 +9,7 @@ namespace x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs.Types
         {
             // Implicitly binding all fields, if you want to bind fields explicitly, read more about hot chocolate
             descriptor.BindFieldsImplicitly();
+            descriptor.ConfigEntity();
             base.Configure(descriptor);
         }
     }
