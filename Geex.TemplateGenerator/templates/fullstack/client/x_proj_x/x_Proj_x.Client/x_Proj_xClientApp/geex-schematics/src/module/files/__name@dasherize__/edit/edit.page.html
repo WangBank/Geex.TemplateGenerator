@@ -1,0 +1,44 @@
+<page-header [title]="params.value.id?'<%= classify(name) %>：'+params.value.id:'新增'"
+             *ngIf="context">
+</page-header>
+
+<nz-card *ngIf="context">
+
+  <form nz-form
+        *ngIf="!params.value.id"
+        autocomplete="off">
+    <!-- <nz-form-item>
+      <nz-form-label nzFor="name">姓名</nz-form-label>
+      <nz-form-control>
+        <input nz-input
+               name="name"
+               [formControl]="params.controls.name">
+      </nz-form-control>
+    </nz-form-item> -->
+  </form>
+
+  <div style="display: flex;
+          text-align: center;
+          gap: 10px;
+          justify-content: center;">
+    <button nz-button
+            type="button"
+            (click)="close()"><i nz-icon
+         nzType="rollback"
+         nzTheme="outline"></i>返回</button>
+    <span nz-tooltip
+          [nzTooltipTitle]="context.disabled?'已禁用编辑.':''">
+      <button nz-button
+              type="submit"
+              nzType="primary"
+              [disabled]="context.disabled"
+              (click)="submit()">
+        <i nz-icon
+           nzType="save"
+           nzTheme="outline"></i>保存</button>
+    </span>
+
+  </div>
+
+
+</nz-card>

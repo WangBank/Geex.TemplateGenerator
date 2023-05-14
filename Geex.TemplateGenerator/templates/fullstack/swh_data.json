@@ -1,0 +1,93 @@
+{
+    "data": {
+        "dict": {},
+        "list": {
+            "tree": [
+                {
+                    "type": "folder",
+                    "title": "x_proj_x.local",
+                    "id": "00000000-0000-0000-0001-0001",
+                    "children": [
+                        {
+                            "title": "x_org_x.com",
+                            "id": "00000000-0000-0000-0000-000000000001",
+                            "on": true
+                        },
+                        {
+                            "title": "x_proj_x.x_org_x.com",
+                            "id": "00000000-0000-0000-0000-000000000002",
+                            "on": true
+                        },
+                        {
+                            "title": "x_proj_x.api.x_org_x.com",
+                            "id": "00000000-0000-0000-0000-000000000003",
+                            "on": true
+                        }
+                    ],
+                    "on": false,
+                    "is_collapsed": false
+                },
+                {
+                    "type": "local",
+                    "title": "x_proj_x.dev",
+                    "id": "00000000-0000-0000-0000-100000000000",
+                    "on": false
+                },
+                {
+                    "title": "x_proj_x",
+                    "id": "00000000-0000-0000-0000-200000000000",
+                    "on": false
+                }
+            ]
+        },
+        "set": {},
+        "collection": {
+            "history": {
+                "meta": {
+                    "index": 964
+                },
+                "data": [],
+                "index_keys": []
+            },
+            "hosts": {
+                "meta": {
+                    "index": 27
+                },
+                "data": [
+                    {
+                        "id": "00000000-0000-0000-0000-000000000001",
+                        "content": "127.0.0.1 dev.x_org_x.com",
+                        "_id": "1"
+                    },
+                    {
+                        "id": "00000000-0000-0000-0000-000000000002",
+                        "content": "127.0.0.1 x_proj_x.dev.x_org_x.com",
+                        "_id": "2"
+                    },
+                    {
+                        "id": "00000000-0000-0000-0000-000000000003",
+                        "content": "127.0.0.1 x_proj_x.api.dev.x_org_x.com",
+                        "_id": "3"
+                    },
+                    {
+                        "id": "00000000-0000-0000-0000-100000000000",
+                        "content": "192.168.111.111 dev.x_org_x.com\n192.168.111.111 x_proj_x.dev.x_org_x.com\n192.168.111.111 x_proj_x.api.dev.x_org_x.com\n",
+                        "_id": "4"
+                    },
+                    {
+                        "id": "00000000-0000-0000-0000-200000000000",
+                        "content": "111.111.111.111 dev.x_org_x.com\n111.111.111.111 x_proj_x.api.dev.x_org_x.com\n111.111.111.111 x_proj_x.dev.x_org_x.com\n",
+                        "_id": "5"
+                    }
+                ],
+                "index_keys": []
+            }
+        }
+    },
+    "version": [
+        4,
+        1,
+        1,
+        6077
+    ]
+}

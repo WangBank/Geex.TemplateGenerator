@@ -1,0 +1,55 @@
+version: "3.4"
+
+networks:
+  dev:
+    driver: bridge
+
+volumes:
+  dev:
+    driver: local
+
+services:
+  mongodb:
+    image: mongo:5.0.17
+    restart: always
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    networks:
+      dev:
+        aliases:
+          - mongodb.dev.x_org_x.com
+    
+    healthcheck:
+      test: test $$(echo "rs.initiate().ok || rs.status().ok" | mongo -u mongo -p mongo --quiet) -eq 1
+      interval: 10s
+      start_period: 30s
+    command: ["--replSet", "dbrs", "--bind_ip_all"]
+
+  elasticsearch:
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
+    volumes:
+      - dev:/usr/share/elasticsearch/data
+    ports:
+    - 9200:9200
+    networks:
+      dev:
+        aliases:
+          - elasticsearch.dev.x_org_x.com
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:8.7.1
+    ports:
+    - 5601:5601
+    environment:
+      SERVER_NAME: kibana
+    networks:
+      dev:
+        aliases:
+          - kibana.dev.x_org_x.com
+    depends_on:
+      - elasticsearch

@@ -1,0 +1,15 @@
+{
+  "production": false,
+  "useHash": false,
+  "appUrl": "https://x_proj_x.dev.x_org_x.com",
+  "enableWatermarking": false,
+  "api": {
+    "baseUrl": "https://x_proj_x.api.dev.x_org_x.com",
+    "refreshTokenEnabled": false,
+    "refreshTokenType": "auth-refresh"
+  },
+  "auth": {},
+  "connectedClients": {
+    "app": "https://app.dev.x_org_x.com"
+  }
+}
