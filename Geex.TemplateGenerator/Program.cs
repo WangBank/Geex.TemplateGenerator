@@ -19,11 +19,11 @@ namespace Geex.TemplateGenerator
             var moduleName = Console.ReadLine().Trim();
             Console.WriteLine("enter default aggregate name.");
             var aggregateName = Console.ReadLine().Trim();
-            Console.WriteLine("enter template path, press enter if it's `./templates/simple_module`");
-            var templatePath = Console.ReadLine();
-            if (string.IsNullOrEmpty(templatePath))
+            Console.WriteLine("enter template path, press enter if it's `simple_module`");
+            var templateName = Console.ReadLine();
+            if (string.IsNullOrEmpty(templateName))
             {
-                templatePath = "./templates/simple_module";
+                templateName = "simple_module";
             }
 
             var orgC = orgName.Camelize();
@@ -40,6 +40,7 @@ namespace Geex.TemplateGenerator
 
             var cwd = Directory.GetCurrentDirectory();
             var target = Path.Combine(cwd, ".generated");
+            var templatePath = "../../../templates/"+templateName;
             var renameEntries = Directory.GetFileSystemEntries(templatePath, "*", SearchOption.AllDirectories);
             Parallel.ForEach(renameEntries, renameEntry =>
             {
