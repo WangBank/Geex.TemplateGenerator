@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Geex.Common.Abstraction" Version="3.0.36"  />
+    <PackageReference Include="Geex.Common.Abstraction" Version="3.0.37"  />
   </ItemGroup>
 
 

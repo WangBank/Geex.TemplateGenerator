@@ -3,7 +3,6 @@ using Geex.Common;
 using Geex.Common.Abstractions;
 using Geex.Common.Authentication;
 using Geex.Common.Identity.Core;
-using Geex.Core.Localization;
 using Volo.Abp.Modularity;
 using x_Org_x.x_Proj_x.Core.CacheData;
 using Microsoft.Extensions.DependencyInjection;

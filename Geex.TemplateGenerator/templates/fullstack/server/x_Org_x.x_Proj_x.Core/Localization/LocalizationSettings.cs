@@ -7,7 +7,7 @@ namespace x_Org_x.x_Proj_x.Core.Localization
     public class LocalizationSettings : SettingDefinition
     {
         public LocalizationSettings([NotNull] string name, SettingScopeEnumeration[] validScopes,
-            [CanBeNull] string? description = null, bool isHiddenForClients = false, JsonNode? defaultValue = null) : base(nameof(Geex.Core.Localization) + name, validScopes, description, isHiddenForClients, defaultValue)
+            [CanBeNull] string? description = null, bool isHiddenForClients = false, JsonNode? defaultValue = null) : base(nameof(Localization) + name, validScopes, description, isHiddenForClients, defaultValue)
         {
         }
         public static LocalizationSettings Language { get; } = new(nameof(Language), new[] { SettingScopeEnumeration.Global, SettingScopeEnumeration.User }, defaultValue: JsonValue.Create("zh-cn"));
