@@ -90,7 +90,7 @@ export class StartupService {
           if (e.type == "session_terminated") {
             console.error(e);
             modalService.info({
-              nzTitle: "检测到账号切换, 请从云投资重新发起会话",
+              nzTitle: "检测到账号切换, 请从Geex重新发起会话",
               nzOkText: "确认",
               nzOnOk: async () => {
                 tokenService.clear();

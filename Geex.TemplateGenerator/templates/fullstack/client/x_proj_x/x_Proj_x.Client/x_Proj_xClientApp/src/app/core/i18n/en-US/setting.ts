@@ -1,5 +1,5 @@
 export default {
   settingDefinition: {
-    LOCALIZATION_LANGUAGE: "cn",
+    LOCALIZATION_LANGUAGE: "en",
   },
 };
