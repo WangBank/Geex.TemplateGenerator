@@ -42,15 +42,6 @@ export interface CityDto {
   id: string;
   name: string;
 }
-export enum LoanTypeEnum /** 其他 */ {
-  Other = "OTHER" /** 经营性贷款 */,
-  OperatingLoan = "OPERATING_LOAN" /** 流动性贷款 */,
-  LiquidityLoan = "LIQUIDITY_LOAN" /** 供应链融资 */,
-  SupplyChainFinance = "SUPPLY_CHAIN_FINANCE" /** 商票 */,
-  CommercialPaper = "COMMERCIAL_PAPER" /** 信托类 */,
-  Trust = "TRUST" /** 债券 */,
-  Debt = "DEBT",
-}
 export interface LoanTypeDto {
   code: string;
   name: string;

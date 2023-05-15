@@ -1,5 +1,5 @@
 import { AuditStatus, SettingDefinition } from "../graphql/.generated/type";
-import { LoanTypeEnum } from "./type.extenstion";
+
 
 // 审核状态
 export const AuditStatusOptions = [

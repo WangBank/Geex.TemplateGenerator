@@ -60,11 +60,13 @@ mutation unSubmitx_Aggregate_xs($ids: [String]) {
 
 fragment x_Aggregate_xsBrief on x_Aggregate_x {
   id
+  name
   auditStatus
   createdOn
 }
 fragment x_Aggregate_xsDetail on x_Aggregate_x {
   id
+  name
   auditStatus
   createdOn
   # other fields
