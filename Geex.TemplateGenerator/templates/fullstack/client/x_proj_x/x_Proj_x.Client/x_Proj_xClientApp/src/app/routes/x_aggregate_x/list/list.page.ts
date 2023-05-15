@@ -25,6 +25,7 @@ export type x_Aggregate_xListPageParam = {
   styles: [],
 })
 export class x_Aggregate_xListPage extends RoutedComponent<x_Aggregate_xListPageParam, ListDataContext<Partial<x_Aggregate_x>>> {
+
   async fetchData(): Promise<ListDataContext<Partial<x_Aggregate_x>>> {
     let params = this.params.value;
     let res = await this.apollo
@@ -44,6 +45,7 @@ export class x_Aggregate_xListPage extends RoutedComponent<x_Aggregate_xListPage
       data: res.data.x_aggregate_xs.items,
     };
   }
+
   async prepare(params: x_Aggregate_xListPageParam) {
     await super.prepare(params);
   }

@@ -29,8 +29,8 @@ const DefaultWatermarkSettings = {
 })
 export class LayoutBasicComponent {
   options: LayoutDefaultOptions = {
-    logoExpanded: `./assets/logo-txt-white-shield.svg`,
-    logoCollapsed: `./assets/logo.svg`,
+    logoExpanded: `./assets/logo-txt-white-shield.png`,
+    logoCollapsed: `./assets/logo.png`,
     // hideAside: window.isMobile,
   };
   searchToggleStatus = false;

@@ -77,7 +77,7 @@ export const environment = {
           shortcut: false,
         },
       ],
-      text: "融资管理",
+      text: "业务操作",
       icon: null,
       shortcutRoot: false,
       link: null,

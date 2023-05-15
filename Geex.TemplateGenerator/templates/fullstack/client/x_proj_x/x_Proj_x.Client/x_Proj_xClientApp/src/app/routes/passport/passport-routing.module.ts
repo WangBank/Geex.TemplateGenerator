@@ -16,7 +16,7 @@ const routes: GeexRoutes = [
       {
         path: "login",
         component: UserLoginComponent,
-        data: { title: "融资系统登录" },
+        data: { title: "账号登录" },
       },
       {
         path: "register",
