@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   { path: "edit", component: x_Aggregate_xEditPage, resolve: { params: x_Aggregate_xEditPageResolve }, runGuardsAndResolvers: "always" },
   {
-    path: "edit/:name",
+    path: "edit/:id",
     component: x_Aggregate_xEditPage,
     resolve: { params: x_Aggregate_xEditPageResolve },
     runGuardsAndResolvers: "always",

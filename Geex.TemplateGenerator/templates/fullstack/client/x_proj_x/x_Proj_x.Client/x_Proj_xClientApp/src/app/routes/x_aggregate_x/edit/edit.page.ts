@@ -1,8 +1,10 @@
 import { Component, Injector, OnInit } from "@angular/core";
-import { SFComponent, SFSchema, SFUISchema } from "@delon/form";
-import { deepCopy } from "@delon/util";
+import { FormBuilder, FormControl } from "@angular/forms";
 
-import { RoutedComponent } from "../../../shared/components/routed.component.base";
+import { deepCopy } from "@delon/util";
+import { isEqual } from "lodash-es";
+
+import { MyFormGroup, RoutedComponent } from "../../../shared/components/routed.component.base";
 import {
   x_Aggregate_xByIdQuery,
   x_Aggregate_xByIdQueryVariables,
@@ -11,72 +13,76 @@ import {
   Createx_Aggregate_xRequestInput,
   Editx_Aggregate_xRequestInput,
   Editx_Aggregate_xsGql,
+  x_Aggregate_x,
 } from "../../../shared/graphql/.generated/type";
 import { EditMode } from "../../../shared/types/common";
 
+type EntityEditablePart = Pick<x_Aggregate_x, "name">;
+
 export type x_Aggregate_xEditPageParams = {
-  id: string;
   name: string;
 };
 
 type x_Aggregate_xEditPageData = {
+  id: string;
+  entityForm: MyFormGroup<Pick<x_Aggregate_x, "name">>;
   disabled: boolean;
 };
 
 @Component({
-  selector: "app-x-aggregate-x-edit",
+  selector: "app-x_Aggregate_xs-edit",
   templateUrl: "./edit.page.html",
-  styleUrls: ["./edit.page.css"],
+  styles: [],
 })
 export class x_Aggregate_xEditPage extends RoutedComponent<x_Aggregate_xEditPageParams, x_Aggregate_xEditPageData> {
   mode: EditMode;
-  ui: SFUISchema = {
-    "*": {
-      spanLabelFixed: 100,
-    },
-  };
+
 
   constructor(private injector: Injector) {
     super(injector);
   }
 
   close() {
-    if (this.params.value != this.initialParamsValue) {
-      this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true });
+    if (isEqual(this.context.entityForm.value, this.initialParamsValue)) {
+      this.back();
     } else {
       this.nzModalSrv.confirm({
         nzTitle: "当前页面内容未保存，确定离开？",
         nzOnOk: () => {
-          // this.router.navigate(["../"], { relativeTo: this.route });
-          this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true });
+          this.back();
         },
       });
     }
   }
 
   async fetchData() {
-    let params = this.params.value;
-    this.mode = params.id ? "edit" : "create";
+    //let params = this.params.value;
+    const id = this.route.snapshot.params.id;
+    this.mode = id ? "edit" : "create";
     let result: x_Aggregate_xEditPageData;
-    if (params.id) {
+    let fb: FormBuilder = new FormBuilder();
+
+    let formConfig: { [key in keyof EntityEditablePart]: FormControl };
+    if (id) {
       let res = await this.apollo
         .query<x_Aggregate_xByIdQuery, x_Aggregate_xByIdQueryVariables>({
           query: x_Aggregate_xByIdGql,
           variables: {
-            id: params.id,
+            id: id,
           },
         })
         .toPromise();
       let entity = res.data.x_aggregate_xs.items[0];
-      result = {
-        disabled: false,
-      };
+      formConfig = { name: new FormControl(entity.name) };
     } else {
-      result = {
-        disabled: false,
-      };
+      formConfig = { name: new FormControl("") };
     }
-
+    result = {
+      id,
+      entityForm: fb.group(formConfig) as MyFormGroup<EntityEditablePart>,
+      disabled: false,
+    };
+    this.initialParamsValue = result.entityForm.value;
     return result;
   }
 
@@ -88,7 +94,7 @@ export class x_Aggregate_xEditPage extends RoutedComponent<x_Aggregate_xEditPage
           mutation: Createx_Aggregate_xsGql,
           variables: {
             input: {
-              name: this.params.value.name,
+              name: this.context.entityForm.value.name,
             } as Createx_Aggregate_xRequestInput,
           },
         })
@@ -100,8 +106,8 @@ export class x_Aggregate_xEditPage extends RoutedComponent<x_Aggregate_xEditPage
             mutation: Editx_Aggregate_xsGql,
             variables: {
               input: {
-                id: this.params.value.id,
-                name: this.params.value.name,
+                id: this.context.id,
+                name: this.context.entityForm.value.name,
               } as Editx_Aggregate_xRequestInput,
             },
           })
@@ -109,6 +115,14 @@ export class x_Aggregate_xEditPage extends RoutedComponent<x_Aggregate_xEditPage
       }
     }
     this.msgSrv.success("修改成功");
-    await this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true });
+    await this.router.navigate(["../../"], { relativeTo: this.route, replaceUrl: true });
+  }
+
+  back() {
+    if (this.mode == "edit") {
+      this.router.navigate(["../../"], { relativeTo: this.route, replaceUrl: true });
+    } else {
+      this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true });
+    }
   }
 }

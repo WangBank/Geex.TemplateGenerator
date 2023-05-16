@@ -1,3 +1,5 @@
+<!-- [acl]="AppPermission.x_Aggregate_xsMutationCreatex_Aggregate_x" -->
+
 <page-header>
   <div style="display: flex;flex-wrap: wrap;">
     <div>
@@ -14,7 +16,6 @@
            nzType="reload"
            nzTheme="outline"></i>
         刷新</button>
-      <!-- [acl]="AppPermission.x_Aggregate_xsMutationCreatex_Aggregate_x" -->
       <button (click)="add()"
               nz-button
               nzType="primary">
@@ -33,13 +34,12 @@
             [nzMessage]="message">
     <ng-template #message>
       <div>
-        <!-- <span [innerHTML]="'已选择 '+selectedData?.length+' 项'"></span> -->
+        <span [innerHTML]="'已选择 '+selectedData?.length+' 项'"></span>
         <nz-divider nzType="vertical"></nz-divider>
         <a (click)="refresh()"><i nz-icon
              nzType="reload"></i>
           刷新
         </a>
-        <!-- *ngIf="isGranted('Messages.BatchAudit')" -->
         <ng-container>
           <nz-divider nzType="vertical"></nz-divider>
           <a (click)="filter='';refresh()"><i nz-icon
@@ -47,14 +47,14 @@
             清空
           </a>
         </ng-container>
-        <!-- <ng-container>
+        <ng-container>
           <nz-divider nzType="vertical"></nz-divider>
-          <a (click)="batchOperation('delete','x_Aggregate_x')"
-             [acl]="AppPermission.x_Aggregate_xsMutationDeletex_Aggregate_x"><i nz-icon
+          <a (click)="batchOperation('delete','x_Aggregate_x')"><i nz-icon
                nzType="delete"></i>
             批量删除
           </a>
-        </ng-container> -->
+        </ng-container>
+
       </div>
     </ng-template>
   </nz-alert>
@@ -62,20 +62,26 @@
             [nzData]="context?.data">
     <thead>
       <tr>
-        <th>id</th>
-        <!-- <th>显示名称</th> -->
+        <th [nzChecked]="allSelected"
+            [nzIndeterminate]="!allSelected && selectedData?.length > 0"
+            (nzCheckedChange)="onAllChecked($event)"></th>
+        <th>显示名称</th>
         <th>操作</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of basicTable.data">
-        <td>{{data.id}}</td>
-        <!-- <td>{{data.name}}</td> -->
-        <td>
+        <td [nzChecked]="selectedData.contains(data)"
+            (nzCheckedChange)="onItemChecked(data, $event)"></td>
+        <td style="text-align: center;">{{data.name}}</td>
+        <td style="text-align: center;">
           <a (click)="edit(data.id)">编辑</a>
-          <!-- <nz-divider nzType="vertical"></nz-divider>
-          <a (click)="submit(data.id)">{{data.submittable?"上报":"取消上报"}}</a> -->
-          <!-- <nz-divider nzType="vertical"></nz-divider>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-popconfirm
+             nzPopconfirmTitle="是否确定删除?"
+             (nzOnConfirm)="delete(data.id)">删除</a>
+          <!-- <a (click)="submit(data.id)">{{data.submittable?"上报":"取消上报"}}</a>
+          <nz-divider nzType="vertical"></nz-divider>
           <a (click)="submit(data.id)">{{data.auditable?"审批":"取消审批"}}</a> -->
         </td>
       </tr>

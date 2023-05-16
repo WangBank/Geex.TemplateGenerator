@@ -9,7 +9,7 @@ import { NzFormatEmitEvent, NzTreeNode } from "ng-zorro-antd/tree";
 import { Observable } from "rxjs";
 import { map, take } from "rxjs/operators";
 
-import { AuditBadge, BusinessComponentBase, MethodName } from "../../shared/components";
+import { AuditBadge, BusinessComponentBase } from "../../shared/components";
 import {
   ChangePasswordGql,
   ChangePasswordRequestInput,

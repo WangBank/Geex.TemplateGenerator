@@ -14,11 +14,7 @@ export interface MyFormGroup<TValue> extends FormGroup {
   };
   value: TValue;
 }
-/**数据上下文 */
-export class ListDataContext<T> {
-  data: T[];
-  total?: number;
-}
+
 /**
  *
  * @class 路由组件基类

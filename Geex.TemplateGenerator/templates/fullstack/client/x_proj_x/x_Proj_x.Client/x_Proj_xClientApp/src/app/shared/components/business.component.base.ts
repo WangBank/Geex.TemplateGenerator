@@ -15,7 +15,6 @@ import { I18N, I18NService } from "../../core";
 import { AppPermission, AuditStatus, SettingDefinition } from "../graphql/.generated/type";
 import { CacheDataStateModel, CacheDataState$ } from "../states/cache-data.state";
 import { AuditStatusOptions } from "../utils/common-options";
-export type MethodName = "delete" | "audit" | "submit" | "unaudit" | "unsubmit";
 
 export const AuditBadge: STColumnBadge = {
   AUDITED: { text: AuditStatusOptions.find(x => x.value == "AUDITED").label, color: "success" },
@@ -40,7 +39,6 @@ export abstract class BusinessComponentBase<TParam = any, TDto = any> {
   loading: boolean;
   $init: Observable<any>;
   routerOutlet: RouterOutlet;
-  selectedData: TDto[] = [];
   cache: CacheDataState$;
   nzLoadingSrv: nzLoadingService;
   I18N = I18N;
@@ -102,66 +100,5 @@ export abstract class BusinessComponentBase<TParam = any, TDto = any> {
       route = route.firstChild;
     }
     return route;
-  }
-  batchOperation(sth: MethodName, entityType: string, remark?: string) {
-    return new Promise((resolve, reject) => {
-      let ids = this.selectedData.map(x => x["id"]);
-      let text = "";
-      switch (sth) {
-        case "delete":
-        case "submit":
-          ids = this.selectedData.filter(x => x["auditStatus"] === AuditStatus.Default).map(x => x["id"]);
-          text = "只能操作未上报状态的数据";
-          break;
-        case "audit":
-        case "unsubmit":
-          ids = this.selectedData.filter(x => x["auditStatus"] === AuditStatus.Submitted).map(x => x["id"]);
-          text = "只能操作已上报状态的数据";
-          break;
-        case "unaudit":
-          ids = this.selectedData.filter(x => x["auditStatus"] === AuditStatus.Audited).map(x => x["id"]);
-          text = "只能操作已审核状态的数据";
-          break;
-        default:
-          break;
-      }
-      if (ids.length !== this.selectedData.length) {
-        return this.msgSrv.warning(text);
-      }
-      if (!ids.any()) {
-        this.msgSrv.warning("至少选择一项");
-        return;
-      }
-      let apiName = gql`
-      mutation ${sth}${entityType}($ids: [String], $remark:String) {
-        ${sth}${entityType}(ids: $ids, remark:$remark)
-      }
-    `;
-      if (sth === "delete") {
-        apiName = gql`
-          mutation ${sth}${entityType}($ids: [String]) {
-            ${sth}${entityType}(input: { ids: $ids })
-          }
-        `;
-      }
-
-      let alertMessage = this.I18N.Common.action.get(sth);
-      this.nzModalSrv.confirm({
-        nzTitle: `确认${alertMessage}吗？`,
-        nzOnOk: async () => {
-          await this.apollo
-            .mutate({
-              mutation: apiName,
-              variables: {
-                remark,
-                ids,
-              },
-            })
-            .toPromise();
-          resolve(true);
-          this.msgSrv.success(this.I18N.Common.message.get(sth));
-        },
-      });
-    });
   }
 }

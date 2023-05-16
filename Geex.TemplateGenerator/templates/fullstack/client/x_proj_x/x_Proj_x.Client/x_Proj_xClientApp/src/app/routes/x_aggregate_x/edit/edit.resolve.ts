@@ -15,7 +15,6 @@ export class x_Aggregate_xEditPageResolve extends RoutedComponentResolveBase<x_A
   }
   routeQueryParamsToParams(queryParams: { [x: string]: any }): x_Aggregate_xEditPageParams {
     let resolvedParams: x_Aggregate_xEditPageParams = {
-      id: queryParams.id ?? undefined,
       name: queryParams.name ?? undefined,
     };
     return resolvedParams;

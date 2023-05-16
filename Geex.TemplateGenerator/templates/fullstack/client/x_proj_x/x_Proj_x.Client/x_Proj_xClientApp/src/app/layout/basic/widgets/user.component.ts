@@ -80,9 +80,9 @@ export class HeaderUserComponent {
     this.aclService.set({});
     let user = await this.user$.pipe(take(1)).toPromise();
     switch (user.loginProvider) {
-      case LoginProviderEnum.XOrgX:
+     /*  case LoginProviderEnum.XOrgX:
         clearHistory();
-        break;
+        break; */
       default:
         await this.router.navigateByUrl(this.tokenService.login_url!).then(() => {
           clearHistory();

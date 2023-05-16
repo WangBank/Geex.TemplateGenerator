@@ -39,9 +39,9 @@ export class AppComponent {
     renderer.setAttribute(el.nativeElement, "ng-alain-version", VERSION_ALAIN.full);
     renderer.setAttribute(el.nativeElement, "ng-zorro-version", VERSION_ZORRO.full);
     this.router.virtualNavigate = (commands: any[], extras?: NavigationExtras) => {
-      let url = router.createUrlTree(commands, extras);
-      const resultUrl = url.toString();
-      history.replaceState({}, "", resultUrl);
+      // let url = router.createUrlTree(commands, extras);
+      // const resultUrl = url.toString();
+      // history.replaceState({}, "", resultUrl);
     };
     this.router.navigationStart$ = this.router.events.pipe(filter((e): e is NavigationStart => e instanceof NavigationStart));
     this.router.navigationEnd$ = this.router.events.pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd));

@@ -98,9 +98,9 @@ export class StartupService {
                 aclService.set({});
                 let user = await user$.pipe(take(1)).toPromise();
                 switch (user.loginProvider) {
-                  case LoginProviderEnum.XOrgX:
+                 /*  case LoginProviderEnum.XOrgX:
                     clearHistory();
-                    break;
+                    break; */
                   default:
                     await router.navigateByUrl(tokenService.login_url!).then(() => {
                       clearHistory();

@@ -94,6 +94,7 @@ export class OrgListComponent extends BusinessComponentBase implements OnInit {
     },
   ];
   users: UserListFragment[];
+  selectedData: UserListFragment[] = [];
   constructor(
     injector: Injector,
     private nzContextMenuService: NzContextMenuService,
