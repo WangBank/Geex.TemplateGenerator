@@ -99,6 +99,8 @@ export class x_Aggregate_xEditPage extends RoutedComponent<x_Aggregate_xEditPage
           },
         })
         .toPromise();
+      this.msgSrv.success("添加成功");
+      await this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true });
     } else {
       if (this.mode === "edit") {
         await this.apollo
@@ -112,10 +114,10 @@ export class x_Aggregate_xEditPage extends RoutedComponent<x_Aggregate_xEditPage
             },
           })
           .toPromise();
+        this.msgSrv.success("修改成功");
+        await this.router.navigate(["../../"], { relativeTo: this.route, replaceUrl: true });
       }
     }
-    this.msgSrv.success("修改成功");
-    await this.router.navigate(["../../"], { relativeTo: this.route, replaceUrl: true });
   }
 
   back() {

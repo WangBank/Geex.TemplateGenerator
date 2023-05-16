@@ -10,6 +10,7 @@ query <%= camelize(name) %>s($input: Query<%= classify(name) %>RequestInput!, $s
     totalCount
   }
 }
+
 # 获取全量的<%= camelize(name) %> （用于数据导出等场景）
 # query <%= camelize(name) %>s($where: I<%= classify(name) %>FilterInput) {
 #   <%= camelize(name) %>s(skip: 0, take: 999, where: $where, order: { createdOn: DESC }) {
@@ -21,7 +22,9 @@ query <%= camelize(name) %>s($input: Query<%= classify(name) %>RequestInput!, $s
 # <%= camelize(name) %>详情
 query <%= camelize(name) %>ById($id: String!) {
   <%= camelize(name) %>s(input: {}, skip: 0, take: 1, where: { id: { eq: $id } }) {
-    ...<%= classify(name) %>sDetail
+    items {
+      ...<%= classify(name) %>sDetail
+    }
   }
 }
 # 新增<%= camelize(name) %>
@@ -57,11 +60,13 @@ mutation unSubmit<%= classify(name) %>s($ids: [String]) {
 
 fragment <%= classify(name) %>sBrief on <%= classify(name) %> {
   id
+  name
   auditStatus
   createdOn
 }
 fragment <%= classify(name) %>sDetail on <%= classify(name) %> {
   id
+  name
   auditStatus
   createdOn
   # other fields

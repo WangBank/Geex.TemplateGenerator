@@ -14,7 +14,7 @@ export class <%= classify(name) %>Resolve extends RoutedComponentResolveBase<<%=
     super(injector);
   }
   completeRouteParams(queryParams: { [x: string]: any }): void {
-    queryParams.pi ??= 0;
+    queryParams.pi ??= 1;
     queryParams.ps ??= 10;
   }
   routeQueryParamsToParams(params: { [x: string]: any }): <%= classify(name) %>ListPageParam {

@@ -13,7 +13,7 @@ const routes: Routes = [
     runGuardsAndResolvers: "always",
   },
   { path: "edit", component: <%= classify(name) %>EditPage },
-  { path: "edit/:name", component: <%= classify(name) %>EditPage },
+  { path: "edit/:id", component: <%= classify(name) %>EditPage },
 ];
 
 @NgModule({
