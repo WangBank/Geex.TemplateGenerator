@@ -1,7 +1,7 @@
 overwrite: true
 schema:
   - ./src/app/shared/graphql/schema.graphql
-  - https://x_proj_x.api.dev.x_org_x.com/graphql
+  - http://x_proj_x.api.dev.x_org_x.com/graphql
 # extensions:
 #   endpoints:
 #     default:
