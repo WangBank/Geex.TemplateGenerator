@@ -114,7 +114,8 @@ if (-not (Check-Command yarn))
 # }
 $env:NODE_PATH = $(npm root --quiet -g)
 node -e @"
-var proxy = require('redbird')({
+var redbird = require('redbird');
+redbird({
     port: 80,
     secure: false,
     resolvers:[
@@ -122,7 +123,7 @@ var proxy = require('redbird')({
         if(host == 'x_proj_x.dev.x_org_x.com'){
           return 'http://127.0.0.1:4201'
         }
-         if(host == 'x_proj_x.api.dev.x_org_x.com'){
+        if(host == 'x_proj_x.api.dev.x_org_x.com'){
           return 'https://127.0.0.1:8020'
         }
       }

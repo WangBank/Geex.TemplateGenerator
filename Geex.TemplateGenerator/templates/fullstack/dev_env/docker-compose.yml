@@ -38,7 +38,7 @@ services:
       MONITORING_INTERNAL_PASSWORD: ${MONITORING_INTERNAL_PASSWORD:-}
       BEATS_SYSTEM_PASSWORD: ${BEATS_SYSTEM_PASSWORD:-}
     networks:
-      - elk
+      - dev
     depends_on:
       - elasticsearch
 
@@ -64,7 +64,7 @@ services:
       # see: https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
       discovery.type: single-node
     networks:
-      - elk
+      dev:
     restart: unless-stopped
 
   logstash:
@@ -84,7 +84,7 @@ services:
       LS_JAVA_OPTS: -Xms256m -Xmx256m
       LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
     networks:
-      - elk
+      dev:
     depends_on:
       - elasticsearch
     restart: unless-stopped
@@ -101,28 +101,53 @@ services:
     environment:
       KIBANA_SYSTEM_PASSWORD: ${KIBANA_SYSTEM_PASSWORD:-}
     networks:
-      - elk
+      dev:
     depends_on:
       - elasticsearch
     restart: unless-stopped
 
   apm-server:
-    image: docker.elastic.co/apm/apm-server:${ELASTIC_VERSION}
-    container_name: apm-server
+    build:
+      context: apm-server/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    environment:
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
     volumes:
       - ./apm-server/config/apm-server.yml:/usr/share/apm-server/apm-server.yml
     ports:
       - "8200:8200"
     networks:
-      - elk
+      dev:
     depends_on:
       - elasticsearch
     restart: unless-stopped
 
-
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    networks:
+      dev:
+    restart: unless-stopped
+  mongo:
+    image: mongo:5.0.17
+    ports:
+      - 27017:27017
+    healthcheck:
+      test: test $$(echo "rs.initiate().ok || rs.status().ok" | mongo -u mongo -p mongo --quiet) -eq 1
+      interval: 10s
+      start_period: 30s
+    networks:
+      dev:
+    command: ["--replSet", "dbrs", "--bind_ip_all"]
+    restart: unless-stopped
+    volumes:
+      - mongo:/data/db
 networks:
-  elk:
+  dev:
     driver: bridge
 
 volumes:
   elasticsearch:
+  mongo:

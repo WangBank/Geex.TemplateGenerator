@@ -4,8 +4,7 @@ apm-server:
 output.elasticsearch:
   hosts: ["http://elasticsearch:9200"]
   username: "elastic"
-  password: "changeme"
-
+  password: "${ELASTIC_PASSWORD}"
   
 setup.template.settings:
   index.number_of_shards: 1
