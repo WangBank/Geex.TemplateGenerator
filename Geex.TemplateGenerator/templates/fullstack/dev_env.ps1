@@ -108,6 +108,14 @@ if (-not (Check-Command yarn))
     choco install yarn -y -f
 }
 
+if (-not (Test-Path ".\\client\\x_proj_x\\x_Proj_x.Client\\x_Proj_xClientApp\\geex-schematics\\node_modules")) {
+    $curDir = pwd;
+    cd ".\\client\\x_proj_x\\x_Proj_x.Client\\x_Proj_xClientApp\\geex-schematics"
+    yarn install
+    yarn build
+    cd $curDir;
+}
+
 #region reverse-proxy
 # $redbirdInstalled = npm list redbird -g --depth=0
 # if ($redbirdInstalled[1] -like "*(empty)*") {
