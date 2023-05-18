@@ -87,13 +87,14 @@ if ($cert -eq $null)
         choco install openssl -y
     }
     $cert = New-SelfSignedCertificate -CertStoreLocation Cert:\LocalMachine\My -Subject dev.x_org_x.com -DnsName dev.x_org_x.com, *.api.dev.x_org_x.com, *.dev.x_org_x.com -FriendlyName "dev.x_org_x.com" -NotAfter (Get-Date).AddYears(1000)
-    Install-CCertificate -Path "./.dev_cert/dev.x_org_x.com.pfx" -StoreLocation LocalMachine -StoreName Root -Password $pwd
-}
-if ((Test-Path ./.dev_cert/dev.x_org_x.com.pem) -eq $false)
-{
     mkdir ./.dev_cert
     Export-PfxCertificate -Cert "Cert:\LocalMachine\My\$($cert.Thumbprint)" -FilePath "./.dev_cert/dev.x_org_x.com.pfx" -Password $pwd
     openssl pkcs12 -in "./.dev_cert/dev.x_org_x.com.pfx" -nodes -out ./.dev_cert/dev.x_org_x.com.pem -passin pass:dev.x_org_x.com
+    Install-CCertificate -Path "./.dev_cert/dev.x_org_x.com.pfx" -StoreLocation LocalMachine -StoreName Root -Password $pwd
+    cd ./dev_env
+    docker-compose up setup -d
+    docker-compose up -d
+    cd ..
 }
 
 #endregion
