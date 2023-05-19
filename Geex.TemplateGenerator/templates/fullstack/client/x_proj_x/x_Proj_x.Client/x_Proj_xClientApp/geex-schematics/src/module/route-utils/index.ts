@@ -84,7 +84,6 @@ export function addRouteToNgModule(options: PageOptions): Rule {
     const ngModuleName = `${strings.classify(options.name)}Module`;
     const changes = addRouteToRoutesArray(source, module, routePath, relativePath, ngModuleName);
     const recorder = host.beginUpdate(module);
-    console.log(changes);
     for (const change of changes) {
       if (change instanceof InsertChange) {
         recorder.insertLeft(change.pos, change.toAdd);
@@ -111,8 +110,17 @@ export function addRouteToRoutesArray(
       const [declaration] = keyword.declarationList.declarations;
 
       if (ts.isVariableDeclaration(declaration) && declaration.initializer && declaration.name.getText() === "routes") {
-        const node = declaration.initializer.getChildAt(1);
-        const lastRouteNode = node.getLastToken();
+        let node = declaration.initializer.getChildAt(1);
+
+        node = node.getChildren()!.find(x => x.getFullText().indexOf("LayoutBasicComponent") > 0)!;
+        node = node.getChildren()!.find(x => x.getFullText().indexOf("LayoutBasicComponent") > 0)!;
+        node = node.getChildren()!.find(x => x.getFullText().indexOf("children") > 0)!;
+
+        // node = (node.getChildren()[0].getChildren()[1]?.getChildren()[6] as ts.PropertyDeclaration)!.initializer!.getChildAt(1);
+        // console.warn(node.getLastToken()?.getFullText());
+        // console.warn(node.getChildren()[0].getChildren()[1]?.getFullText());
+
+        const lastRouteNode = node?.getLastToken();
 
         if (!lastRouteNode) {
           return [];

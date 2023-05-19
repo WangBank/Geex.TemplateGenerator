@@ -1,5 +1,5 @@
 import { Injector } from "@angular/core";
-import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from "@angular/router";
+import { Resolve, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
 
 export abstract class RoutedComponentResolveBase<TParams> implements Resolve<TParams> {
@@ -16,17 +16,6 @@ export abstract class RoutedComponentResolveBase<TParams> implements Resolve<TPa
     await this.completeRouteParams(queryParams);
     // 路由参数转换为组件参数
     let params = this.routeQueryParamsToParams(queryParams);
-    const routeParam = Object.values(routeParams);
-    let sub = this.router.navigationEnd$?.subscribe(x => {
-      setTimeout(() => {
-        if (routeParam.length > 0) {
-          this.router.virtualNavigate([...routeParam], { queryParams });
-        } else {
-          this.router.virtualNavigate([], { queryParams });
-        }
-        sub.unsubscribe();
-      });
-    });
     return params;
   }
   // 补全路由参数
@@ -38,8 +27,8 @@ export abstract class RoutedComponentResolveBase<TParams> implements Resolve<TPa
     if (value) {
       if (value.toLowerCase() == "true") return true;
       if (value.toLowerCase() == "false") return false;
-      return null;
+      return true;
     }
-    return null;
+    return false;
   }
 }

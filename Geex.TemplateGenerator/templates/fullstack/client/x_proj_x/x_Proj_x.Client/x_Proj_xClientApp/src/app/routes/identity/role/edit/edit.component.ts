@@ -5,7 +5,7 @@ import { deepCopy } from "@delon/util";
 import { map } from "rxjs/operators";
 
 import { BusinessComponentBase } from "../../../../shared/components/business.component.base";
-import { RoutedComponent } from "../../../../shared/components/routed.component.base";
+import { RoutedComponent } from "@/app/shared/components/routed-components/routed.component.base";
 import {
   AuthorizeInput,
   AuthorizeGql,

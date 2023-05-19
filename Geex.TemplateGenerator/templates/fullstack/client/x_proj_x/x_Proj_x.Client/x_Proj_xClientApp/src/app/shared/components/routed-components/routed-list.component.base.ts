@@ -5,8 +5,22 @@ import { isDate } from "lodash-es";
 import { combineLatest, forkJoin, zip } from "rxjs";
 import { filter, map } from "rxjs/operators";
 
-import { AuditStatus } from "../graphql/.generated/type";
+import { AuditStatus, Role } from "../../graphql/.generated/type";
+import { EditDataContext, RoutedEditComponent } from "./routed-edit.component.base";
 import { RoutedComponent } from "./routed.component.base";
+
+export class Test extends RoutedEditComponent<{}, Role, ["name"]> {
+  async fetchData(): Promise<EditDataContext<Role, ["name"]>> {
+    let entity = {} as Role;
+    return {
+      id: entity.id,
+      originalValue: { name: "233" },
+      entityForm: new FormBuilder().group({
+        name: "233",
+      }),
+    };
+  }
+}
 
 export type BatchOperationName = "delete" | "audit" | "submit" | "unaudit" | "unsubmit";
 

@@ -4,7 +4,7 @@ import { isDate } from "lodash-es";
 import { combineLatest, forkJoin, zip } from "rxjs";
 import { filter, map } from "rxjs/operators";
 
-import { BusinessComponentBase } from "./business.component.base";
+import { BusinessComponentBase } from "../business.component.base";
 
 import { resolve } from "dns";
 // 强类型表单
@@ -67,6 +67,7 @@ export abstract class RoutedComponent<TParams extends {}, TContext> extends Busi
 
   //根据组件参数换区数据上下文
   abstract fetchData(): Promise<TContext>;
+
   //组件参数转路由查询参数
   paramsToQueryParam(params: TParams) {
     // for in (仅取出有值的键值对，用于路由传参)

@@ -4,17 +4,17 @@ import { merge } from "lodash";
 import { Observable } from "rxjs";
 
 import { RoutedComponentResolveBase } from "../../../shared/resolvers/route-component.resolver.base";
-import { BookEditPageParams } from "./edit.page";
+import { <%= classify(name) %>EditPageParams } from "./edit.page";
 
 @Injectable({
   providedIn: "root",
 })
-export class BookEditPageResolve extends RoutedComponentResolveBase<BookEditPageParams> {
+export class <%= classify(name) %>EditPageResolve extends RoutedComponentResolveBase<<%= classify(name) %>EditPageParams> {
   completeRouteParams(queryParams: { [x: string]: any }): void | Promise<void> {
     return;
   }
-  routeQueryParamsToParams(queryParams: { [x: string]: any }): BookEditPageParams {
-    let resolvedParams: BookEditPageParams = {
+  routeQueryParamsToParams(queryParams: { [x: string]: any }): <%= classify(name) %>EditPageParams {
+    let resolvedParams: <%= classify(name) %>EditPageParams = {
       name: queryParams.name ?? undefined,
     };
     return resolvedParams;

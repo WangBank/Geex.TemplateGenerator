@@ -10,8 +10,8 @@ import { delay, map, switchMap, tap } from "rxjs/operators";
 
 import { I18N } from "../../core";
 import { BusinessComponentBase } from "../../shared/components/business.component.base";
-import { ListDataContext } from "../../shared/components/routed-list.component.base";
-import { RoutedComponent } from "../../shared/components/routed.component.base";
+import { ListDataContext } from "@/app/shared/components/routed-components/routed-list.component.base";
+import { RoutedComponent } from "@/app/shared/components/routed-components/routed.component.base";
 import {
   SettingBriefFragment,
   SettingsGql,

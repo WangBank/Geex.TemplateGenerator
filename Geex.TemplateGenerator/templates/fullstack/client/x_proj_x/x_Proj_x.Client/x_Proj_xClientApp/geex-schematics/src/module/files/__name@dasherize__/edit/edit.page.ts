@@ -70,7 +70,7 @@ export class <%= classify(name) %>EditPage extends RoutedComponent<<%= classify(
           },
         })
         .toPromise();
-      let entity = res.data.<%= camelize(name) %>s.items[0];
+      let entity = res.data.<%= camelize(name) %>ById;
       formConfig = { name: new FormControl(entity.name) };
     } else {
       formConfig = { name: new FormControl("") };

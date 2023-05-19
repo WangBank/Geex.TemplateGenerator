@@ -2,7 +2,7 @@ import { Component, Injector, OnInit, ViewChild } from "@angular/core";
 import { STChange, STColumn, STComponent } from "@delon/abc/st";
 import { ModalHelper, _HttpClient } from "@delon/theme";
 
-import { RoutedComponent } from "../../../shared/components/routed.component.base";
+import { RoutedComponent } from "@/app/shared/components/routed-components/routed.component.base";
 import {
   AppPermission,
   IUserFilterInput,

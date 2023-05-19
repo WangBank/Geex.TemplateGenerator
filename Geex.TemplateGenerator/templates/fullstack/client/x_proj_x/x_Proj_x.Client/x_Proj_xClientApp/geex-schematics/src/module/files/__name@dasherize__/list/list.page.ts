@@ -4,7 +4,7 @@ import { Apollo } from "apollo-angular";
 import _ from "lodash";
 import { take } from "rxjs/operators";
 
-import { ListDataContext, RoutedListComponent } from "../../../shared/components/routed-list.component.base";
+import { ListDataContext, RoutedListComponent } from "../../../shared/components/routed-components/routed-list.component.base";
 import { <%= classify(name) %>BriefFragment, <%= classify(name) %>sGql, <%= classify(name) %>sQuery, Delete<%= classify(name) %>sGql, <%= classify(name) %>sQueryVariables } from "../../../shared/graphql/.generated/type";
 import { <%= classify(name) %>EditPage } from "../edit/edit.page";
 
