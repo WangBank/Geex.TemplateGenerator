@@ -4,7 +4,7 @@ import "./shared/angular.extension";
 import "./shared/file.extensions";
 import "./shared/ng-alain.extension";
 import "./shared/ngxs.extensions";
-import "./shared/rxjs.extensions";
+import "./shared/rxjs.extension";
 import { HttpEventType, HttpRequest } from "@angular/common/http";
 import { enableProdMode, ViewEncapsulation } from "@angular/core";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";

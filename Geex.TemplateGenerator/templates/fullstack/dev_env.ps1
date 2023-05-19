@@ -108,10 +108,17 @@ if (-not (Check-Command yarn))
     choco install yarn -y -f
 }
 
+if (-not (Test-Path ".\\client\\x_proj_x\\x_Proj_x.Client\\x_Proj_xClientApp\\node_modules")) {
+    $curDir = pwd;
+    cd ".\\client\\x_proj_x\\x_Proj_x.Client\\x_Proj_xClientApp"
+    yarn
+    cd $curDir;
+}
+
 if (-not (Test-Path ".\\client\\x_proj_x\\x_Proj_x.Client\\x_Proj_xClientApp\\geex-schematics\\node_modules")) {
     $curDir = pwd;
     cd ".\\client\\x_proj_x\\x_Proj_x.Client\\x_Proj_xClientApp\\geex-schematics"
-    yarn install
+    yarn
     yarn build
     cd $curDir;
 }

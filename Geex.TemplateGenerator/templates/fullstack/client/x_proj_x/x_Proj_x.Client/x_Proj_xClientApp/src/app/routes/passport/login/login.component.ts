@@ -18,13 +18,7 @@ import { NzModalService } from "ng-zorro-antd/modal";
 import { NzTabChangeEvent } from "ng-zorro-antd/tabs";
 import { Observable } from "rxjs";
 
-import {
-  AuthenticateGql,
-  CreateBlobObjectGql,
-  x_Proj_xLoginProviderEnum,
-  ITenant,
-  LoginProviderEnum,
-} from "../../../shared/graphql/.generated/type";
+import { AuthenticateGql, CreateBlobObjectGql, ITenant, LoginProviderEnum } from "../../../shared/graphql/.generated/type";
 import { TenantState } from "../../../shared/states/tenant.state";
 import { TenantSwitcherComponent } from "../../saas/components//tenant-switcher/tenant-switcher.component";
 @Component({
@@ -34,7 +28,7 @@ import { TenantSwitcherComponent } from "../../saas/components//tenant-switcher/
   providers: [SocialService],
 })
 export class UserLoginComponent implements OnDestroy {
-  activeLoginProviders: [`${x_Proj_xLoginProviderEnum}`] = ["x_Org_x"];
+  activeLoginProviders: [`${LoginProviderEnum}`] = ["x_Org_x"];
   submitting = false;
   verificationImgUrl = "";
   isMobile: boolean = false;
@@ -184,7 +178,7 @@ export class UserLoginComponent implements OnDestroy {
 
   // #region social
 
-  open(type: `${x_Proj_xLoginProviderEnum}`, openType: SocialOpenType = "href"): void {
+  open(type: `${LoginProviderEnum}`, openType: SocialOpenType = "href"): void {
     let url = ``;
     let callback = ``;
     // tslint:disable-next-line: prefer-conditional-expression
