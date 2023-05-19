@@ -28,11 +28,6 @@ export type CollectionSegmentInfoFieldPolicy = {
 	hasNextPage?: FieldPolicy<any> | FieldReadFunction<any>,
 	hasPreviousPage?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type DeleteResultKeySpecifier = ('deletedCount' | 'isAcknowledged' | DeleteResultKeySpecifier)[];
-export type DeleteResultFieldPolicy = {
-	deletedCount?: FieldPolicy<any> | FieldReadFunction<any>,
-	isAcknowledged?: FieldPolicy<any> | FieldReadFunction<any>
-};
 export type FrontendCallKeySpecifier = ('data' | 'frontendCallType' | FrontendCallKeySpecifier)[];
 export type FrontendCallFieldPolicy = {
 	data?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -249,7 +244,7 @@ export type OrgCollectionSegmentFieldPolicy = {
 	pageInfo?: FieldPolicy<any> | FieldReadFunction<any>,
 	totalCount?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('_' | 'tenants' | 'users' | 'currentUser' | 'orgs' | 'roles' | 'messages' | 'unreadMessages' | 'blobObjects' | 'settings' | 'initSettings' | 'myPermissions' | '_hint' | 'orgsCache' | 'x_aggregate_xs' | 'x_aggregate_xById' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('_' | 'tenants' | 'users' | 'currentUser' | 'orgs' | 'roles' | 'messages' | 'unreadMessages' | 'blobObjects' | 'settings' | 'initSettings' | 'myPermissions' | '_hint' | 'orgsCache' | 'x_Aggregate_xs' | 'x_Aggregate_xById' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	_?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenants?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -265,8 +260,8 @@ export type QueryFieldPolicy = {
 	myPermissions?: FieldPolicy<any> | FieldReadFunction<any>,
 	_hint?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgsCache?: FieldPolicy<any> | FieldReadFunction<any>,
-	x_aggregate_xs?: FieldPolicy<any> | FieldReadFunction<any>,
-	x_aggregate_xById?: FieldPolicy<any> | FieldReadFunction<any>
+	x_Aggregate_xs?: FieldPolicy<any> | FieldReadFunction<any>,
+	x_Aggregate_xById?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type RoleKeySpecifier = ('name' | 'code' | 'users' | 'permissions' | 'tenantCode' | 'isDefault' | 'isStatic' | 'isEnabled' | 'modifiedOn' | 'id' | 'createdOn' | RoleKeySpecifier)[];
 export type RoleFieldPolicy = {
@@ -368,17 +363,15 @@ export type UserTokenFieldPolicy = {
 	userId?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type x_Aggregate_xKeySpecifier = ('generateNewId' | 'delete' | 'name' | 'auditStatus' | 'auditRemark' | 'submittable' | 'modifiedOn' | 'id' | 'createdOn' | x_Aggregate_xKeySpecifier)[];
+export type x_Aggregate_xKeySpecifier = ('id' | 'createdOn' | 'modifiedOn' | 'auditStatus' | 'submittable' | 'name' | 'auditRemark' | x_Aggregate_xKeySpecifier)[];
 export type x_Aggregate_xFieldPolicy = {
-	generateNewId?: FieldPolicy<any> | FieldReadFunction<any>,
-	delete?: FieldPolicy<any> | FieldReadFunction<any>,
-	name?: FieldPolicy<any> | FieldReadFunction<any>,
-	auditStatus?: FieldPolicy<any> | FieldReadFunction<any>,
-	auditRemark?: FieldPolicy<any> | FieldReadFunction<any>,
-	submittable?: FieldPolicy<any> | FieldReadFunction<any>,
-	modifiedOn?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
-	createdOn?: FieldPolicy<any> | FieldReadFunction<any>
+	createdOn?: FieldPolicy<any> | FieldReadFunction<any>,
+	modifiedOn?: FieldPolicy<any> | FieldReadFunction<any>,
+	auditStatus?: FieldPolicy<any> | FieldReadFunction<any>,
+	submittable?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	auditRemark?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type x_Aggregate_xCollectionSegmentKeySpecifier = ('items' | 'pageInfo' | 'totalCount' | x_Aggregate_xCollectionSegmentKeySpecifier)[];
 export type x_Aggregate_xCollectionSegmentFieldPolicy = {
@@ -402,10 +395,6 @@ export type TypedTypePolicies = TypePolicies & {
 	CollectionSegmentInfo?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | CollectionSegmentInfoKeySpecifier | (() => undefined | CollectionSegmentInfoKeySpecifier),
 		fields?: CollectionSegmentInfoFieldPolicy,
-	},
-	DeleteResult?: Omit<TypePolicy, "fields" | "keyFields"> & {
-		keyFields?: false | DeleteResultKeySpecifier | (() => undefined | DeleteResultKeySpecifier),
-		fields?: DeleteResultFieldPolicy,
 	},
 	FrontendCall?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | FrontendCallKeySpecifier | (() => undefined | FrontendCallKeySpecifier),

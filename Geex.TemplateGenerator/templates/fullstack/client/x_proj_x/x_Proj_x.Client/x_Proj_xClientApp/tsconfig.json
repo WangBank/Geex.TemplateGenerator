@@ -30,7 +30,7 @@
         "src/*"
       ]
     },
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
   },
   "files": [
     "src/main.ts",

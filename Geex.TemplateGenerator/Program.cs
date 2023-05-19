@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Humanizer;
@@ -40,9 +41,11 @@ namespace Geex.TemplateGenerator
 
             var cwd = Directory.GetCurrentDirectory();
             var target = Path.Combine(cwd, ".generated");
-            var templatePath = "../../../templates/"+templateName;
+            var templatePath = "../../../templates/" + templateName;
             var renameEntries = Directory.GetFileSystemEntries(templatePath, "*", SearchOption.AllDirectories);
-            Parallel.ForEach(renameEntries, renameEntry =>
+            renameEntries = renameEntries.Where(x => !x.Contains("\\node_modules")).Where(x => !x.Contains("\\.submodules")).ToArray();
+            var total = renameEntries.Length;
+            Parallel.ForEach(renameEntries, (renameEntry, _, index) =>
             {
                 var destEntry = renameEntry.Replace(templatePath, target)
                     .Replace("x_org_x", orgC)
@@ -90,6 +93,7 @@ namespace Geex.TemplateGenerator
                 {
                     Directory.CreateDirectory(destEntry);
                 }
+                Console.WriteLine($"{index}/{total}");
             });
         }
     }

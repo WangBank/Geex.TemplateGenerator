@@ -1,5 +1,5 @@
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
-import gql from 'graphql-tag';
+import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
+import gql from "graphql-tag";
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -23,40 +23,33 @@ export interface Scalars {
   Upload: any;
 }
 
-
-
-
-
-
-
-
 export enum AppPermission {
-  AuthorizationMutationAuthorize = 'authorization_mutation_authorize',
-  IdentityMutationCreateOrg = 'identity_mutation_createOrg',
-  IdentityMutationCreateRole = 'identity_mutation_createRole',
-  IdentityMutationCreateUser = 'identity_mutation_createUser',
-  IdentityMutationEditOrg = 'identity_mutation_editOrg',
-  IdentityMutationEditRole = 'identity_mutation_editRole',
-  IdentityMutationEditUser = 'identity_mutation_editUser',
-  IdentityQueryOrgs = 'identity_query_orgs',
-  IdentityQueryRoles = 'identity_query_roles',
-  IdentityQueryUsers = 'identity_query_users',
-  MultiTenantMutationCreateTenant = 'multiTenant_mutation_createTenant',
-  MultiTenantMutationDeleteTenant = 'multiTenant_mutation_deleteTenant',
-  MultiTenantMutationEditTenant = 'multiTenant_mutation_editTenant',
-  MultiTenantQueryTenants = 'multiTenant_query_tenants',
-  SettingsMutationEditSetting = 'settings_mutation_editSetting'
+  AuthorizationMutationAuthorize = "authorization_mutation_authorize",
+  IdentityMutationCreateOrg = "identity_mutation_createOrg",
+  IdentityMutationCreateRole = "identity_mutation_createRole",
+  IdentityMutationCreateUser = "identity_mutation_createUser",
+  IdentityMutationEditOrg = "identity_mutation_editOrg",
+  IdentityMutationEditRole = "identity_mutation_editRole",
+  IdentityMutationEditUser = "identity_mutation_editUser",
+  IdentityQueryOrgs = "identity_query_orgs",
+  IdentityQueryRoles = "identity_query_roles",
+  IdentityQueryUsers = "identity_query_users",
+  MultiTenantMutationCreateTenant = "multiTenant_mutation_createTenant",
+  MultiTenantMutationDeleteTenant = "multiTenant_mutation_deleteTenant",
+  MultiTenantMutationEditTenant = "multiTenant_mutation_editTenant",
+  MultiTenantQueryTenants = "multiTenant_query_tenants",
+  SettingsMutationEditSetting = "settings_mutation_editSetting",
 }
 
 export enum AppSettings {
-  AppAppMenu = 'AppAppMenu',
-  AppAppName = 'AppAppName',
-  AppPermissions = 'AppPermissions'
+  AppAppMenu = "AppAppMenu",
+  AppAppName = "AppAppName",
+  AppPermissions = "AppPermissions",
 }
 
 export enum ApplyPolicy {
-  BeforeResolver = 'BEFORE_RESOLVER',
-  AfterResolver = 'AFTER_RESOLVER'
+  BeforeResolver = "BEFORE_RESOLVER",
+  AfterResolver = "AFTER_RESOLVER",
 }
 
 export interface AssignOrgRequestInput {
@@ -64,8 +57,8 @@ export interface AssignOrgRequestInput {
 }
 
 export interface AssignRoleRequestInput {
-  userIds: Array<Scalars['String']>;
-  roles: Array<Scalars['String']>;
+  userIds: Array<Scalars["String"]>;
+  roles: Array<Scalars["String"]>;
 }
 
 export enum AuditStatus {
@@ -277,12 +270,6 @@ export interface DeleteBlobObjectRequestInput {
 export interface DeleteMessageDistributionsInput {
   messageId: Scalars["String"];
   userIds: Array<Scalars["String"]>;
-}
-
-export interface DeleteResult {
-  __typename?: "DeleteResult";
-  deletedCount: Scalars["Long"];
-  isAcknowledged: Scalars["Boolean"];
 }
 
 export interface Deletex_Aggregate_xRequestInput {
@@ -1259,15 +1246,13 @@ export enum _Mod_Settings {
 /** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
 export interface x_Aggregate_x extends IEntityBase, IAuditEntity {
   __typename?: "x_Aggregate_x";
-  generateNewId: Scalars["ObjectId"];
-  delete?: Maybe<DeleteResult>;
-  name: Scalars["String"];
-  auditStatus: AuditStatus;
-  auditRemark?: Maybe<Scalars["String"]>;
-  submittable: Scalars["Boolean"];
-  modifiedOn: Scalars["DateTime"];
   id?: Maybe<Scalars["String"]>;
   createdOn: Scalars["DateTime"];
+  modifiedOn: Scalars["DateTime"];
+  auditStatus: AuditStatus;
+  submittable: Scalars["Boolean"];
+  name: Scalars["String"];
+  auditRemark?: Maybe<Scalars["String"]>;
 }
 
 export interface x_Aggregate_xCollectionSegment {
@@ -1302,11 +1287,11 @@ export interface x_Aggregate_xSortInput {
   createdOn?: Maybe<SortEnumType>;
 }
 
-export enum x_Proj_xFrontCallType {
+export enum X_Proj_XFrontCallType {
   CacheDataChange = "CacheDataChange",
 }
 
-export enum x_Proj_xLoginProviderEnum {
+export enum X_Proj_XLoginProviderEnum {
   XOrgX = "x_Org_x",
 }
 
@@ -1691,11 +1676,7 @@ export type x_Aggregate_xByIdQueryVariables = Exact<{
 }>;
 
 export type x_Aggregate_xByIdQuery = { __typename?: "Query" } & {
-  x_aggregate_xs?: Maybe<
-    { __typename?: "x_Aggregate_xCollectionSegment" } & {
-      items?: Maybe<Array<Maybe<{ __typename?: "x_Aggregate_x" } & x_Aggregate_xsDetailFragment>>>;
-    }
-  >;
+  x_aggregate_xById: { __typename?: "x_Aggregate_x" } & x_Aggregate_xsDetailFragment;
 };
 
 export type Createx_Aggregate_xsMutationVariables = Exact<{
@@ -1742,9 +1723,15 @@ export type UnSubmitx_Aggregate_xsMutationVariables = Exact<{
 
 export type UnSubmitx_Aggregate_xsMutation = { __typename?: "Mutation" } & Pick<Mutation, "unsubmitx_Aggregate_x">;
 
-export type x_Aggregate_xsBriefFragment = { __typename?: "x_Aggregate_x" } & Pick<x_Aggregate_x, "id" | "auditStatus" | "createdOn">;
+export type x_Aggregate_xsBriefFragment = { __typename?: "x_Aggregate_x" } & Pick<
+  x_Aggregate_x,
+  "id" | "name" | "auditStatus" | "createdOn"
+>;
 
-export type x_Aggregate_xsDetailFragment = { __typename?: "x_Aggregate_x" } & Pick<x_Aggregate_x, "id" | "auditStatus" | "createdOn">;
+export type x_Aggregate_xsDetailFragment = { __typename?: "x_Aggregate_x" } & Pick<
+  x_Aggregate_x,
+  "id" | "name" | "auditStatus" | "createdOn" | "submittable" | "auditRemark"
+>;
 
 export type PageInfoFragment = { __typename?: "CollectionSegmentInfo" } & Pick<CollectionSegmentInfo, "hasPreviousPage" | "hasNextPage">;
 
@@ -2017,6 +2004,7 @@ export const SettingDetailGql = gql`
 export const x_Aggregate_xsBriefGql = gql`
   fragment x_Aggregate_xsBrief on x_Aggregate_x {
     id
+    name
     auditStatus
     createdOn
   }
@@ -2024,8 +2012,11 @@ export const x_Aggregate_xsBriefGql = gql`
 export const x_Aggregate_xsDetailGql = gql`
   fragment x_Aggregate_xsDetail on x_Aggregate_x {
     id
+    name
     auditStatus
     createdOn
+    submittable
+    auditRemark
   }
 ` as unknown as DocumentNode<x_Aggregate_xsDetailFragment, unknown>;
 export const PageInfoGql = gql`
@@ -2359,7 +2350,7 @@ export const InitSettingsGql = gql`
 ` as unknown as DocumentNode<InitSettingsQuery, InitSettingsQueryVariables>;
 export const x_Aggregate_xsGql = gql`
   query x_aggregate_xs($input: Queryx_Aggregate_xRequestInput!, $skip: Int, $take: Int, $where: x_Aggregate_xFilterInput) {
-    x_aggregate_xs(input: $input, skip: $skip, take: $take, where: $where, order: { createdOn: DESC }) {
+    x_Aggregate_xs(input: $input, skip: $skip, take: $take, where: $where, order: { createdOn: DESC }) {
       items {
         ...x_Aggregate_xsBrief
       }
@@ -2374,10 +2365,8 @@ export const x_Aggregate_xsGql = gql`
 ` as unknown as DocumentNode<x_Aggregate_xsQuery, x_Aggregate_xsQueryVariables>;
 export const x_Aggregate_xByIdGql = gql`
   query x_aggregate_xById($id: String!) {
-    x_aggregate_xs(input: {}, skip: 0, take: 1, where: { id: { eq: $id } }) {
-      items {
-        ...x_Aggregate_xsDetail
-      }
+    x_aggregate_xById(id: $id) {
+      ...x_Aggregate_xsDetail
     }
   }
   ${x_Aggregate_xsDetailGql}

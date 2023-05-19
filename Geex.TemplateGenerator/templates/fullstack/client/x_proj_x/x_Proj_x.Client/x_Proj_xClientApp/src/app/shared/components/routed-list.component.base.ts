@@ -11,10 +11,13 @@ import { RoutedComponent } from "./routed.component.base";
 export type BatchOperationName = "delete" | "audit" | "submit" | "unaudit" | "unsubmit";
 
 /**数据上下文 */
-export class ListDataContext<T> {
+export class ListDataContext<T extends { id?: string }> {
   data: Array<Partial<T>>;
   total?: number;
 }
+type ListDataContextFactory<TDto extends { id?: string }> = (dto: TDto) => ListDataContext<TDto>;
+
+type InferListDataContext<TDto> = ReturnType<ListDataContextFactory<TDto>>;
 
 /**
  *
@@ -27,7 +30,7 @@ export class ListDataContext<T> {
 export abstract class RoutedListComponent<
   TParams extends {},
   TDto extends { id?: string },
-  TContext extends ListDataContext<TDto>,
+  TContext extends InferListDataContext<TDto> = InferListDataContext<TDto>, // 设置默认类型参数
 > extends RoutedComponent<TParams, TContext> {
   selectedData: Array<Partial<TDto>> = [];
 
@@ -78,13 +81,14 @@ export abstract class RoutedListComponent<
         this.msgSrv.warning("至少选择一项");
         return;
       }
-      let apiName = gql`
+
+      let apiName = `
       mutation ${sth}${entityType}($ids: [String], $remark:String) {
         ${sth}${entityType}(ids: $ids, remark:$remark)
       }
-    `;
+      `;
       if (sth === "delete") {
-        apiName = gql`
+        apiName = `
           mutation ${sth}${entityType}($ids: [String]) {
             ${sth}${entityType}(input: { ids: $ids })
           }
@@ -97,7 +101,7 @@ export abstract class RoutedListComponent<
         nzOnOk: async () => {
           await this.apollo
             .mutate({
-              mutation: apiName,
+              mutation: apiName as any,
               variables: {
                 remark,
                 ids,

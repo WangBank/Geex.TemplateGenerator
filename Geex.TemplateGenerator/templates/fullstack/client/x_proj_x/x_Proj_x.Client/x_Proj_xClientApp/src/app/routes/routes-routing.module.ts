@@ -29,10 +29,6 @@ const routes: GeexRoutes = [
     canActivate: [AuthorizeGuard],
     children: [
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
-      {
-        path: "x_aggregate_x",
-        loadChildren: () => import("./x_aggregate_x/x_aggregate_x.module").then(m => m.x_Aggregate_xModule),
-      },
       // 业务子模块
       { path: "messaging", loadChildren: () => import("./messaging/messaging.module").then(m => m.MessagingModule) },
       { path: "identity", loadChildren: () => import("./identity/identity.module").then(m => m.IdentityModule) },

@@ -5,7 +5,7 @@ import _ from "lodash";
 import { take } from "rxjs/operators";
 
 import { ListDataContext, RoutedListComponent } from "../../../shared/components/routed-list.component.base";
-import { <%= classify(name) %>, <%= classify(name) %>sGql, <%= classify(name) %>sQuery, Delete<%= classify(name) %>sGql, <%= classify(name) %>sQueryVariables } from "../../../shared/graphql/.generated/type";
+import { <%= classify(name) %>BriefFragment, <%= classify(name) %>sGql, <%= classify(name) %>sQuery, Delete<%= classify(name) %>sGql, <%= classify(name) %>sQueryVariables } from "../../../shared/graphql/.generated/type";
 import { <%= classify(name) %>EditPage } from "../edit/edit.page";
 
 export type <%= classify(name) %>ListPageParam = {
@@ -19,7 +19,7 @@ export type <%= classify(name) %>ListPageParam = {
   templateUrl: "./list.page.html",
   styles: [],
 })
-export class <%= classify(name) %>ListPage extends RoutedListComponent<<%= classify(name) %>ListPageParam, <%= classify(name) %>, ListDataContext<<%= classify(name) %>>> {
+export class <%= classify(name) %>ListPage extends RoutedListComponent<<%= classify(name) %>ListPageParam, <%= classify(name) %>BriefFragment>> {
   async fetchData(): Promise<ListDataContext<Partial<<%= classify(name) %>>>> {
     let params = this.params.value;
     let res = await this.apollo

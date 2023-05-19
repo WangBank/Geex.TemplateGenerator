@@ -12,6 +12,7 @@ documents:
   - "./src/**/*.graphql"
   - "!./src/**/*.test.graphql"
   - "!./src/**/test.graphql"
+exclude: "./geex-schematics/**/*"
 generates:
   ./src/app/shared/graphql/.generated/type.ts:
     plugins:
