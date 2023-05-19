@@ -15,12 +15,12 @@ export type <%= classify(name) %>ListPageParam = {
 };
 
 @Component({
-  selector: "app-<%= classify(name) %>s-list",
+  selector: "app-<%= name %>-list",
   templateUrl: "./list.page.html",
   styles: [],
 })
-export class <%= classify(name) %>ListPage extends RoutedListComponent<<%= classify(name) %>ListPageParam, <%= classify(name) %>BriefFragment>> {
-  async fetchData(): Promise<ListDataContext<Partial<<%= classify(name) %>>>> {
+export class <%= classify(name) %>ListPage extends RoutedListComponent<<%= classify(name) %>ListPageParam, <%= classify(name) %>BriefFragment> {
+  async fetchData(): Promise<ListDataContext<Partial<<%= classify(name) %>BriefFragment>>> {
     let params = this.params.value;
     let res = await this.apollo
       .query<<%= classify(name) %>sQuery, <%= classify(name) %>sQueryVariables>({
@@ -59,7 +59,7 @@ export class <%= classify(name) %>ListPage extends RoutedListComponent<<%= class
   }
 
   async edit(id: string) {
-    await this.router.navigate(["./edit", id], { relativeTo: this.route });
+    await this.router.navigate(["./edit"], { queryParams: { id }, relativeTo: this.route });
   }
 
   async delete(id: string) {

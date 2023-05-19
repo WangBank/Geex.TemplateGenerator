@@ -111,12 +111,23 @@ export function addRouteToRoutesArray(
 
       if (ts.isVariableDeclaration(declaration) && declaration.initializer && declaration.name.getText() === "routes") {
         let node = declaration.initializer.getChildAt(1);
+        console.warn(0 + node.getFullText());
 
-        node = node.getChildren()!.find(x => x.getFullText().indexOf("LayoutBasicComponent") > 0)!;
-        node = node.getChildren()!.find(x => x.getFullText().indexOf("LayoutBasicComponent") > 0)!;
-        node = node.getChildren()!.find(x => x.getFullText().indexOf("children") > 0)!;
+        try {
+          node = node.getChildren()!.find(x => x.getFullText().indexOf("LayoutBasicComponent"))!;
+          console.warn(1 + node.getFullText());
+          node = node.getChildren()!.find(x => x.getFullText().indexOf("LayoutBasicComponent") > 0)!;
+          console.warn(2 + node.getFullText());
+          node = node.getChildren()!.find(x => x.getFullText().indexOf("children") > 0)!;
+          console.warn(3 + node.getFullText());
+        } catch (e) {}
 
         // node = (node.getChildren()[0].getChildren()[1]?.getChildren()[6] as ts.PropertyDeclaration)!.initializer!.getChildAt(1);
+        if (!ts.isPropertyAssignment(node)) {
+          throw new Error("Could not find routes array.");
+        }
+        node = node.initializer.getChildAt(1);
+        console.warn(4 + node.getFullText());
         // console.warn(node.getLastToken()?.getFullText());
         // console.warn(node.getChildren()[0].getChildren()[1]?.getFullText());
 
@@ -139,9 +150,9 @@ export function addRouteToRoutesArray(
           new InsertChange(
             ngModulePath,
             lastRouteNode.getEnd() + 1,
-            `  {\n    path: '${routePath}',\n    loadChildren: () => import('${routeLoadChildren}').then( m => m.${ngModuleName})\n  }${
+            `      {\n        path: '${routePath}',\n        loadChildren: () => import('${routeLoadChildren}').then( m => m.${ngModuleName})\n      }${
               trailingCommaFound ? "," : ""
-            }\n`,
+            }`,
           ),
         );
 

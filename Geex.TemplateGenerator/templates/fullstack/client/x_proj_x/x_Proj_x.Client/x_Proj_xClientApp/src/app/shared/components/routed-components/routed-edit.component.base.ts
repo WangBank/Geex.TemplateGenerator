@@ -55,11 +55,7 @@ export abstract class RoutedEditComponent<
     }
   }
 
-  back() {
-    if (this.mode == "edit") {
-      this.router.navigate(["../../"], { relativeTo: this.route, replaceUrl: true });
-    } else {
-      this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true });
-    }
+  async back() {
+    await this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true });
   }
 }

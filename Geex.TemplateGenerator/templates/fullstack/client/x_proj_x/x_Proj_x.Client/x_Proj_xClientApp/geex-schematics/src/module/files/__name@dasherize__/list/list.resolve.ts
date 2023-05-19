@@ -9,7 +9,7 @@ import { <%= classify(name) %>ListPageParam } from "./list.page";
 @Injectable({
   providedIn: "root",
 })
-export class <%= classify(name) %>Resolve extends RoutedComponentResolveBase<<%= classify(name) %>ListPageParam> {
+export class <%= classify(name) %>ListPageResolve extends RoutedComponentResolveBase<<%= classify(name) %>ListPageParam> {
   constructor(injector: Injector) {
     super(injector);
   }

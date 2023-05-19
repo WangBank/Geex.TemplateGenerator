@@ -17,6 +17,22 @@ export type BlobObjectCollectionSegmentFieldPolicy = {
 	pageInfo?: FieldPolicy<any> | FieldReadFunction<any>,
 	totalCount?: FieldPolicy<any> | FieldReadFunction<any>
 };
+export type BookKeySpecifier = ('id' | 'createdOn' | 'modifiedOn' | 'auditStatus' | 'submittable' | 'name' | 'auditRemark' | BookKeySpecifier)[];
+export type BookFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdOn?: FieldPolicy<any> | FieldReadFunction<any>,
+	modifiedOn?: FieldPolicy<any> | FieldReadFunction<any>,
+	auditStatus?: FieldPolicy<any> | FieldReadFunction<any>,
+	submittable?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	auditRemark?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type BookCollectionSegmentKeySpecifier = ('items' | 'pageInfo' | 'totalCount' | BookCollectionSegmentKeySpecifier)[];
+export type BookCollectionSegmentFieldPolicy = {
+	items?: FieldPolicy<any> | FieldReadFunction<any>,
+	pageInfo?: FieldPolicy<any> | FieldReadFunction<any>,
+	totalCount?: FieldPolicy<any> | FieldReadFunction<any>
+};
 export type CaptchaKeySpecifier = ('captchaType' | 'key' | 'bitmap' | CaptchaKeySpecifier)[];
 export type CaptchaFieldPolicy = {
 	captchaType?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -173,7 +189,7 @@ export type MessageCollectionSegmentFieldPolicy = {
 	pageInfo?: FieldPolicy<any> | FieldReadFunction<any>,
 	totalCount?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MutationKeySpecifier = ('_' | 'authenticate' | 'federateAuthenticate' | 'cancelAuthentication' | 'createTenant' | 'editTenant' | 'toggleTenantAvailability' | 'checkTenant' | 'changePassword' | 'register' | 'assignRoles' | 'assignOrgs' | 'editUser' | 'createUser' | 'resetUserPassword' | 'createOrg' | 'fixUserOrg' | 'createRole' | 'setRoleDefault' | 'markMessagesRead' | 'deleteMessageDistributions' | 'sendMessage' | 'createMessage' | 'editMessage' | 'createBlobObject' | 'deleteBlobObject' | 'editSetting' | 'authorize' | 'generateCaptcha' | 'validateCaptcha' | 'submitx_Aggregate_x' | 'auditx_Aggregate_x' | 'unsubmitx_Aggregate_x' | 'unauditx_Aggregate_x' | 'createx_Aggregate_x' | 'editx_Aggregate_x' | 'deletex_Aggregate_x' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('_' | 'authenticate' | 'federateAuthenticate' | 'cancelAuthentication' | 'createTenant' | 'editTenant' | 'toggleTenantAvailability' | 'checkTenant' | 'changePassword' | 'register' | 'assignRoles' | 'assignOrgs' | 'editUser' | 'createUser' | 'resetUserPassword' | 'createOrg' | 'fixUserOrg' | 'createRole' | 'setRoleDefault' | 'markMessagesRead' | 'deleteMessageDistributions' | 'sendMessage' | 'createMessage' | 'editMessage' | 'createBlobObject' | 'deleteBlobObject' | 'editSetting' | 'authorize' | 'generateCaptcha' | 'validateCaptcha' | 'submitBook' | 'auditBook' | 'unsubmitBook' | 'unauditBook' | 'createBook' | 'editBook' | 'deleteBook' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
 	_?: FieldPolicy<any> | FieldReadFunction<any>,
 	authenticate?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -205,13 +221,13 @@ export type MutationFieldPolicy = {
 	authorize?: FieldPolicy<any> | FieldReadFunction<any>,
 	generateCaptcha?: FieldPolicy<any> | FieldReadFunction<any>,
 	validateCaptcha?: FieldPolicy<any> | FieldReadFunction<any>,
-	submitx_Aggregate_x?: FieldPolicy<any> | FieldReadFunction<any>,
-	auditx_Aggregate_x?: FieldPolicy<any> | FieldReadFunction<any>,
-	unsubmitx_Aggregate_x?: FieldPolicy<any> | FieldReadFunction<any>,
-	unauditx_Aggregate_x?: FieldPolicy<any> | FieldReadFunction<any>,
-	createx_Aggregate_x?: FieldPolicy<any> | FieldReadFunction<any>,
-	editx_Aggregate_x?: FieldPolicy<any> | FieldReadFunction<any>,
-	deletex_Aggregate_x?: FieldPolicy<any> | FieldReadFunction<any>
+	submitBook?: FieldPolicy<any> | FieldReadFunction<any>,
+	auditBook?: FieldPolicy<any> | FieldReadFunction<any>,
+	unsubmitBook?: FieldPolicy<any> | FieldReadFunction<any>,
+	unauditBook?: FieldPolicy<any> | FieldReadFunction<any>,
+	createBook?: FieldPolicy<any> | FieldReadFunction<any>,
+	editBook?: FieldPolicy<any> | FieldReadFunction<any>,
+	deleteBook?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type OrgKeySpecifier = ('allParentOrgCodes' | 'allParentOrgs' | 'allSubOrgCodes' | 'allSubOrgs' | 'directSubOrgCodes' | 'directSubOrgs' | 'parentOrg' | 'parentOrgCode' | 'code' | 'name' | 'orgType' | 'tenantCode' | 'modifiedOn' | 'id' | 'createdOn' | OrgKeySpecifier)[];
 export type OrgFieldPolicy = {
@@ -244,7 +260,7 @@ export type OrgCollectionSegmentFieldPolicy = {
 	pageInfo?: FieldPolicy<any> | FieldReadFunction<any>,
 	totalCount?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('_' | 'tenants' | 'users' | 'currentUser' | 'orgs' | 'roles' | 'messages' | 'unreadMessages' | 'blobObjects' | 'settings' | 'initSettings' | 'myPermissions' | '_hint' | 'orgsCache' | 'x_Aggregate_xs' | 'x_Aggregate_xById' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('_' | 'tenants' | 'users' | 'currentUser' | 'orgs' | 'roles' | 'messages' | 'unreadMessages' | 'blobObjects' | 'settings' | 'initSettings' | 'myPermissions' | '_hint' | 'orgsCache' | 'books' | 'bookById' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	_?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenants?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -260,8 +276,8 @@ export type QueryFieldPolicy = {
 	myPermissions?: FieldPolicy<any> | FieldReadFunction<any>,
 	_hint?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgsCache?: FieldPolicy<any> | FieldReadFunction<any>,
-	x_Aggregate_xs?: FieldPolicy<any> | FieldReadFunction<any>,
-	x_Aggregate_xById?: FieldPolicy<any> | FieldReadFunction<any>
+	books?: FieldPolicy<any> | FieldReadFunction<any>,
+	bookById?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type RoleKeySpecifier = ('name' | 'code' | 'users' | 'permissions' | 'tenantCode' | 'isDefault' | 'isStatic' | 'isEnabled' | 'modifiedOn' | 'id' | 'createdOn' | RoleKeySpecifier)[];
 export type RoleFieldPolicy = {
@@ -363,22 +379,6 @@ export type UserTokenFieldPolicy = {
 	userId?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type x_Aggregate_xKeySpecifier = ('id' | 'createdOn' | 'modifiedOn' | 'auditStatus' | 'submittable' | 'name' | 'auditRemark' | x_Aggregate_xKeySpecifier)[];
-export type x_Aggregate_xFieldPolicy = {
-	id?: FieldPolicy<any> | FieldReadFunction<any>,
-	createdOn?: FieldPolicy<any> | FieldReadFunction<any>,
-	modifiedOn?: FieldPolicy<any> | FieldReadFunction<any>,
-	auditStatus?: FieldPolicy<any> | FieldReadFunction<any>,
-	submittable?: FieldPolicy<any> | FieldReadFunction<any>,
-	name?: FieldPolicy<any> | FieldReadFunction<any>,
-	auditRemark?: FieldPolicy<any> | FieldReadFunction<any>
-};
-export type x_Aggregate_xCollectionSegmentKeySpecifier = ('items' | 'pageInfo' | 'totalCount' | x_Aggregate_xCollectionSegmentKeySpecifier)[];
-export type x_Aggregate_xCollectionSegmentFieldPolicy = {
-	items?: FieldPolicy<any> | FieldReadFunction<any>,
-	pageInfo?: FieldPolicy<any> | FieldReadFunction<any>,
-	totalCount?: FieldPolicy<any> | FieldReadFunction<any>
-};
 export type TypedTypePolicies = TypePolicies & {
 	BlobObject?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | BlobObjectKeySpecifier | (() => undefined | BlobObjectKeySpecifier),
@@ -387,6 +387,14 @@ export type TypedTypePolicies = TypePolicies & {
 	BlobObjectCollectionSegment?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | BlobObjectCollectionSegmentKeySpecifier | (() => undefined | BlobObjectCollectionSegmentKeySpecifier),
 		fields?: BlobObjectCollectionSegmentFieldPolicy,
+	},
+	Book?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | BookKeySpecifier | (() => undefined | BookKeySpecifier),
+		fields?: BookFieldPolicy,
+	},
+	BookCollectionSegment?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | BookCollectionSegmentKeySpecifier | (() => undefined | BookCollectionSegmentKeySpecifier),
+		fields?: BookCollectionSegmentFieldPolicy,
 	},
 	Captcha?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | CaptchaKeySpecifier | (() => undefined | CaptchaKeySpecifier),
@@ -523,13 +531,5 @@ export type TypedTypePolicies = TypePolicies & {
 	UserToken?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | UserTokenKeySpecifier | (() => undefined | UserTokenKeySpecifier),
 		fields?: UserTokenFieldPolicy,
-	},
-	x_Aggregate_x?: Omit<TypePolicy, "fields" | "keyFields"> & {
-		keyFields?: false | x_Aggregate_xKeySpecifier | (() => undefined | x_Aggregate_xKeySpecifier),
-		fields?: x_Aggregate_xFieldPolicy,
-	},
-	x_Aggregate_xCollectionSegment?: Omit<TypePolicy, "fields" | "keyFields"> & {
-		keyFields?: false | x_Aggregate_xCollectionSegmentKeySpecifier | (() => undefined | x_Aggregate_xCollectionSegmentKeySpecifier),
-		fields?: x_Aggregate_xCollectionSegmentFieldPolicy,
 	}
 };

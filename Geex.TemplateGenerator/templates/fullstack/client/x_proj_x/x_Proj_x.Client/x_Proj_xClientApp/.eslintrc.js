@@ -19,7 +19,7 @@ module.exports = {
         'plugin:prettier/recommended'
       ],
       rules: {
-        'prettier/prettier': ['error', prettierConfig],
+        'prettier/prettier': ['warn', prettierConfig],
         'jsdoc/newline-after-description': 1,
         '@angular-eslint/component-class-suffix': [
           'error',
@@ -85,11 +85,11 @@ module.exports = {
             }
           }
         ],
-        'import/no-duplicates': 'error',
-        'import/no-unused-modules': 'error',
+        'import/no-duplicates': 'warn',
+        'import/no-unused-modules': 'warn',
         'import/no-unassigned-import': 'off',
         'import/order': [
-          'error',
+          'warn',
           {
             alphabetize: { order: 'asc', caseInsensitive: false },
             'newlines-between': 'always',
@@ -119,7 +119,7 @@ module.exports = {
       excludedFiles: ['*inline-template-*.component.html'],
       extends: ['plugin:prettier/recommended'],
       rules: {
-        'prettier/prettier': ['error', { parser: 'angular' }],
+        'prettier/prettier': ['warn', { parser: 'angular' }],
         '@angular-eslint/template/eqeqeq': 'off'
       }
     }

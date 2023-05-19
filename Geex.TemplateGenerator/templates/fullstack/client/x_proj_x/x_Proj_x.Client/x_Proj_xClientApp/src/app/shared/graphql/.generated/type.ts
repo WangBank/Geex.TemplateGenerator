@@ -1,5 +1,5 @@
-import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
-import gql from "graphql-tag";
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -23,33 +23,40 @@ export interface Scalars {
   Upload: any;
 }
 
+
+
+
+
+
+
+
 export enum AppPermission {
-  AuthorizationMutationAuthorize = "authorization_mutation_authorize",
-  IdentityMutationCreateOrg = "identity_mutation_createOrg",
-  IdentityMutationCreateRole = "identity_mutation_createRole",
-  IdentityMutationCreateUser = "identity_mutation_createUser",
-  IdentityMutationEditOrg = "identity_mutation_editOrg",
-  IdentityMutationEditRole = "identity_mutation_editRole",
-  IdentityMutationEditUser = "identity_mutation_editUser",
-  IdentityQueryOrgs = "identity_query_orgs",
-  IdentityQueryRoles = "identity_query_roles",
-  IdentityQueryUsers = "identity_query_users",
-  MultiTenantMutationCreateTenant = "multiTenant_mutation_createTenant",
-  MultiTenantMutationDeleteTenant = "multiTenant_mutation_deleteTenant",
-  MultiTenantMutationEditTenant = "multiTenant_mutation_editTenant",
-  MultiTenantQueryTenants = "multiTenant_query_tenants",
-  SettingsMutationEditSetting = "settings_mutation_editSetting",
+  AuthorizationMutationAuthorize = 'authorization_mutation_authorize',
+  IdentityMutationCreateOrg = 'identity_mutation_createOrg',
+  IdentityMutationCreateRole = 'identity_mutation_createRole',
+  IdentityMutationCreateUser = 'identity_mutation_createUser',
+  IdentityMutationEditOrg = 'identity_mutation_editOrg',
+  IdentityMutationEditRole = 'identity_mutation_editRole',
+  IdentityMutationEditUser = 'identity_mutation_editUser',
+  IdentityQueryOrgs = 'identity_query_orgs',
+  IdentityQueryRoles = 'identity_query_roles',
+  IdentityQueryUsers = 'identity_query_users',
+  MultiTenantMutationCreateTenant = 'multiTenant_mutation_createTenant',
+  MultiTenantMutationDeleteTenant = 'multiTenant_mutation_deleteTenant',
+  MultiTenantMutationEditTenant = 'multiTenant_mutation_editTenant',
+  MultiTenantQueryTenants = 'multiTenant_query_tenants',
+  SettingsMutationEditSetting = 'settings_mutation_editSetting'
 }
 
 export enum AppSettings {
-  AppAppMenu = "AppAppMenu",
-  AppAppName = "AppAppName",
-  AppPermissions = "AppPermissions",
+  AppAppMenu = 'AppAppMenu',
+  AppAppName = 'AppAppName',
+  AppPermissions = 'AppPermissions'
 }
 
 export enum ApplyPolicy {
-  BeforeResolver = "BEFORE_RESOLVER",
-  AfterResolver = "AFTER_RESOLVER",
+  BeforeResolver = 'BEFORE_RESOLVER',
+  AfterResolver = 'AFTER_RESOLVER'
 }
 
 export interface AssignOrgRequestInput {
@@ -57,14 +64,14 @@ export interface AssignOrgRequestInput {
 }
 
 export interface AssignRoleRequestInput {
-  userIds: Array<Scalars["String"]>;
-  roles: Array<Scalars["String"]>;
+  userIds: Array<Scalars['String']>;
+  roles: Array<Scalars['String']>;
 }
 
 export enum AuditStatus {
-  Default = "DEFAULT",
-  Submitted = "SUBMITTED",
-  Audited = "AUDITED",
+  Default = 'DEFAULT',
+  Submitted = 'SUBMITTED',
+  Audited = 'AUDITED'
 }
 
 export interface AuditStatusOperationFilterInput {
@@ -75,89 +82,142 @@ export interface AuditStatusOperationFilterInput {
 }
 
 export interface AuthenticateInput {
-  userIdentifier?: Maybe<Scalars["String"]>;
-  password?: Maybe<Scalars["String"]>;
+  userIdentifier?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
 }
 
 export enum AuthorizationPermission {
-  AuthorizationMutationAuthorize = "authorization_mutation_authorize",
+  AuthorizationMutationAuthorize = 'authorization_mutation_authorize'
 }
 
 export interface AuthorizeInput {
   authorizeTargetType?: Maybe<AuthorizeTargetType>;
   allowedPermissions?: Maybe<Array<Maybe<AppPermission>>>;
-  target?: Maybe<Scalars["String"]>;
+  target?: Maybe<Scalars['String']>;
 }
 
 export enum AuthorizeTargetType {
-  Role = "Role",
-  User = "User",
+  Role = 'Role',
+  User = 'User'
 }
 
 export interface BlobObject extends IBlobObject, IEntityBase {
-  __typename?: "BlobObject";
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
-  modifiedOn: Scalars["DateTime"];
-  fileName?: Maybe<Scalars["String"]>;
-  md5?: Maybe<Scalars["String"]>;
-  url?: Maybe<Scalars["String"]>;
-  fileSize: Scalars["Long"];
-  mimeType?: Maybe<Scalars["String"]>;
+  __typename?: 'BlobObject';
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
+  modifiedOn: Scalars['DateTime'];
+  fileName?: Maybe<Scalars['String']>;
+  md5?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  fileSize: Scalars['Long'];
+  mimeType?: Maybe<Scalars['String']>;
   storageType?: Maybe<BlobStorageType>;
 }
 
 export interface BlobObjectCollectionSegment {
-  __typename?: "BlobObjectCollectionSegment";
+  __typename?: 'BlobObjectCollectionSegment';
   items?: Maybe<Array<Maybe<BlobObject>>>;
   /** Information to aid in pagination. */
   pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars["Int"];
+  totalCount: Scalars['Int'];
 }
 
 export enum BlobStorageSettings {
-  BlobStorageModuleName = "BlobStorageModuleName",
+  BlobStorageModuleName = 'BlobStorageModuleName'
 }
 
 export enum BlobStorageType {
-  AliyunOss = "AliyunOss",
-  Db = "Db",
-  RedisCache = "RedisCache",
+  AliyunOss = 'AliyunOss',
+  Db = 'Db',
+  RedisCache = 'RedisCache'
+}
+
+export enum BmsFrontCallType {
+  CacheDataChange = 'CacheDataChange'
+}
+
+export enum BmsLoginProviderEnum {
+  Geex = 'Geex'
+}
+
+/** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
+export interface Book extends IEntityBase, IAuditEntity {
+  __typename?: 'Book';
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
+  modifiedOn: Scalars['DateTime'];
+  auditStatus: AuditStatus;
+  submittable: Scalars['Boolean'];
+  name: Scalars['String'];
+  auditRemark?: Maybe<Scalars['String']>;
+}
+
+export interface BookCollectionSegment {
+  __typename?: 'BookCollectionSegment';
+  items?: Maybe<Array<Maybe<Book>>>;
+  /** Information to aid in pagination. */
+  pageInfo: CollectionSegmentInfo;
+  totalCount: Scalars['Int'];
+}
+
+/** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
+export interface BookFilterInput {
+  and?: Maybe<Array<BookFilterInput>>;
+  or?: Maybe<Array<BookFilterInput>>;
+  name?: Maybe<StringOperationFilterInput>;
+  auditStatus?: Maybe<AuditStatusOperationFilterInput>;
+  auditRemark?: Maybe<StringOperationFilterInput>;
+  submittable?: Maybe<BooleanOperationFilterInput>;
+  modifiedOn?: Maybe<ComparableDateTimeOffsetOperationFilterInput>;
+  id?: Maybe<StringOperationFilterInput>;
+  createdOn?: Maybe<ComparableDateTimeOffsetOperationFilterInput>;
+}
+
+/** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
+export interface BookSortInput {
+  name?: Maybe<SortEnumType>;
+  auditStatus?: Maybe<SortEnumType>;
+  auditRemark?: Maybe<SortEnumType>;
+  submittable?: Maybe<SortEnumType>;
+  modifiedOn?: Maybe<SortEnumType>;
+  id?: Maybe<SortEnumType>;
+  createdOn?: Maybe<SortEnumType>;
 }
 
 export interface BooleanOperationFilterInput {
-  eq?: Maybe<Scalars["Boolean"]>;
-  neq?: Maybe<Scalars["Boolean"]>;
+  eq?: Maybe<Scalars['Boolean']>;
+  neq?: Maybe<Scalars['Boolean']>;
 }
 
 /** 缓存数据变更类型 */
 export enum CacheDataType {
-  Org = "Org",
+  Org = 'Org'
 }
 
 export interface Captcha {
-  __typename?: "Captcha";
+  __typename?: 'Captcha';
   captchaType: CaptchaType;
-  key: Scalars["String"];
-  bitmap?: Maybe<Scalars["String"]>;
+  key: Scalars['String'];
+  bitmap?: Maybe<Scalars['String']>;
 }
 
 export enum CaptchaProvider {
-  Image = "Image",
-  Sms = "Sms",
+  Image = 'Image',
+  Sms = 'Sms'
 }
 
 export enum CaptchaType {
-  Number = "NUMBER",
-  English = "ENGLISH",
-  NumberAndLetter = "NUMBER_AND_LETTER",
-  Chinese = "CHINESE",
+  Number = 'NUMBER',
+  English = 'ENGLISH',
+  NumberAndLetter = 'NUMBER_AND_LETTER',
+  Chinese = 'CHINESE'
 }
 
 export interface ChangePasswordRequestInput {
-  originPassword: Scalars["String"];
-  newPassword: Scalars["String"];
+  originPassword: Scalars['String'];
+  newPassword: Scalars['String'];
 }
+
 
 export interface ClassEnumOperationFilterInputOfBlobStorageTypeFilterInput {
   eq?: Maybe<BlobStorageType>;
@@ -175,212 +235,213 @@ export interface ClassEnumOperationFilterInputOfOrgTypeEnumFilterInput {
 
 /** Information about the offset pagination. */
 export interface CollectionSegmentInfo {
-  __typename?: "CollectionSegmentInfo";
+  __typename?: 'CollectionSegmentInfo';
   /** Indicates whether more items exist following the set defined by the clients arguments. */
-  hasNextPage: Scalars["Boolean"];
+  hasNextPage: Scalars['Boolean'];
   /** Indicates whether more items exist prior the set defined by the clients arguments. */
-  hasPreviousPage: Scalars["Boolean"];
+  hasPreviousPage: Scalars['Boolean'];
 }
 
 export interface ComparableDateTimeOffsetOperationFilterInput {
-  eq?: Maybe<Scalars["DateTime"]>;
-  neq?: Maybe<Scalars["DateTime"]>;
-  in?: Maybe<Array<Scalars["DateTime"]>>;
-  nin?: Maybe<Array<Scalars["DateTime"]>>;
-  gt?: Maybe<Scalars["DateTime"]>;
-  ngt?: Maybe<Scalars["DateTime"]>;
-  gte?: Maybe<Scalars["DateTime"]>;
-  ngte?: Maybe<Scalars["DateTime"]>;
-  lt?: Maybe<Scalars["DateTime"]>;
-  nlt?: Maybe<Scalars["DateTime"]>;
-  lte?: Maybe<Scalars["DateTime"]>;
-  nlte?: Maybe<Scalars["DateTime"]>;
+  eq?: Maybe<Scalars['DateTime']>;
+  neq?: Maybe<Scalars['DateTime']>;
+  in?: Maybe<Array<Scalars['DateTime']>>;
+  nin?: Maybe<Array<Scalars['DateTime']>>;
+  gt?: Maybe<Scalars['DateTime']>;
+  ngt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
+  ngte?: Maybe<Scalars['DateTime']>;
+  lt?: Maybe<Scalars['DateTime']>;
+  nlt?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  nlte?: Maybe<Scalars['DateTime']>;
 }
 
 export interface ComparableInt64OperationFilterInput {
-  eq?: Maybe<Scalars["Long"]>;
-  neq?: Maybe<Scalars["Long"]>;
-  in?: Maybe<Array<Scalars["Long"]>>;
-  nin?: Maybe<Array<Scalars["Long"]>>;
-  gt?: Maybe<Scalars["Long"]>;
-  ngt?: Maybe<Scalars["Long"]>;
-  gte?: Maybe<Scalars["Long"]>;
-  ngte?: Maybe<Scalars["Long"]>;
-  lt?: Maybe<Scalars["Long"]>;
-  nlt?: Maybe<Scalars["Long"]>;
-  lte?: Maybe<Scalars["Long"]>;
-  nlte?: Maybe<Scalars["Long"]>;
+  eq?: Maybe<Scalars['Long']>;
+  neq?: Maybe<Scalars['Long']>;
+  in?: Maybe<Array<Scalars['Long']>>;
+  nin?: Maybe<Array<Scalars['Long']>>;
+  gt?: Maybe<Scalars['Long']>;
+  ngt?: Maybe<Scalars['Long']>;
+  gte?: Maybe<Scalars['Long']>;
+  ngte?: Maybe<Scalars['Long']>;
+  lt?: Maybe<Scalars['Long']>;
+  nlt?: Maybe<Scalars['Long']>;
+  lte?: Maybe<Scalars['Long']>;
+  nlte?: Maybe<Scalars['Long']>;
 }
 
 export interface CreateBlobObjectRequestInput {
-  file?: Maybe<Scalars["Upload"]>;
+  file?: Maybe<Scalars['Upload']>;
   storageType?: Maybe<BlobStorageType>;
-  md5?: Maybe<Scalars["String"]>;
+  md5?: Maybe<Scalars['String']>;
+}
+
+export interface CreateBookRequestInput {
+  name: Scalars['String'];
 }
 
 export interface CreateMessageRequestInput {
-  text: Scalars["String"];
+  text: Scalars['String'];
   severity: MessageSeverityType;
 }
 
 export interface CreateOrgInput {
-  name: Scalars["String"];
-  code: Scalars["String"];
+  name: Scalars['String'];
+  code: Scalars['String'];
   orgType?: Maybe<OrgTypeEnum>;
-  createUserId?: Maybe<Scalars["String"]>;
+  createUserId?: Maybe<Scalars['String']>;
 }
 
 export interface CreateRoleInput {
-  roleCode: Scalars["String"];
-  roleName: Scalars["String"];
-  isDefault?: Maybe<Scalars["Boolean"]>;
-  isStatic?: Maybe<Scalars["Boolean"]>;
+  roleCode: Scalars['String'];
+  roleName: Scalars['String'];
+  isDefault?: Maybe<Scalars['Boolean']>;
+  isStatic?: Maybe<Scalars['Boolean']>;
 }
 
 export interface CreateTenantRequestInput {
-  code: Scalars["String"];
-  name: Scalars["String"];
-  externalInfo?: Maybe<Scalars["Any"]>;
+  code: Scalars['String'];
+  name: Scalars['String'];
+  externalInfo?: Maybe<Scalars['Any']>;
 }
 
 export interface CreateUserRequestInput {
-  username: Scalars["String"];
-  isEnable: Scalars["Boolean"];
-  email?: Maybe<Scalars["String"]>;
-  roleIds?: Maybe<Array<Scalars["String"]>>;
-  orgCodes?: Maybe<Array<Scalars["String"]>>;
-  avatarFileId?: Maybe<Scalars["String"]>;
+  username: Scalars['String'];
+  isEnable: Scalars['Boolean'];
+  email?: Maybe<Scalars['String']>;
+  roleIds?: Maybe<Array<Scalars['String']>>;
+  orgCodes?: Maybe<Array<Scalars['String']>>;
+  avatarFileId?: Maybe<Scalars['String']>;
   claims?: Maybe<Array<UserClaimInput>>;
-  phoneNumber?: Maybe<Scalars["String"]>;
-  password?: Maybe<Scalars["String"]>;
-  nickname?: Maybe<Scalars["String"]>;
-  openId?: Maybe<Scalars["String"]>;
+  phoneNumber?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
+  nickname?: Maybe<Scalars['String']>;
+  openId?: Maybe<Scalars['String']>;
   provider?: Maybe<LoginProviderEnum>;
 }
 
-export interface Createx_Aggregate_xRequestInput {
-  name: Scalars["String"];
-}
 
 export interface DeleteBlobObjectRequestInput {
-  ids?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  ids?: Maybe<Array<Maybe<Scalars['String']>>>;
   storageType?: Maybe<BlobStorageType>;
 }
 
-export interface DeleteMessageDistributionsInput {
-  messageId: Scalars["String"];
-  userIds: Array<Scalars["String"]>;
+export interface DeleteBookRequestInput {
+  ids: Array<Scalars['String']>;
 }
 
-export interface Deletex_Aggregate_xRequestInput {
-  ids: Array<Scalars["String"]>;
+export interface DeleteMessageDistributionsInput {
+  messageId: Scalars['String'];
+  userIds: Array<Scalars['String']>;
+}
+
+export interface EditBookRequestInput {
+  id: Scalars['String'];
+  name: Scalars['String'];
 }
 
 export interface EditMessageRequestInput {
-  text?: Maybe<Scalars["String"]>;
+  text?: Maybe<Scalars['String']>;
   severity?: Maybe<MessageSeverityType>;
-  id: Scalars["String"];
+  id: Scalars['String'];
   messageType?: Maybe<MessageType>;
 }
 
 export interface EditSettingRequestInput {
   name?: Maybe<SettingDefinition>;
-  value?: Maybe<Scalars["Any"]>;
-  scopedKey?: Maybe<Scalars["String"]>;
+  value?: Maybe<Scalars['Any']>;
+  scopedKey?: Maybe<Scalars['String']>;
   scope?: Maybe<SettingScopeEnumeration>;
 }
 
 export interface EditTenantRequestInput {
-  code: Scalars["String"];
-  name: Scalars["String"];
+  code: Scalars['String'];
+  name: Scalars['String'];
 }
 
 export interface EditUserRequestInput {
-  id: Scalars["String"];
-  isEnable?: Maybe<Scalars["Boolean"]>;
-  email?: Maybe<Scalars["String"]>;
-  roleIds: Array<Scalars["String"]>;
-  orgCodes: Array<Scalars["String"]>;
-  avatarFileId?: Maybe<Scalars["String"]>;
+  id: Scalars['String'];
+  isEnable?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
+  roleIds: Array<Scalars['String']>;
+  orgCodes: Array<Scalars['String']>;
+  avatarFileId?: Maybe<Scalars['String']>;
   claims: Array<UserClaimInput>;
-  phoneNumber?: Maybe<Scalars["String"]>;
-  username: Scalars["String"];
-}
-
-export interface Editx_Aggregate_xRequestInput {
-  id: Scalars["String"];
-  name: Scalars["String"];
+  phoneNumber?: Maybe<Scalars['String']>;
+  username: Scalars['String'];
 }
 
 export interface FederateAuthenticateInput {
   loginProvider?: Maybe<LoginProviderEnum>;
-  code?: Maybe<Scalars["String"]>;
+  code?: Maybe<Scalars['String']>;
 }
 
 export interface FrontendCall extends IFrontendCall {
-  __typename?: "FrontendCall";
-  data?: Maybe<Scalars["Any"]>;
+  __typename?: 'FrontendCall';
+  data?: Maybe<Scalars['Any']>;
   frontendCallType: FrontendCallType;
 }
 
 export enum FrontendCallType {
-  CacheDataChange = "CacheDataChange",
-  NewMessage = "NewMessage",
+  CacheDataChange = 'CacheDataChange',
+  NewMessage = 'NewMessage'
 }
 
 export enum GeexClaimType {
-  ClientId = "ClientId",
-  Expires = "Expires",
-  FullName = "FullName",
-  Nickname = "Nickname",
-  Org = "Org",
-  Provider = "Provider",
-  Role = "Role",
-  Sub = "Sub",
-  Tenant = "Tenant",
+  ClientId = 'ClientId',
+  Expires = 'Expires',
+  FullName = 'FullName',
+  Nickname = 'Nickname',
+  Org = 'Org',
+  Provider = 'Provider',
+  Role = 'Role',
+  Sub = 'Sub',
+  Tenant = 'Tenant'
 }
 
 export enum GeexExceptionType {
-  Conflict = "Conflict",
-  ExternalError = "ExternalError",
-  NotFound = "NotFound",
-  OnPurpose = "OnPurpose",
-  Unknown = "Unknown",
-  ValidationFailed = "ValidationFailed",
+  Conflict = 'Conflict',
+  ExternalError = 'ExternalError',
+  NotFound = 'NotFound',
+  OnPurpose = 'OnPurpose',
+  Unknown = 'Unknown',
+  ValidationFailed = 'ValidationFailed'
 }
 
 export interface GetSettingsInput {
   scope?: Maybe<SettingScopeEnumeration>;
   settingDefinitions?: Maybe<Array<Maybe<SettingDefinition>>>;
-  filterByName?: Maybe<Scalars["String"]>;
-  _?: Maybe<Scalars["String"]>;
+  filterByName?: Maybe<Scalars['String']>;
+  _?: Maybe<Scalars['String']>;
 }
 
 export interface GetUnreadMessagesInput {
-  _: Scalars["String"];
+  _: Scalars['String'];
 }
 
 export interface HintType {
-  __typename?: "HintType";
-  _: Scalars["String"];
+  __typename?: 'HintType';
+  _: Scalars['String'];
 }
 
 export interface IAuditEntity {
   auditStatus: AuditStatus;
-  submittable: Scalars["Boolean"];
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
+  submittable: Scalars['Boolean'];
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
 }
 
 export interface IBlobObject {
-  fileName?: Maybe<Scalars["String"]>;
-  md5?: Maybe<Scalars["String"]>;
-  fileSize: Scalars["Long"];
-  mimeType?: Maybe<Scalars["String"]>;
-  url?: Maybe<Scalars["String"]>;
+  fileName?: Maybe<Scalars['String']>;
+  md5?: Maybe<Scalars['String']>;
+  fileSize: Scalars['Long'];
+  mimeType?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
   storageType?: Maybe<BlobStorageType>;
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
 }
 
 export interface IBlobObjectFilterInput {
@@ -395,30 +456,30 @@ export interface IBlobObjectFilterInput {
 }
 
 export interface IEntityBase {
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
 }
 
 export interface IFrontendCall {
-  data?: Maybe<Scalars["Any"]>;
+  data?: Maybe<Scalars['Any']>;
   frontendCallType: FrontendCallType;
 }
 
 export interface IMessage {
-  fromUserId?: Maybe<Scalars["String"]>;
+  fromUserId?: Maybe<Scalars['String']>;
   messageType: MessageType;
   content: IMessageContent;
-  toUserIds: Array<Scalars["String"]>;
+  toUserIds: Array<Scalars['String']>;
   severity: MessageSeverityType;
-  title: Scalars["String"];
-  time: Scalars["DateTime"];
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
+  title: Scalars['String'];
+  time: Scalars['DateTime'];
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
 }
 
 export interface IMessageContent {
-  __typename?: "IMessageContent";
-  _: Scalars["String"];
+  __typename?: 'IMessageContent';
+  _: Scalars['String'];
 }
 
 export interface IMessageContentFilterInput {
@@ -441,47 +502,47 @@ export interface IMessageFilterInput {
 }
 
 export interface IOrg {
-  allParentOrgCodes: Array<Scalars["String"]>;
-  allSubOrgCodes: Array<Scalars["String"]>;
-  directSubOrgCodes: Array<Scalars["String"]>;
-  parentOrgCode: Scalars["String"];
-  code: Scalars["String"];
-  name: Scalars["String"];
+  allParentOrgCodes: Array<Scalars['String']>;
+  allSubOrgCodes: Array<Scalars['String']>;
+  directSubOrgCodes: Array<Scalars['String']>;
+  parentOrgCode: Scalars['String'];
+  code: Scalars['String'];
+  name: Scalars['String'];
   orgType: OrgTypeEnum;
   allParentOrgs: Array<IOrg>;
   allSubOrgs: Array<IOrg>;
   directSubOrgs: Array<IOrg>;
   parentOrg: IOrg;
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
 }
 
 export interface IPagedList {
-  pageIndex: Scalars["Int"];
-  pageSize: Scalars["Int"];
-  totalPage: Scalars["Int"];
-  totalCount: Scalars["Int"];
+  pageIndex: Scalars['Int'];
+  pageSize: Scalars['Int'];
+  totalPage: Scalars['Int'];
+  totalCount: Scalars['Int'];
 }
 
 export interface IRole {
-  name: Scalars["String"];
-  code: Scalars["String"];
+  name: Scalars['String'];
+  code: Scalars['String'];
   users: Array<IUser>;
-  permissions: Array<Scalars["String"]>;
-  isDefault: Scalars["Boolean"];
-  isStatic: Scalars["Boolean"];
-  isEnabled: Scalars["Boolean"];
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
+  permissions: Array<Scalars['String']>;
+  isDefault: Scalars['Boolean'];
+  isStatic: Scalars['Boolean'];
+  isEnabled: Scalars['Boolean'];
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
 }
 
 export interface ISetting {
   scope?: Maybe<SettingScopeEnumeration>;
-  scopedKey?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["Any"]>;
+  scopedKey?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['Any']>;
   name?: Maybe<SettingDefinition>;
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
 }
 
 export interface ISettingFilterInput {
@@ -494,19 +555,19 @@ export interface ISettingFilterInput {
 }
 
 export interface ITenant {
-  code: Scalars["String"];
-  name: Scalars["String"];
-  isEnabled: Scalars["Boolean"];
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
+  code: Scalars['String'];
+  name: Scalars['String'];
+  isEnabled: Scalars['Boolean'];
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
 }
 
 export interface ITenantCollectionSegment {
-  __typename?: "ITenantCollectionSegment";
+  __typename?: 'ITenantCollectionSegment';
   items?: Maybe<Array<ITenant>>;
   /** Information to aid in pagination. */
   pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars["Int"];
+  totalCount: Scalars['Int'];
 }
 
 export interface ITenantFilterInput {
@@ -518,22 +579,23 @@ export interface ITenantFilterInput {
 }
 
 export interface IUser {
-  checkPassword: Scalars["Boolean"];
-  phoneNumber?: Maybe<Scalars["String"]>;
-  username: Scalars["String"];
-  nickname?: Maybe<Scalars["String"]>;
-  email?: Maybe<Scalars["String"]>;
+  checkPassword: Scalars['Boolean'];
+  phoneNumber?: Maybe<Scalars['String']>;
+  username: Scalars['String'];
+  nickname?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
   loginProvider: LoginProviderEnum;
-  openId?: Maybe<Scalars["String"]>;
-  isEnable: Scalars["Boolean"];
-  roleIds: Array<Scalars["String"]>;
-  orgCodes: Array<Scalars["String"]>;
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
+  openId?: Maybe<Scalars['String']>;
+  isEnable: Scalars['Boolean'];
+  roleIds: Array<Scalars['String']>;
+  orgCodes: Array<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
 }
 
+
 export interface IUserCheckPasswordArgs {
-  password: Scalars["String"];
+  password: Scalars['String'];
 }
 
 export interface IUserFilterInput {
@@ -549,75 +611,76 @@ export interface IUserFilterInput {
 }
 
 export enum IdentityPermission {
-  IdentityMutationCreateOrg = "identity_mutation_createOrg",
-  IdentityMutationCreateRole = "identity_mutation_createRole",
-  IdentityMutationCreateUser = "identity_mutation_createUser",
-  IdentityMutationEditOrg = "identity_mutation_editOrg",
-  IdentityMutationEditRole = "identity_mutation_editRole",
-  IdentityMutationEditUser = "identity_mutation_editUser",
-  IdentityQueryOrgs = "identity_query_orgs",
-  IdentityQueryRoles = "identity_query_roles",
-  IdentityQueryUsers = "identity_query_users",
+  IdentityMutationCreateOrg = 'identity_mutation_createOrg',
+  IdentityMutationCreateRole = 'identity_mutation_createRole',
+  IdentityMutationCreateUser = 'identity_mutation_createUser',
+  IdentityMutationEditOrg = 'identity_mutation_editOrg',
+  IdentityMutationEditRole = 'identity_mutation_editRole',
+  IdentityMutationEditUser = 'identity_mutation_editUser',
+  IdentityQueryOrgs = 'identity_query_orgs',
+  IdentityQueryRoles = 'identity_query_roles',
+  IdentityQueryUsers = 'identity_query_users'
 }
 
 export interface ListFilterInputTypeOfIUserFilterInput {
   all?: Maybe<IUserFilterInput>;
   none?: Maybe<IUserFilterInput>;
   some?: Maybe<IUserFilterInput>;
-  any?: Maybe<Scalars["Boolean"]>;
+  any?: Maybe<Scalars['Boolean']>;
 }
 
 export interface ListStringOperationFilterInput {
   all?: Maybe<StringOperationFilterInput>;
   none?: Maybe<StringOperationFilterInput>;
   some?: Maybe<StringOperationFilterInput>;
-  any?: Maybe<Scalars["Boolean"]>;
+  any?: Maybe<Scalars['Boolean']>;
 }
 
 export enum LocalizationSettings {
-  LocalizationData = "LocalizationData",
-  LocalizationLanguage = "LocalizationLanguage",
+  LocalizationData = 'LocalizationData',
+  LocalizationLanguage = 'LocalizationLanguage'
 }
 
 export enum LoginProviderEnum {
-  Local = "Local",
-  Trusted = "Trusted",
-  XOrgX = "x_Org_x",
+  Geex = 'Geex',
+  Local = 'Local',
+  Trusted = 'Trusted'
 }
 
+
 export interface MarkMessagesReadInput {
-  messageIds: Array<Scalars["String"]>;
-  userId: Scalars["String"];
+  messageIds: Array<Scalars['String']>;
+  userId: Scalars['String'];
 }
 
 export interface Message extends IMessage, IEntityBase {
-  __typename?: "Message";
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
-  modifiedOn: Scalars["DateTime"];
-  fromUserId?: Maybe<Scalars["String"]>;
+  __typename?: 'Message';
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
+  modifiedOn: Scalars['DateTime'];
+  fromUserId?: Maybe<Scalars['String']>;
   messageType: MessageType;
   content: IMessageContent;
-  toUserIds: Array<Scalars["String"]>;
-  title: Scalars["String"];
-  time: Scalars["DateTime"];
+  toUserIds: Array<Scalars['String']>;
+  title: Scalars['String'];
+  time: Scalars['DateTime'];
   severity: MessageSeverityType;
 }
 
 export interface MessageCollectionSegment {
-  __typename?: "MessageCollectionSegment";
+  __typename?: 'MessageCollectionSegment';
   items?: Maybe<Array<Maybe<Message>>>;
   /** Information to aid in pagination. */
   pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars["Int"];
+  totalCount: Scalars['Int'];
 }
 
 export enum MessageSeverityType {
-  Info = "INFO",
-  Success = "SUCCESS",
-  Warn = "WARN",
-  Error = "ERROR",
-  Fatal = "FATAL",
+  Info = 'INFO',
+  Success = 'SUCCESS',
+  Warn = 'WARN',
+  Error = 'ERROR',
+  Fatal = 'FATAL'
 }
 
 export interface MessageSeverityTypeOperationFilterInput {
@@ -628,9 +691,9 @@ export interface MessageSeverityTypeOperationFilterInput {
 }
 
 export enum MessageType {
-  Notification = "NOTIFICATION",
-  Todo = "TODO",
-  Interact = "INTERACT",
+  Notification = 'NOTIFICATION',
+  Todo = 'TODO',
+  Interact = 'INTERACT'
 }
 
 export interface MessageTypeOperationFilterInput {
@@ -641,233 +704,268 @@ export interface MessageTypeOperationFilterInput {
 }
 
 export enum MessagingSettings {
-  MessagingModuleName = "MessagingModuleName",
+  MessagingModuleName = 'MessagingModuleName'
 }
 
 export enum MultiTenantPermission {
-  MultiTenantMutationCreateTenant = "multiTenant_mutation_createTenant",
-  MultiTenantMutationDeleteTenant = "multiTenant_mutation_deleteTenant",
-  MultiTenantMutationEditTenant = "multiTenant_mutation_editTenant",
-  MultiTenantQueryTenants = "multiTenant_query_tenants",
+  MultiTenantMutationCreateTenant = 'multiTenant_mutation_createTenant',
+  MultiTenantMutationDeleteTenant = 'multiTenant_mutation_deleteTenant',
+  MultiTenantMutationEditTenant = 'multiTenant_mutation_editTenant',
+  MultiTenantQueryTenants = 'multiTenant_query_tenants'
 }
 
 export interface Mutation {
-  __typename?: "Mutation";
-  _?: Maybe<Scalars["String"]>;
+  __typename?: 'Mutation';
+  _?: Maybe<Scalars['String']>;
   authenticate?: Maybe<UserToken>;
   federateAuthenticate?: Maybe<UserToken>;
-  cancelAuthentication: Scalars["Boolean"];
+  cancelAuthentication: Scalars['Boolean'];
   createTenant: ITenant;
-  editTenant: Scalars["Boolean"];
-  toggleTenantAvailability: Scalars["Boolean"];
+  editTenant: Scalars['Boolean'];
+  toggleTenantAvailability: Scalars['Boolean'];
   checkTenant?: Maybe<ITenant>;
-  changePassword: Scalars["Boolean"];
-  register: Scalars["Boolean"];
-  assignRoles: Scalars["Boolean"];
-  assignOrgs: Scalars["Boolean"];
-  editUser: Scalars["Boolean"];
-  createUser: Scalars["Boolean"];
-  resetUserPassword: Scalars["Boolean"];
+  changePassword: Scalars['Boolean'];
+  register: Scalars['Boolean'];
+  assignRoles: Scalars['Boolean'];
+  assignOrgs: Scalars['Boolean'];
+  editUser: Scalars['Boolean'];
+  createUser: Scalars['Boolean'];
+  resetUserPassword: Scalars['Boolean'];
   createOrg: Org;
-  fixUserOrg: Scalars["Boolean"];
+  fixUserOrg: Scalars['Boolean'];
   createRole: Role;
-  setRoleDefault: Scalars["Boolean"];
-  markMessagesRead: Scalars["Boolean"];
-  deleteMessageDistributions: Scalars["Boolean"];
-  sendMessage: Scalars["Boolean"];
+  setRoleDefault: Scalars['Boolean'];
+  markMessagesRead: Scalars['Boolean'];
+  deleteMessageDistributions: Scalars['Boolean'];
+  sendMessage: Scalars['Boolean'];
   createMessage: IMessage;
-  editMessage: Scalars["Boolean"];
+  editMessage: Scalars['Boolean'];
   createBlobObject?: Maybe<IBlobObject>;
-  deleteBlobObject: Scalars["Boolean"];
+  deleteBlobObject: Scalars['Boolean'];
   editSetting?: Maybe<ISetting>;
-  authorize: Scalars["Boolean"];
+  authorize: Scalars['Boolean'];
   generateCaptcha: Captcha;
-  validateCaptcha: Scalars["Boolean"];
-  submitx_Aggregate_x?: Maybe<Scalars["Boolean"]>;
-  auditx_Aggregate_x?: Maybe<Scalars["Boolean"]>;
-  unsubmitx_Aggregate_x?: Maybe<Scalars["Boolean"]>;
-  unauditx_Aggregate_x?: Maybe<Scalars["Boolean"]>;
-  /** 创建x_Aggregate_x */
-  createx_Aggregate_x: x_Aggregate_x;
-  /** 编辑x_Aggregate_x */
-  editx_Aggregate_x: Scalars["Boolean"];
-  /** 删除x_Aggregate_x */
-  deletex_Aggregate_x: Scalars["Boolean"];
+  validateCaptcha: Scalars['Boolean'];
+  submitBook?: Maybe<Scalars['Boolean']>;
+  auditBook?: Maybe<Scalars['Boolean']>;
+  unsubmitBook?: Maybe<Scalars['Boolean']>;
+  unauditBook?: Maybe<Scalars['Boolean']>;
+  /** 创建Book */
+  createBook: Book;
+  /** 编辑Book */
+  editBook: Scalars['Boolean'];
+  /** 删除Book */
+  deleteBook: Scalars['Boolean'];
 }
+
 
 export interface MutationAuthenticateArgs {
   input?: Maybe<AuthenticateInput>;
 }
 
+
 export interface MutationFederateAuthenticateArgs {
   input?: Maybe<FederateAuthenticateInput>;
 }
+
 
 export interface MutationCreateTenantArgs {
   input: CreateTenantRequestInput;
 }
 
+
 export interface MutationEditTenantArgs {
   input: EditTenantRequestInput;
 }
+
 
 export interface MutationToggleTenantAvailabilityArgs {
   input: ToggleTenantAvailabilityRequestInput;
 }
 
+
 export interface MutationCheckTenantArgs {
-  code: Scalars["String"];
+  code: Scalars['String'];
 }
+
 
 export interface MutationChangePasswordArgs {
   input: ChangePasswordRequestInput;
 }
 
+
 export interface MutationRegisterArgs {
   input: RegisterUserRequestInput;
 }
+
 
 export interface MutationAssignRolesArgs {
   input: AssignRoleRequestInput;
 }
 
+
 export interface MutationAssignOrgsArgs {
   input: AssignOrgRequestInput;
 }
+
 
 export interface MutationEditUserArgs {
   input: EditUserRequestInput;
 }
 
+
 export interface MutationCreateUserArgs {
   input: CreateUserRequestInput;
 }
+
 
 export interface MutationResetUserPasswordArgs {
   input: ResetUserPasswordRequestInput;
 }
 
+
 export interface MutationCreateOrgArgs {
   input: CreateOrgInput;
 }
+
 
 export interface MutationCreateRoleArgs {
   input: CreateRoleInput;
 }
 
+
 export interface MutationSetRoleDefaultArgs {
   input: SetRoleDefaultInput;
 }
+
 
 export interface MutationMarkMessagesReadArgs {
   input: MarkMessagesReadInput;
 }
 
+
 export interface MutationDeleteMessageDistributionsArgs {
   input: DeleteMessageDistributionsInput;
 }
+
 
 export interface MutationSendMessageArgs {
   input: SendNotificationMessageRequestInput;
 }
 
+
 export interface MutationCreateMessageArgs {
   input: CreateMessageRequestInput;
 }
+
 
 export interface MutationEditMessageArgs {
   input: EditMessageRequestInput;
 }
 
+
 export interface MutationCreateBlobObjectArgs {
   input?: Maybe<CreateBlobObjectRequestInput>;
 }
+
 
 export interface MutationDeleteBlobObjectArgs {
   input?: Maybe<DeleteBlobObjectRequestInput>;
 }
 
+
 export interface MutationEditSettingArgs {
   input?: Maybe<EditSettingRequestInput>;
 }
+
 
 export interface MutationAuthorizeArgs {
   input?: Maybe<AuthorizeInput>;
 }
 
+
 export interface MutationGenerateCaptchaArgs {
   input: SendCaptchaInput;
 }
+
 
 export interface MutationValidateCaptchaArgs {
   input: ValidateCaptchaInput;
 }
 
-export interface MutationSubmitx_Aggregate_xArgs {
-  ids?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  remark?: Maybe<Scalars["String"]>;
+
+export interface MutationSubmitBookArgs {
+  ids?: Maybe<Array<Maybe<Scalars['String']>>>;
+  remark?: Maybe<Scalars['String']>;
 }
 
-export interface MutationAuditx_Aggregate_xArgs {
-  ids?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  remark?: Maybe<Scalars["String"]>;
+
+export interface MutationAuditBookArgs {
+  ids?: Maybe<Array<Maybe<Scalars['String']>>>;
+  remark?: Maybe<Scalars['String']>;
 }
 
-export interface MutationUnsubmitx_Aggregate_xArgs {
-  ids?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  remark?: Maybe<Scalars["String"]>;
+
+export interface MutationUnsubmitBookArgs {
+  ids?: Maybe<Array<Maybe<Scalars['String']>>>;
+  remark?: Maybe<Scalars['String']>;
 }
 
-export interface MutationUnauditx_Aggregate_xArgs {
-  ids?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  remark?: Maybe<Scalars["String"]>;
+
+export interface MutationUnauditBookArgs {
+  ids?: Maybe<Array<Maybe<Scalars['String']>>>;
+  remark?: Maybe<Scalars['String']>;
 }
 
-export interface MutationCreatex_Aggregate_xArgs {
-  input: Createx_Aggregate_xRequestInput;
+
+export interface MutationCreateBookArgs {
+  input: CreateBookRequestInput;
 }
 
-export interface MutationEditx_Aggregate_xArgs {
-  input: Editx_Aggregate_xRequestInput;
+
+export interface MutationEditBookArgs {
+  input: EditBookRequestInput;
 }
 
-export interface MutationDeletex_Aggregate_xArgs {
-  input: Deletex_Aggregate_xRequestInput;
+
+export interface MutationDeleteBookArgs {
+  input: DeleteBookRequestInput;
 }
+
 
 export interface Org extends IEntityBase, IOrg {
-  __typename?: "Org";
-  allParentOrgCodes: Array<Scalars["String"]>;
+  __typename?: 'Org';
+  allParentOrgCodes: Array<Scalars['String']>;
   allParentOrgs: Array<IOrg>;
-  allSubOrgCodes: Array<Scalars["String"]>;
+  allSubOrgCodes: Array<Scalars['String']>;
   allSubOrgs: Array<IOrg>;
-  directSubOrgCodes: Array<Scalars["String"]>;
+  directSubOrgCodes: Array<Scalars['String']>;
   directSubOrgs: Array<IOrg>;
   parentOrg: IOrg;
-  parentOrgCode: Scalars["String"];
-  code: Scalars["String"];
-  name: Scalars["String"];
+  parentOrgCode: Scalars['String'];
+  code: Scalars['String'];
+  name: Scalars['String'];
   orgType: OrgTypeEnum;
-  tenantCode?: Maybe<Scalars["String"]>;
-  modifiedOn: Scalars["DateTime"];
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
+  tenantCode?: Maybe<Scalars['String']>;
+  modifiedOn: Scalars['DateTime'];
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
 }
 
 export interface OrgCacheItem {
-  __typename?: "OrgCacheItem";
+  __typename?: 'OrgCacheItem';
   orgType?: Maybe<OrgTypeEnum>;
-  code?: Maybe<Scalars["String"]>;
-  name?: Maybe<Scalars["String"]>;
-  parentOrgCode: Scalars["String"];
+  code?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  parentOrgCode: Scalars['String'];
 }
 
 export interface OrgCollectionSegment {
-  __typename?: "OrgCollectionSegment";
+  __typename?: 'OrgCollectionSegment';
   items?: Maybe<Array<Maybe<Org>>>;
   /** Information to aid in pagination. */
   pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars["Int"];
+  totalCount: Scalars['Int'];
 }
 
 export interface OrgFilterInput {
@@ -880,18 +978,18 @@ export interface OrgFilterInput {
 }
 
 export enum OrgPermission {
-  IdentityMutationCreateOrg = "identity_mutation_createOrg",
-  IdentityMutationEditOrg = "identity_mutation_editOrg",
-  IdentityQueryOrgs = "identity_query_orgs",
+  IdentityMutationCreateOrg = 'identity_mutation_createOrg',
+  IdentityMutationEditOrg = 'identity_mutation_editOrg',
+  IdentityQueryOrgs = 'identity_query_orgs'
 }
 
 export enum OrgTypeEnum {
-  Default = "Default",
+  Default = 'Default'
 }
 
 export interface Query {
-  __typename?: "Query";
-  _?: Maybe<Scalars["String"]>;
+  __typename?: 'Query';
+  _?: Maybe<Scalars['String']>;
   tenants?: Maybe<ITenantCollectionSegment>;
   users?: Maybe<UserCollectionSegment>;
   currentUser: IUser;
@@ -902,112 +1000,122 @@ export interface Query {
   blobObjects?: Maybe<BlobObjectCollectionSegment>;
   settings?: Maybe<SettingCollectionSegment>;
   initSettings?: Maybe<Array<Maybe<ISetting>>>;
-  myPermissions?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  myPermissions?: Maybe<Array<Maybe<Scalars['String']>>>;
   _hint?: Maybe<HintType>;
   orgsCache: Array<OrgCacheItem>;
-  /** 列表获取_aggregate_ */
-  x_aggregate_xs?: Maybe<x_Aggregate_xCollectionSegment>;
-  /** 列表获取_aggregate_ */
-  x_aggregate_xById: x_Aggregate_x;
+  /** 列表获取book */
+  books?: Maybe<BookCollectionSegment>;
+  /** 列表获取book */
+  bookById: Book;
 }
 
+
 export interface QueryTenantsArgs {
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<ITenantFilterInput>;
 }
 
+
 export interface QueryUsersArgs {
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<IUserFilterInput>;
 }
 
+
 export interface QueryOrgsArgs {
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<OrgFilterInput>;
 }
 
+
 export interface QueryRolesArgs {
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<RoleFilterInput>;
 }
 
+
 export interface QueryMessagesArgs {
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<IMessageFilterInput>;
 }
+
 
 export interface QueryUnreadMessagesArgs {
   input: GetUnreadMessagesInput;
 }
 
+
 export interface QueryBlobObjectsArgs {
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<IBlobObjectFilterInput>;
 }
 
+
 export interface QuerySettingsArgs {
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   input?: Maybe<GetSettingsInput>;
   where?: Maybe<ISettingFilterInput>;
 }
 
-export interface Queryx_Aggregate_xsArgs {
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
-  input: Queryx_Aggregate_xRequestInput;
-  where?: Maybe<x_Aggregate_xFilterInput>;
-  order?: Maybe<Array<x_Aggregate_xSortInput>>;
+
+export interface QueryBooksArgs {
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  input: QueryBookRequestInput;
+  where?: Maybe<BookFilterInput>;
+  order?: Maybe<Array<BookSortInput>>;
 }
 
-export interface Queryx_Aggregate_xByIdArgs {
-  id: Scalars["String"];
+
+export interface QueryBookByIdArgs {
+  id: Scalars['String'];
 }
 
-export interface Queryx_Aggregate_xRequestInput {
-  name?: Maybe<Scalars["String"]>;
-  _?: Maybe<Scalars["String"]>;
+export interface QueryBookRequestInput {
+  name?: Maybe<Scalars['String']>;
+  _?: Maybe<Scalars['String']>;
 }
 
 export interface RegisterUserRequestInput {
-  password: Scalars["String"];
-  username: Scalars["String"];
-  phoneNumber?: Maybe<Scalars["String"]>;
-  email?: Maybe<Scalars["String"]>;
+  password: Scalars['String'];
+  username: Scalars['String'];
+  phoneNumber?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
 }
 
 export interface ResetUserPasswordRequestInput {
-  userId: Scalars["String"];
-  password: Scalars["String"];
+  userId: Scalars['String'];
+  password: Scalars['String'];
 }
 
 export interface Role extends IEntityBase, IRole {
-  __typename?: "Role";
-  name: Scalars["String"];
-  code: Scalars["String"];
+  __typename?: 'Role';
+  name: Scalars['String'];
+  code: Scalars['String'];
   users: Array<IUser>;
-  permissions: Array<Scalars["String"]>;
-  tenantCode?: Maybe<Scalars["String"]>;
-  isDefault: Scalars["Boolean"];
-  isStatic: Scalars["Boolean"];
-  isEnabled: Scalars["Boolean"];
-  modifiedOn: Scalars["DateTime"];
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
+  permissions: Array<Scalars['String']>;
+  tenantCode?: Maybe<Scalars['String']>;
+  isDefault: Scalars['Boolean'];
+  isStatic: Scalars['Boolean'];
+  isEnabled: Scalars['Boolean'];
+  modifiedOn: Scalars['DateTime'];
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
 }
 
 export interface RoleCollectionSegment {
-  __typename?: "RoleCollectionSegment";
+  __typename?: 'RoleCollectionSegment';
   items?: Maybe<Array<Maybe<Role>>>;
   /** Information to aid in pagination. */
   pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars["Int"];
+  totalCount: Scalars['Int'];
 }
 
 export interface RoleFilterInput {
@@ -1019,54 +1127,54 @@ export interface RoleFilterInput {
 }
 
 export enum RolePermission {
-  IdentityMutationCreateRole = "identity_mutation_createRole",
-  IdentityMutationEditRole = "identity_mutation_editRole",
-  IdentityQueryRoles = "identity_query_roles",
+  IdentityMutationCreateRole = 'identity_mutation_createRole',
+  IdentityMutationEditRole = 'identity_mutation_editRole',
+  IdentityQueryRoles = 'identity_query_roles'
 }
 
 export interface SendCaptchaInput {
   captchaProvider: CaptchaProvider;
-  smsCaptchaPhoneNumber?: Maybe<Scalars["ChinesePhoneNumberType"]>;
+  smsCaptchaPhoneNumber?: Maybe<Scalars['ChinesePhoneNumberType']>;
 }
 
 export interface SendNotificationMessageRequestInput {
-  toUserIds: Array<Scalars["String"]>;
-  messageId: Scalars["String"];
+  toUserIds: Array<Scalars['String']>;
+  messageId: Scalars['String'];
 }
 
 export interface SetRoleDefaultInput {
-  roleId: Scalars["String"];
+  roleId: Scalars['String'];
 }
 
 export interface Setting extends ISetting, IEntityBase {
-  __typename?: "Setting";
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
-  modifiedOn: Scalars["DateTime"];
+  __typename?: 'Setting';
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
+  modifiedOn: Scalars['DateTime'];
   scope?: Maybe<SettingScopeEnumeration>;
   validScopes?: Maybe<Array<Maybe<SettingScopeEnumeration>>>;
-  scopedKey?: Maybe<Scalars["String"]>;
+  scopedKey?: Maybe<Scalars['String']>;
   name?: Maybe<SettingDefinition>;
-  value?: Maybe<Scalars["Any"]>;
+  value?: Maybe<Scalars['Any']>;
 }
 
 export interface SettingCollectionSegment {
-  __typename?: "SettingCollectionSegment";
+  __typename?: 'SettingCollectionSegment';
   items?: Maybe<Array<Maybe<Setting>>>;
   /** Information to aid in pagination. */
   pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars["Int"];
+  totalCount: Scalars['Int'];
 }
 
 export enum SettingDefinition {
-  AppAppMenu = "AppAppMenu",
-  AppAppName = "AppAppName",
-  AppPermissions = "AppPermissions",
-  BlobStorageModuleName = "BlobStorageModuleName",
-  LocalizationData = "LocalizationData",
-  LocalizationLanguage = "LocalizationLanguage",
-  MessagingModuleName = "MessagingModuleName",
-  XModXModuleName = "x_Mod_xModuleName",
+  AppAppMenu = 'AppAppMenu',
+  AppAppName = 'AppAppName',
+  AppPermissions = 'AppPermissions',
+  BlobStorageModuleName = 'BlobStorageModuleName',
+  BookingModuleName = 'BookingModuleName',
+  LocalizationData = 'LocalizationData',
+  LocalizationLanguage = 'LocalizationLanguage',
+  MessagingModuleName = 'MessagingModuleName'
 }
 
 export interface SettingDefinitionOperationFilterInput {
@@ -1077,9 +1185,9 @@ export interface SettingDefinitionOperationFilterInput {
 }
 
 export enum SettingScopeEnumeration {
-  Global = "Global",
-  Tenant = "Tenant",
-  User = "User",
+  Global = 'Global',
+  Tenant = 'Tenant',
+  User = 'User'
 }
 
 export interface SettingScopeEnumerationOperationFilterInput {
@@ -1090,107 +1198,112 @@ export interface SettingScopeEnumerationOperationFilterInput {
 }
 
 export enum SettingsPermission {
-  SettingsMutationEditSetting = "settings_mutation_editSetting",
+  SettingsMutationEditSetting = 'settings_mutation_editSetting'
 }
 
 export enum SortEnumType {
-  Asc = "ASC",
-  Desc = "DESC",
+  Asc = 'ASC',
+  Desc = 'DESC'
 }
 
 export interface StringOperationFilterInput {
   and?: Maybe<Array<StringOperationFilterInput>>;
   or?: Maybe<Array<StringOperationFilterInput>>;
-  eq?: Maybe<Scalars["String"]>;
-  neq?: Maybe<Scalars["String"]>;
-  contains?: Maybe<Scalars["String"]>;
-  ncontains?: Maybe<Scalars["String"]>;
-  in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  nin?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  startsWith?: Maybe<Scalars["String"]>;
-  nstartsWith?: Maybe<Scalars["String"]>;
-  endsWith?: Maybe<Scalars["String"]>;
-  nendsWith?: Maybe<Scalars["String"]>;
+  eq?: Maybe<Scalars['String']>;
+  neq?: Maybe<Scalars['String']>;
+  contains?: Maybe<Scalars['String']>;
+  ncontains?: Maybe<Scalars['String']>;
+  in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  nin?: Maybe<Array<Maybe<Scalars['String']>>>;
+  startsWith?: Maybe<Scalars['String']>;
+  nstartsWith?: Maybe<Scalars['String']>;
+  endsWith?: Maybe<Scalars['String']>;
+  nendsWith?: Maybe<Scalars['String']>;
 }
 
 export interface Subscription {
-  __typename?: "Subscription";
-  _?: Maybe<Scalars["String"]>;
+  __typename?: 'Subscription';
+  _?: Maybe<Scalars['String']>;
   onFrontendCall: IFrontendCall;
   onBroadcast: IFrontendCall;
-  echo: Scalars["String"];
+  echo: Scalars['String'];
   onCacheDataChange: IFrontendCall;
 }
 
+
 export interface SubscriptionEchoArgs {
-  text: Scalars["String"];
+  text: Scalars['String'];
 }
 
 export interface Tenant extends ITenant, IEntityBase {
-  __typename?: "Tenant";
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
-  modifiedOn: Scalars["DateTime"];
-  code: Scalars["String"];
-  name: Scalars["String"];
-  isEnabled: Scalars["Boolean"];
-  externalInfo?: Maybe<Scalars["Any"]>;
+  __typename?: 'Tenant';
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
+  modifiedOn: Scalars['DateTime'];
+  code: Scalars['String'];
+  name: Scalars['String'];
+  isEnabled: Scalars['Boolean'];
+  externalInfo?: Maybe<Scalars['Any']>;
 }
 
 export enum TenantPermission {
-  MultiTenantMutationCreateTenant = "multiTenant_mutation_createTenant",
-  MultiTenantMutationDeleteTenant = "multiTenant_mutation_deleteTenant",
-  MultiTenantMutationEditTenant = "multiTenant_mutation_editTenant",
-  MultiTenantQueryTenants = "multiTenant_query_tenants",
+  MultiTenantMutationCreateTenant = 'multiTenant_mutation_createTenant',
+  MultiTenantMutationDeleteTenant = 'multiTenant_mutation_deleteTenant',
+  MultiTenantMutationEditTenant = 'multiTenant_mutation_editTenant',
+  MultiTenantQueryTenants = 'multiTenant_query_tenants'
 }
 
 export interface ToggleTenantAvailabilityRequestInput {
-  code: Scalars["String"];
+  code: Scalars['String'];
 }
 
+
 export interface User extends IUser, IEntityBase {
-  __typename?: "User";
-  phoneNumber?: Maybe<Scalars["String"]>;
-  isEnable: Scalars["Boolean"];
-  username: Scalars["String"];
-  nickname?: Maybe<Scalars["String"]>;
-  email?: Maybe<Scalars["String"]>;
-  password: Scalars["String"];
+  __typename?: 'User';
+  phoneNumber?: Maybe<Scalars['String']>;
+  isEnable: Scalars['Boolean'];
+  username: Scalars['String'];
+  nickname?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  password: Scalars['String'];
   claims: Array<UserClaim>;
   orgs: Array<IOrg>;
-  orgCodes: Array<Scalars["String"]>;
-  permissions: Array<Scalars["String"]>;
-  roleIds: Array<Scalars["String"]>;
+  orgCodes: Array<Scalars['String']>;
+  permissions: Array<Scalars['String']>;
+  roleIds: Array<Scalars['String']>;
   avatarFile?: Maybe<IBlobObject>;
-  avatarFileId?: Maybe<Scalars["String"]>;
+  avatarFileId?: Maybe<Scalars['String']>;
   roles: Array<IRole>;
-  roleNames: Array<Scalars["String"]>;
+  roleNames: Array<Scalars['String']>;
   loginProvider: LoginProviderEnum;
-  openId?: Maybe<Scalars["String"]>;
-  tenantCode?: Maybe<Scalars["String"]>;
-  modifiedOn: Scalars["DateTime"];
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
-  checkPassword: Scalars["Boolean"];
+  openId?: Maybe<Scalars['String']>;
+  tenantCode?: Maybe<Scalars['String']>;
+  modifiedOn: Scalars['DateTime'];
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
+  checkPassword: Scalars['Boolean'];
   setPassword: User;
 }
+
 
 export interface UserClaimsArgs {
   where?: Maybe<UserClaimFilterInput>;
 }
 
+
 export interface UserCheckPasswordArgs {
-  password: Scalars["String"];
+  password: Scalars['String'];
 }
 
+
 export interface UserSetPasswordArgs {
-  password?: Maybe<Scalars["String"]>;
+  password?: Maybe<Scalars['String']>;
 }
 
 export interface UserClaim {
-  __typename?: "UserClaim";
-  claimType: Scalars["String"];
-  claimValue: Scalars["String"];
+  __typename?: 'UserClaim';
+  claimType: Scalars['String'];
+  claimValue: Scalars['String'];
 }
 
 export interface UserClaimFilterInput {
@@ -1201,689 +1314,1011 @@ export interface UserClaimFilterInput {
 }
 
 export interface UserClaimInput {
-  claimType: Scalars["String"];
-  claimValue: Scalars["String"];
+  claimType: Scalars['String'];
+  claimValue: Scalars['String'];
 }
 
 export interface UserCollectionSegment {
-  __typename?: "UserCollectionSegment";
+  __typename?: 'UserCollectionSegment';
   items?: Maybe<Array<Maybe<User>>>;
   /** Information to aid in pagination. */
   pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars["Int"];
+  totalCount: Scalars['Int'];
 }
 
 export interface UserOrgMapItemInput {
-  userId: Scalars["String"];
-  orgCodes: Array<Scalars["String"]>;
+  userId: Scalars['String'];
+  orgCodes: Array<Scalars['String']>;
 }
 
 export enum UserPermission {
-  IdentityMutationCreateUser = "identity_mutation_createUser",
-  IdentityMutationEditUser = "identity_mutation_editUser",
-  IdentityQueryUsers = "identity_query_users",
+  IdentityMutationCreateUser = 'identity_mutation_createUser',
+  IdentityMutationEditUser = 'identity_mutation_editUser',
+  IdentityQueryUsers = 'identity_query_users'
 }
 
 export interface UserToken {
-  __typename?: "UserToken";
-  token?: Maybe<Scalars["String"]>;
+  __typename?: 'UserToken';
+  token?: Maybe<Scalars['String']>;
   user?: Maybe<IUser>;
   loginProvider?: Maybe<LoginProviderEnum>;
-  userId: Scalars["String"];
-  name: Scalars["String"];
+  userId: Scalars['String'];
+  name: Scalars['String'];
 }
 
 export interface ValidateCaptchaInput {
-  captchaKey: Scalars["String"];
+  captchaKey: Scalars['String'];
   captchaProvider: CaptchaProvider;
-  captchaCode: Scalars["String"];
+  captchaCode: Scalars['String'];
 }
 
-export enum _Mod_Settings {
-  XModXModuleName = "x_Mod_xModuleName",
+export enum BookingSettings {
+  BookingModuleName = 'BookingModuleName'
 }
 
-/** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
-export interface x_Aggregate_x extends IEntityBase, IAuditEntity {
-  __typename?: "x_Aggregate_x";
-  id?: Maybe<Scalars["String"]>;
-  createdOn: Scalars["DateTime"];
-  modifiedOn: Scalars["DateTime"];
-  auditStatus: AuditStatus;
-  submittable: Scalars["Boolean"];
-  name: Scalars["String"];
-  auditRemark?: Maybe<Scalars["String"]>;
-}
+export type BooksQueryVariables = Exact<{
+  input: QueryBookRequestInput;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<BookFilterInput>;
+}>;
 
-export interface x_Aggregate_xCollectionSegment {
-  __typename?: "x_Aggregate_xCollectionSegment";
-  items?: Maybe<Array<Maybe<x_Aggregate_x>>>;
-  /** Information to aid in pagination. */
-  pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars["Int"];
-}
 
-/** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
-export interface x_Aggregate_xFilterInput {
-  and?: Maybe<Array<x_Aggregate_xFilterInput>>;
-  or?: Maybe<Array<x_Aggregate_xFilterInput>>;
-  name?: Maybe<StringOperationFilterInput>;
-  auditStatus?: Maybe<AuditStatusOperationFilterInput>;
-  auditRemark?: Maybe<StringOperationFilterInput>;
-  submittable?: Maybe<BooleanOperationFilterInput>;
-  modifiedOn?: Maybe<ComparableDateTimeOffsetOperationFilterInput>;
-  id?: Maybe<StringOperationFilterInput>;
-  createdOn?: Maybe<ComparableDateTimeOffsetOperationFilterInput>;
-}
+export type BooksQuery = (
+  { __typename?: 'Query' }
+  & { books?: Maybe<(
+    { __typename?: 'BookCollectionSegment' }
+    & Pick<BookCollectionSegment, 'totalCount'>
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'Book' }
+      & BookBriefFragment
+    )>>>, pageInfo: (
+      { __typename?: 'CollectionSegmentInfo' }
+      & PageInfoFragment
+    ) }
+  )> }
+);
 
-/** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
-export interface x_Aggregate_xSortInput {
-  name?: Maybe<SortEnumType>;
-  auditStatus?: Maybe<SortEnumType>;
-  auditRemark?: Maybe<SortEnumType>;
-  submittable?: Maybe<SortEnumType>;
-  modifiedOn?: Maybe<SortEnumType>;
-  id?: Maybe<SortEnumType>;
-  createdOn?: Maybe<SortEnumType>;
-}
+export type BookByIdQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
 
-export enum X_Proj_XFrontCallType {
-  CacheDataChange = "CacheDataChange",
-}
 
-export enum X_Proj_XLoginProviderEnum {
-  XOrgX = "x_Org_x",
-}
+export type BookByIdQuery = (
+  { __typename?: 'Query' }
+  & { bookById: (
+    { __typename?: 'Book' }
+    & BooksDetailFragment
+  ) }
+);
 
-export type RoleBriefFragment = { __typename?: "Role" } & Pick<Role, "createdOn" | "name" | "id" | "isStatic" | "isDefault">;
+export type CreateBooksMutationVariables = Exact<{
+  input: CreateBookRequestInput;
+}>;
 
-export type RoleDetailFragment = { __typename?: "Role" } & Pick<Role, "permissions" | "name"> & {
-    users: Array<{ __typename?: "User" } & Pick<User, "id">>;
-  } & RoleBriefFragment;
 
-export type RoleMinimalFragment = { __typename?: "Role" } & Pick<Role, "id" | "name">;
+export type CreateBooksMutation = (
+  { __typename?: 'Mutation' }
+  & { createBook: (
+    { __typename?: 'Book' }
+    & Pick<Book, 'id'>
+  ) }
+);
 
-export type OrgBriefFragment = { __typename?: "Org" } & Pick<Org, "code" | "name" | "orgType" | "parentOrgCode" | "id">;
+export type DeleteBooksMutationVariables = Exact<{
+  ids: Array<Scalars['String']> | Scalars['String'];
+}>;
 
-export type OrgDetailFragment = { __typename?: "Org" } & {
-  allSubOrgs: Array<{ __typename?: "Org" } & Pick<Org, "name" | "code">>;
-  directSubOrgs: Array<{ __typename?: "Org" } & Pick<Org, "name" | "code">>;
-} & OrgBriefFragment;
 
-export type UserBriefFragment = { __typename?: "User" } & Pick<
-  User,
-  "id" | "username" | "nickname" | "phoneNumber" | "email" | "isEnable" | "openId" | "loginProvider" | "roleNames" | "roleIds"
->;
+export type DeleteBooksMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteBook'>
+);
 
-export type UserListFragment = { __typename?: "User" } & Pick<User, "createdOn" | "orgCodes"> & UserBriefFragment;
+export type EditBooksMutationVariables = Exact<{
+  input: EditBookRequestInput;
+}>;
 
-export type UserCacheDtoFragment = { __typename?: "User" } & {
-  avatarFile?: Maybe<{ __typename?: "BlobObject" } & Pick<BlobObject, "url">>;
-} & UserBriefFragment;
 
-export type UserMinimalFragment = { __typename?: "User" } & Pick<User, "id" | "openId" | "username" | "nickname">;
+export type EditBooksMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'editBook'>
+);
 
-export type OrgRecursiveParentFragment = { __typename?: "Org" } & {
-  parentOrg: { __typename?: "Org" } & {
-    parentOrg: { __typename?: "Org" } & {
-      parentOrg: { __typename?: "Org" } & {
-        parentOrg: { __typename?: "Org" } & {
-          parentOrg: { __typename?: "Org" } & {
-            parentOrg: { __typename?: "Org" } & {
-              parentOrg: { __typename?: "Org" } & {
-                parentOrg: { __typename?: "Org" } & {
-                  parentOrg: { __typename?: "Org" } & { parentOrg: { __typename?: "Org" } & OrgBriefFragment } & OrgBriefFragment;
-                } & OrgBriefFragment;
-              } & OrgBriefFragment;
-            } & OrgBriefFragment;
-          } & OrgBriefFragment;
-        } & OrgBriefFragment;
-      } & OrgBriefFragment;
-    } & OrgBriefFragment;
-  } & OrgBriefFragment;
-};
+export type AuditBookMutationVariables = Exact<{
+  ids?: Maybe<Array<Maybe<Scalars['String']>> | Maybe<Scalars['String']>>;
+}>;
 
-export type UserDetailFragment = { __typename?: "User" } & Pick<User, "isEnable" | "permissions" | "orgCodes" | "avatarFileId"> & {
-    avatarFile?: Maybe<{ __typename?: "BlobObject" } & Pick<BlobObject, "url"> & BlobObjectBriefFragment>;
-    orgs: Array<
-      { __typename?: "Org" } & Pick<Org, "name" | "code"> & { allParentOrgs: Array<{ __typename?: "Org" } & Pick<Org, "code" | "name">> }
-    >;
-    claims: Array<{ __typename?: "UserClaim" } & Pick<UserClaim, "claimType" | "claimValue">>;
-  } & UserBriefFragment;
+
+export type AuditBookMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'auditBook'>
+);
+
+export type UnauditBookMutationVariables = Exact<{
+  ids?: Maybe<Array<Maybe<Scalars['String']>> | Maybe<Scalars['String']>>;
+}>;
+
+
+export type UnauditBookMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'unauditBook'>
+);
+
+export type SubmitBooksMutationVariables = Exact<{
+  ids?: Maybe<Array<Maybe<Scalars['String']>> | Maybe<Scalars['String']>>;
+}>;
+
+
+export type SubmitBooksMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'submitBook'>
+);
+
+export type UnSubmitBooksMutationVariables = Exact<{
+  ids?: Maybe<Array<Maybe<Scalars['String']>> | Maybe<Scalars['String']>>;
+}>;
+
+
+export type UnSubmitBooksMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'unsubmitBook'>
+);
+
+export type BookBriefFragment = (
+  { __typename?: 'Book' }
+  & Pick<Book, 'id' | 'name' | 'auditStatus' | 'createdOn'>
+);
+
+export type BooksDetailFragment = (
+  { __typename?: 'Book' }
+  & Pick<Book, 'id' | 'name' | 'auditStatus' | 'createdOn'>
+);
+
+export type RoleBriefFragment = (
+  { __typename?: 'Role' }
+  & Pick<Role, 'createdOn' | 'name' | 'id' | 'isStatic' | 'isDefault'>
+);
+
+export type RoleDetailFragment = (
+  { __typename?: 'Role' }
+  & Pick<Role, 'permissions' | 'name'>
+  & { users: Array<(
+    { __typename?: 'User' }
+    & Pick<User, 'id'>
+  )> }
+  & RoleBriefFragment
+);
+
+export type RoleMinimalFragment = (
+  { __typename?: 'Role' }
+  & Pick<Role, 'id' | 'name'>
+);
+
+export type OrgBriefFragment = (
+  { __typename?: 'Org' }
+  & Pick<Org, 'code' | 'name' | 'orgType' | 'parentOrgCode' | 'id'>
+);
+
+export type OrgDetailFragment = (
+  { __typename?: 'Org' }
+  & { allSubOrgs: Array<(
+    { __typename?: 'Org' }
+    & Pick<Org, 'name' | 'code'>
+  )>, directSubOrgs: Array<(
+    { __typename?: 'Org' }
+    & Pick<Org, 'name' | 'code'>
+  )> }
+  & OrgBriefFragment
+);
+
+export type UserBriefFragment = (
+  { __typename?: 'User' }
+  & Pick<User, 'id' | 'username' | 'nickname' | 'phoneNumber' | 'email' | 'isEnable' | 'openId' | 'loginProvider' | 'roleNames' | 'roleIds'>
+);
+
+export type UserListFragment = (
+  { __typename?: 'User' }
+  & Pick<User, 'createdOn' | 'orgCodes'>
+  & UserBriefFragment
+);
+
+export type UserCacheDtoFragment = (
+  { __typename?: 'User' }
+  & { avatarFile?: Maybe<(
+    { __typename?: 'BlobObject' }
+    & Pick<BlobObject, 'url'>
+  )> }
+  & UserBriefFragment
+);
+
+export type UserMinimalFragment = (
+  { __typename?: 'User' }
+  & Pick<User, 'id' | 'openId' | 'username' | 'nickname'>
+);
+
+export type OrgRecursiveParentFragment = (
+  { __typename?: 'Org' }
+  & { parentOrg: (
+    { __typename?: 'Org' }
+    & { parentOrg: (
+      { __typename?: 'Org' }
+      & { parentOrg: (
+        { __typename?: 'Org' }
+        & { parentOrg: (
+          { __typename?: 'Org' }
+          & { parentOrg: (
+            { __typename?: 'Org' }
+            & { parentOrg: (
+              { __typename?: 'Org' }
+              & { parentOrg: (
+                { __typename?: 'Org' }
+                & { parentOrg: (
+                  { __typename?: 'Org' }
+                  & { parentOrg: (
+                    { __typename?: 'Org' }
+                    & { parentOrg: (
+                      { __typename?: 'Org' }
+                      & OrgBriefFragment
+                    ) }
+                    & OrgBriefFragment
+                  ) }
+                  & OrgBriefFragment
+                ) }
+                & OrgBriefFragment
+              ) }
+              & OrgBriefFragment
+            ) }
+            & OrgBriefFragment
+          ) }
+          & OrgBriefFragment
+        ) }
+        & OrgBriefFragment
+      ) }
+      & OrgBriefFragment
+    ) }
+    & OrgBriefFragment
+  ) }
+);
+
+export type UserDetailFragment = (
+  { __typename?: 'User' }
+  & Pick<User, 'isEnable' | 'permissions' | 'orgCodes' | 'avatarFileId'>
+  & { avatarFile?: Maybe<(
+    { __typename?: 'BlobObject' }
+    & Pick<BlobObject, 'url'>
+    & BlobObjectBriefFragment
+  )>, orgs: Array<(
+    { __typename?: 'Org' }
+    & Pick<Org, 'name' | 'code'>
+    & { allParentOrgs: Array<(
+      { __typename?: 'Org' }
+      & Pick<Org, 'code' | 'name'>
+    )> }
+  )>, claims: Array<(
+    { __typename?: 'UserClaim' }
+    & Pick<UserClaim, 'claimType' | 'claimValue'>
+  )> }
+  & UserBriefFragment
+);
 
 export type UserListsQueryVariables = Exact<{
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<IUserFilterInput>;
 }>;
 
-export type UserListsQuery = { __typename?: "Query" } & {
-  users?: Maybe<
-    { __typename?: "UserCollectionSegment" } & Pick<UserCollectionSegment, "totalCount"> & {
-        items?: Maybe<Array<Maybe<{ __typename?: "User" } & UserListFragment>>>;
-        pageInfo: { __typename?: "CollectionSegmentInfo" } & PageInfoFragment;
-      }
-  >;
-};
+
+export type UserListsQuery = (
+  { __typename?: 'Query' }
+  & { users?: Maybe<(
+    { __typename?: 'UserCollectionSegment' }
+    & Pick<UserCollectionSegment, 'totalCount'>
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'User' }
+      & UserListFragment
+    )>>>, pageInfo: (
+      { __typename?: 'CollectionSegmentInfo' }
+      & PageInfoFragment
+    ) }
+  )> }
+);
 
 export type UserByIdQueryVariables = Exact<{
-  id?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['String']>;
 }>;
 
-export type UserByIdQuery = { __typename?: "Query" } & {
-  users?: Maybe<{ __typename?: "UserCollectionSegment" } & { items?: Maybe<Array<Maybe<{ __typename?: "User" } & UserDetailFragment>>> }>;
-};
+
+export type UserByIdQuery = (
+  { __typename?: 'Query' }
+  & { users?: Maybe<(
+    { __typename?: 'UserCollectionSegment' }
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'User' }
+      & UserDetailFragment
+    )>>> }
+  )> }
+);
 
 export type UserMenusQueryVariables = Exact<{
   where?: Maybe<IUserFilterInput>;
 }>;
 
-export type UserMenusQuery = { __typename?: "Query" } & {
-  users?: Maybe<{ __typename?: "UserCollectionSegment" } & { items?: Maybe<Array<Maybe<{ __typename?: "User" } & UserMinimalFragment>>> }>;
-};
+
+export type UserMenusQuery = (
+  { __typename?: 'Query' }
+  & { users?: Maybe<(
+    { __typename?: 'UserCollectionSegment' }
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'User' }
+      & UserMinimalFragment
+    )>>> }
+  )> }
+);
 
 export type EditUserMutationVariables = Exact<{
   input: EditUserRequestInput;
 }>;
 
-export type EditUserMutation = { __typename?: "Mutation" } & Pick<Mutation, "editUser">;
+
+export type EditUserMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'editUser'>
+);
 
 export type CreateUserMutationVariables = Exact<{
   input: CreateUserRequestInput;
 }>;
 
-export type CreateUserMutation = { __typename?: "Mutation" } & Pick<Mutation, "createUser">;
+
+export type CreateUserMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'createUser'>
+);
 
 export type ResetUserPasswordMutationVariables = Exact<{
   input: ResetUserPasswordRequestInput;
 }>;
 
-export type ResetUserPasswordMutation = { __typename?: "Mutation" } & Pick<Mutation, "resetUserPassword">;
+
+export type ResetUserPasswordMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'resetUserPassword'>
+);
 
 export type ChangePasswordMutationVariables = Exact<{
   input: ChangePasswordRequestInput;
 }>;
 
-export type ChangePasswordMutation = { __typename?: "Mutation" } & Pick<Mutation, "changePassword">;
+
+export type ChangePasswordMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'changePassword'>
+);
 
 export type RoleListsQueryVariables = Exact<{
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<RoleFilterInput>;
 }>;
 
-export type RoleListsQuery = { __typename?: "Query" } & {
-  roles?: Maybe<
-    { __typename?: "RoleCollectionSegment" } & Pick<RoleCollectionSegment, "totalCount"> & {
-        items?: Maybe<Array<Maybe<{ __typename?: "Role" } & RoleBriefFragment>>>;
-        pageInfo: { __typename?: "CollectionSegmentInfo" } & PageInfoFragment;
-      }
-  >;
-};
+
+export type RoleListsQuery = (
+  { __typename?: 'Query' }
+  & { roles?: Maybe<(
+    { __typename?: 'RoleCollectionSegment' }
+    & Pick<RoleCollectionSegment, 'totalCount'>
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'Role' }
+      & RoleBriefFragment
+    )>>>, pageInfo: (
+      { __typename?: 'CollectionSegmentInfo' }
+      & PageInfoFragment
+    ) }
+  )> }
+);
 
 export type RoleMenusQueryVariables = Exact<{
   where?: Maybe<RoleFilterInput>;
 }>;
 
-export type RoleMenusQuery = { __typename?: "Query" } & {
-  roles?: Maybe<{ __typename?: "RoleCollectionSegment" } & { items?: Maybe<Array<Maybe<{ __typename?: "Role" } & RoleMinimalFragment>>> }>;
-};
+
+export type RoleMenusQuery = (
+  { __typename?: 'Query' }
+  & { roles?: Maybe<(
+    { __typename?: 'RoleCollectionSegment' }
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'Role' }
+      & RoleMinimalFragment
+    )>>> }
+  )> }
+);
 
 export type RoleByNameQueryVariables = Exact<{
-  name?: Maybe<Scalars["String"]>;
+  name?: Maybe<Scalars['String']>;
 }>;
 
-export type RoleByNameQuery = { __typename?: "Query" } & {
-  roles?: Maybe<{ __typename?: "RoleCollectionSegment" } & { items?: Maybe<Array<Maybe<{ __typename?: "Role" } & RoleDetailFragment>>> }>;
-};
+
+export type RoleByNameQuery = (
+  { __typename?: 'Query' }
+  & { roles?: Maybe<(
+    { __typename?: 'RoleCollectionSegment' }
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'Role' }
+      & RoleDetailFragment
+    )>>> }
+  )> }
+);
 
 export type RoleByIdQueryVariables = Exact<{
-  id?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['String']>;
 }>;
 
-export type RoleByIdQuery = { __typename?: "Query" } & {
-  roles?: Maybe<{ __typename?: "RoleCollectionSegment" } & { items?: Maybe<Array<Maybe<{ __typename?: "Role" } & RoleDetailFragment>>> }>;
-};
+
+export type RoleByIdQuery = (
+  { __typename?: 'Query' }
+  & { roles?: Maybe<(
+    { __typename?: 'RoleCollectionSegment' }
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'Role' }
+      & RoleDetailFragment
+    )>>> }
+  )> }
+);
 
 export type CreateRoleMutationVariables = Exact<{
   input: CreateRoleInput;
 }>;
 
-export type CreateRoleMutation = { __typename?: "Mutation" } & {
-  createRole: { __typename?: "Role" } & Pick<Role, "id" | "createdOn" | "name" | "permissions"> & {
-      users: Array<{ __typename?: "User" } & Pick<User, "permissions" | "id" | "username" | "email" | "phoneNumber">>;
-    };
-};
+
+export type CreateRoleMutation = (
+  { __typename?: 'Mutation' }
+  & { createRole: (
+    { __typename?: 'Role' }
+    & Pick<Role, 'id' | 'createdOn' | 'name' | 'permissions'>
+    & { users: Array<(
+      { __typename?: 'User' }
+      & Pick<User, 'permissions' | 'id' | 'username' | 'email' | 'phoneNumber'>
+    )> }
+  ) }
+);
 
 export type AuthorizeMutationVariables = Exact<{
   input: AuthorizeInput;
 }>;
 
-export type AuthorizeMutation = { __typename?: "Mutation" } & Pick<Mutation, "authorize">;
+
+export type AuthorizeMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'authorize'>
+);
 
 export type OrgsQueryVariables = Exact<{
   where?: Maybe<OrgFilterInput>;
 }>;
 
-export type OrgsQuery = { __typename?: "Query" } & {
-  orgs?: Maybe<{ __typename?: "OrgCollectionSegment" } & { items?: Maybe<Array<Maybe<{ __typename?: "Org" } & OrgBriefFragment>>> }>;
-};
+
+export type OrgsQuery = (
+  { __typename?: 'Query' }
+  & { orgs?: Maybe<(
+    { __typename?: 'OrgCollectionSegment' }
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'Org' }
+      & OrgBriefFragment
+    )>>> }
+  )> }
+);
 
 export type CreateOrgMutationVariables = Exact<{
   input: CreateOrgInput;
 }>;
 
-export type CreateOrgMutation = { __typename?: "Mutation" } & { createOrg: { __typename?: "Org" } & OrgBriefFragment };
+
+export type CreateOrgMutation = (
+  { __typename?: 'Mutation' }
+  & { createOrg: (
+    { __typename?: 'Org' }
+    & OrgBriefFragment
+  ) }
+);
 
 export type AssignOrgsMutationVariables = Exact<{
   input: AssignOrgRequestInput;
 }>;
 
-export type AssignOrgsMutation = { __typename?: "Mutation" } & Pick<Mutation, "assignOrgs">;
+
+export type AssignOrgsMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'assignOrgs'>
+);
 
 export type SetRoleDefaultMutationVariables = Exact<{
-  roleId: Scalars["String"];
+  roleId: Scalars['String'];
 }>;
 
-export type SetRoleDefaultMutation = { __typename?: "Mutation" } & Pick<Mutation, "setRoleDefault">;
 
-export type MessageBriefFragment = { __typename?: "Message" } & Pick<
-  Message,
-  "fromUserId" | "id" | "messageType" | "severity" | "time" | "title"
->;
+export type SetRoleDefaultMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'setRoleDefault'>
+);
 
-export type MessageDetailFragment = { __typename?: "Message" } & Pick<Message, "toUserIds" | "createdOn"> & {
-    content: { __typename?: "IMessageContent" } & Pick<IMessageContent, "_">;
-  };
+export type MessageBriefFragment = (
+  { __typename?: 'Message' }
+  & Pick<Message, 'fromUserId' | 'id' | 'messageType' | 'severity' | 'time' | 'title'>
+);
+
+export type MessageDetailFragment = (
+  { __typename?: 'Message' }
+  & Pick<Message, 'toUserIds' | 'createdOn'>
+  & { content: (
+    { __typename?: 'IMessageContent' }
+    & Pick<IMessageContent, '_'>
+  ) }
+);
 
 export type CreateMessageMutationVariables = Exact<{
   input: CreateMessageRequestInput;
 }>;
 
-export type CreateMessageMutation = { __typename?: "Mutation" } & { createMessage: { __typename?: "Message" } & Pick<Message, "id"> };
+
+export type CreateMessageMutation = (
+  { __typename?: 'Mutation' }
+  & { createMessage: (
+    { __typename?: 'Message' }
+    & Pick<Message, 'id'>
+  ) }
+);
 
 export type EditMessageMutationVariables = Exact<{
   input: EditMessageRequestInput;
 }>;
 
-export type EditMessageMutation = { __typename?: "Mutation" } & Pick<Mutation, "editMessage">;
+
+export type EditMessageMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'editMessage'>
+);
 
 export type SendMessageMutationVariables = Exact<{
   input: SendNotificationMessageRequestInput;
 }>;
 
-export type SendMessageMutation = { __typename?: "Mutation" } & Pick<Mutation, "sendMessage">;
+
+export type SendMessageMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'sendMessage'>
+);
 
 export type MessagesQueryVariables = Exact<{
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<IMessageFilterInput>;
-  includeDetail: Scalars["Boolean"];
+  includeDetail: Scalars['Boolean'];
 }>;
 
-export type MessagesQuery = { __typename?: "Query" } & {
-  messages?: Maybe<
-    { __typename?: "MessageCollectionSegment" } & Pick<MessageCollectionSegment, "totalCount"> & {
-        items?: Maybe<Array<Maybe<{ __typename?: "Message" } & MessageBriefFragment & MessageDetailFragment>>>;
-        pageInfo: { __typename?: "CollectionSegmentInfo" } & PageInfoFragment;
-      }
-  >;
-};
 
-export type AuthenticateResultFragmentFragment = { __typename?: "UserToken" } & Pick<UserToken, "userId" | "token"> & {
-    user?: Maybe<{ __typename?: "User" } & UserDetailFragment>;
-  };
+export type MessagesQuery = (
+  { __typename?: 'Query' }
+  & { messages?: Maybe<(
+    { __typename?: 'MessageCollectionSegment' }
+    & Pick<MessageCollectionSegment, 'totalCount'>
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'Message' }
+      & MessageBriefFragment
+      & MessageDetailFragment
+    )>>>, pageInfo: (
+      { __typename?: 'CollectionSegmentInfo' }
+      & PageInfoFragment
+    ) }
+  )> }
+);
+
+export type AuthenticateResultFragmentFragment = (
+  { __typename?: 'UserToken' }
+  & Pick<UserToken, 'userId' | 'token'>
+  & { user?: Maybe<(
+    { __typename?: 'User' }
+    & UserDetailFragment
+  )> }
+);
 
 export type AuthenticateMutationVariables = Exact<{
   input: AuthenticateInput;
 }>;
 
-export type AuthenticateMutation = { __typename?: "Mutation" } & {
-  authenticate?: Maybe<{ __typename?: "UserToken" } & AuthenticateResultFragmentFragment>;
-};
+
+export type AuthenticateMutation = (
+  { __typename?: 'Mutation' }
+  & { authenticate?: Maybe<(
+    { __typename?: 'UserToken' }
+    & AuthenticateResultFragmentFragment
+  )> }
+);
 
 export type FederateAuthenticateMutationVariables = Exact<{
-  code: Scalars["String"];
+  code: Scalars['String'];
   loginProvider: LoginProviderEnum;
 }>;
 
-export type FederateAuthenticateMutation = { __typename?: "Mutation" } & {
-  federateAuthenticate?: Maybe<{ __typename?: "UserToken" } & AuthenticateResultFragmentFragment>;
-};
+
+export type FederateAuthenticateMutation = (
+  { __typename?: 'Mutation' }
+  & { federateAuthenticate?: Maybe<(
+    { __typename?: 'UserToken' }
+    & AuthenticateResultFragmentFragment
+  )> }
+);
 
 export type RegisterAndSignInMutationVariables = Exact<{
   registerInput: RegisterUserRequestInput;
   authenticateInput: AuthenticateInput;
 }>;
 
-export type RegisterAndSignInMutation = { __typename?: "Mutation" } & Pick<Mutation, "register"> & {
-    authenticate?: Maybe<
-      { __typename?: "UserToken" } & Pick<UserToken, "userId" | "token"> & {
-          user?: Maybe<
-            { __typename?: "User" } & Pick<User, "roleNames" | "roleIds" | "permissions" | "id" | "phoneNumber" | "email" | "username"> & {
-                avatarFile?: Maybe<{ __typename?: "BlobObject" } & Pick<BlobObject, "url">>;
-              }
-          >;
-        }
-    >;
-  };
+
+export type RegisterAndSignInMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'register'>
+  & { authenticate?: Maybe<(
+    { __typename?: 'UserToken' }
+    & Pick<UserToken, 'userId' | 'token'>
+    & { user?: Maybe<(
+      { __typename?: 'User' }
+      & Pick<User, 'roleNames' | 'roleIds' | 'permissions' | 'id' | 'phoneNumber' | 'email' | 'username'>
+      & { avatarFile?: Maybe<(
+        { __typename?: 'BlobObject' }
+        & Pick<BlobObject, 'url'>
+      )> }
+    )> }
+  )> }
+);
 
 export type SendSmsCaptchaMutationVariables = Exact<{
-  phoneOrEmail: Scalars["ChinesePhoneNumberType"];
+  phoneOrEmail: Scalars['ChinesePhoneNumberType'];
 }>;
 
-export type SendSmsCaptchaMutation = { __typename?: "Mutation" } & {
-  generateCaptcha: { __typename?: "Captcha" } & Pick<Captcha, "captchaType" | "key">;
-};
+
+export type SendSmsCaptchaMutation = (
+  { __typename?: 'Mutation' }
+  & { generateCaptcha: (
+    { __typename?: 'Captcha' }
+    & Pick<Captcha, 'captchaType' | 'key'>
+  ) }
+);
 
 export type ValidateSmsCaptchaMutationVariables = Exact<{
-  captchaKey: Scalars["String"];
-  captchaCode: Scalars["String"];
+  captchaKey: Scalars['String'];
+  captchaCode: Scalars['String'];
 }>;
 
-export type ValidateSmsCaptchaMutation = { __typename?: "Mutation" } & Pick<Mutation, "validateCaptcha">;
+
+export type ValidateSmsCaptchaMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'validateCaptcha'>
+);
 
 export type TenantsQueryVariables = Exact<{
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<ITenantFilterInput>;
 }>;
 
-export type TenantsQuery = { __typename?: "Query" } & {
-  tenants?: Maybe<
-    { __typename?: "ITenantCollectionSegment" } & Pick<ITenantCollectionSegment, "totalCount"> & {
-        items?: Maybe<Array<{ __typename?: "Tenant" } & Pick<Tenant, "code" | "name" | "isEnabled" | "id">>>;
-        pageInfo: { __typename?: "CollectionSegmentInfo" } & PageInfoFragment;
-      }
-  >;
-};
+
+export type TenantsQuery = (
+  { __typename?: 'Query' }
+  & { tenants?: Maybe<(
+    { __typename?: 'ITenantCollectionSegment' }
+    & Pick<ITenantCollectionSegment, 'totalCount'>
+    & { items?: Maybe<Array<(
+      { __typename?: 'Tenant' }
+      & Pick<Tenant, 'code' | 'name' | 'isEnabled' | 'id'>
+    )>>, pageInfo: (
+      { __typename?: 'CollectionSegmentInfo' }
+      & PageInfoFragment
+    ) }
+  )> }
+);
 
 export type ToggleTenantAvailabilityMutationVariables = Exact<{
-  code: Scalars["String"];
+  code: Scalars['String'];
 }>;
 
-export type ToggleTenantAvailabilityMutation = { __typename?: "Mutation" } & Pick<Mutation, "toggleTenantAvailability">;
+
+export type ToggleTenantAvailabilityMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'toggleTenantAvailability'>
+);
 
 export type EditTenantMutationVariables = Exact<{
-  code: Scalars["String"];
-  name: Scalars["String"];
+  code: Scalars['String'];
+  name: Scalars['String'];
 }>;
 
-export type EditTenantMutation = { __typename?: "Mutation" } & Pick<Mutation, "editTenant">;
+
+export type EditTenantMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'editTenant'>
+);
 
 export type CreateTenantMutationVariables = Exact<{
-  code: Scalars["String"];
-  name: Scalars["String"];
+  code: Scalars['String'];
+  name: Scalars['String'];
 }>;
 
-export type CreateTenantMutation = { __typename?: "Mutation" } & {
-  createTenant: { __typename?: "Tenant" } & Pick<Tenant, "code" | "isEnabled" | "name" | "id">;
-};
 
-export type SettingBriefFragment = { __typename?: "Setting" } & Pick<Setting, "id" | "name" | "value">;
+export type CreateTenantMutation = (
+  { __typename?: 'Mutation' }
+  & { createTenant: (
+    { __typename?: 'Tenant' }
+    & Pick<Tenant, 'code' | 'isEnabled' | 'name' | 'id'>
+  ) }
+);
 
-export type SettingDetailFragment = { __typename?: "Setting" } & Pick<Setting, "scope" | "scopedKey">;
+export type SettingBriefFragment = (
+  { __typename?: 'Setting' }
+  & Pick<Setting, 'id' | 'name' | 'value'>
+);
+
+export type SettingDetailFragment = (
+  { __typename?: 'Setting' }
+  & Pick<Setting, 'scope' | 'scopedKey'>
+);
 
 export type EditSettingMutationVariables = Exact<{
   input?: Maybe<EditSettingRequestInput>;
 }>;
 
-export type EditSettingMutation = { __typename?: "Mutation" } & {
-  editSetting?: Maybe<{ __typename?: "Setting" } & Pick<Setting, "name" | "value">>;
-};
+
+export type EditSettingMutation = (
+  { __typename?: 'Mutation' }
+  & { editSetting?: Maybe<(
+    { __typename?: 'Setting' }
+    & Pick<Setting, 'name' | 'value'>
+  )> }
+);
 
 export type SettingsQueryVariables = Exact<{
   input: GetSettingsInput;
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<ISettingFilterInput>;
-  includeDetail: Scalars["Boolean"];
+  includeDetail: Scalars['Boolean'];
 }>;
 
-export type SettingsQuery = { __typename?: "Query" } & {
-  settings?: Maybe<
-    { __typename?: "SettingCollectionSegment" } & Pick<SettingCollectionSegment, "totalCount"> & {
-        items?: Maybe<Array<Maybe<{ __typename?: "Setting" } & SettingBriefFragment & SettingDetailFragment>>>;
-        pageInfo: { __typename?: "CollectionSegmentInfo" } & PageInfoFragment;
-      }
-  >;
-};
 
-export type InitSettingsQueryVariables = Exact<{ [key: string]: never }>;
+export type SettingsQuery = (
+  { __typename?: 'Query' }
+  & { settings?: Maybe<(
+    { __typename?: 'SettingCollectionSegment' }
+    & Pick<SettingCollectionSegment, 'totalCount'>
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'Setting' }
+      & SettingBriefFragment
+      & SettingDetailFragment
+    )>>>, pageInfo: (
+      { __typename?: 'CollectionSegmentInfo' }
+      & PageInfoFragment
+    ) }
+  )> }
+);
 
-export type InitSettingsQuery = { __typename?: "Query" } & {
-  initSettings?: Maybe<Array<Maybe<{ __typename?: "Setting" } & Pick<Setting, "name" | "value">>>>;
-};
+export type InitSettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type x_Aggregate_xsQueryVariables = Exact<{
-  input: Queryx_Aggregate_xRequestInput;
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
-  where?: Maybe<x_Aggregate_xFilterInput>;
-}>;
 
-export type x_Aggregate_xsQuery = { __typename?: "Query" } & {
-  x_aggregate_xs?: Maybe<
-    { __typename?: "x_Aggregate_xCollectionSegment" } & Pick<x_Aggregate_xCollectionSegment, "totalCount"> & {
-        items?: Maybe<Array<Maybe<{ __typename?: "x_Aggregate_x" } & x_Aggregate_xsBriefFragment>>>;
-        pageInfo: { __typename?: "CollectionSegmentInfo" } & PageInfoFragment;
-      }
-  >;
-};
+export type InitSettingsQuery = (
+  { __typename?: 'Query' }
+  & { initSettings?: Maybe<Array<Maybe<(
+    { __typename?: 'Setting' }
+    & Pick<Setting, 'name' | 'value'>
+  )>>> }
+);
 
-export type x_Aggregate_xByIdQueryVariables = Exact<{
-  id: Scalars["String"];
-}>;
+export type PageInfoFragment = (
+  { __typename?: 'CollectionSegmentInfo' }
+  & Pick<CollectionSegmentInfo, 'hasPreviousPage' | 'hasNextPage'>
+);
 
-export type x_Aggregate_xByIdQuery = { __typename?: "Query" } & {
-  x_aggregate_xById: { __typename?: "x_Aggregate_x" } & x_Aggregate_xsDetailFragment;
-};
+export type BlobObjectBriefFragment = (
+  { __typename?: 'BlobObject' }
+  & Pick<BlobObject, 'id' | 'createdOn' | 'fileSize' | 'mimeType' | 'storageType' | 'fileName' | 'md5' | 'url'>
+);
 
-export type Createx_Aggregate_xsMutationVariables = Exact<{
-  input: Createx_Aggregate_xRequestInput;
-}>;
-
-export type Createx_Aggregate_xsMutation = { __typename?: "Mutation" } & {
-  createx_Aggregate_x: { __typename?: "x_Aggregate_x" } & Pick<x_Aggregate_x, "id">;
-};
-
-export type Deletex_Aggregate_xsMutationVariables = Exact<{
-  ids: Array<Scalars["String"]> | Scalars["String"];
-}>;
-
-export type Deletex_Aggregate_xsMutation = { __typename?: "Mutation" } & Pick<Mutation, "deletex_Aggregate_x">;
-
-export type Editx_Aggregate_xsMutationVariables = Exact<{
-  input: Editx_Aggregate_xRequestInput;
-}>;
-
-export type Editx_Aggregate_xsMutation = { __typename?: "Mutation" } & Pick<Mutation, "editx_Aggregate_x">;
-
-export type Auditx_Aggregate_xMutationVariables = Exact<{
-  ids?: Maybe<Array<Maybe<Scalars["String"]>> | Maybe<Scalars["String"]>>;
-}>;
-
-export type Auditx_Aggregate_xMutation = { __typename?: "Mutation" } & Pick<Mutation, "auditx_Aggregate_x">;
-
-export type Unauditx_Aggregate_xMutationVariables = Exact<{
-  ids?: Maybe<Array<Maybe<Scalars["String"]>> | Maybe<Scalars["String"]>>;
-}>;
-
-export type Unauditx_Aggregate_xMutation = { __typename?: "Mutation" } & Pick<Mutation, "unauditx_Aggregate_x">;
-
-export type Submitx_Aggregate_xsMutationVariables = Exact<{
-  ids?: Maybe<Array<Maybe<Scalars["String"]>> | Maybe<Scalars["String"]>>;
-}>;
-
-export type Submitx_Aggregate_xsMutation = { __typename?: "Mutation" } & Pick<Mutation, "submitx_Aggregate_x">;
-
-export type UnSubmitx_Aggregate_xsMutationVariables = Exact<{
-  ids?: Maybe<Array<Maybe<Scalars["String"]>> | Maybe<Scalars["String"]>>;
-}>;
-
-export type UnSubmitx_Aggregate_xsMutation = { __typename?: "Mutation" } & Pick<Mutation, "unsubmitx_Aggregate_x">;
-
-export type x_Aggregate_xsBriefFragment = { __typename?: "x_Aggregate_x" } & Pick<
-  x_Aggregate_x,
-  "id" | "name" | "auditStatus" | "createdOn"
->;
-
-export type x_Aggregate_xsDetailFragment = { __typename?: "x_Aggregate_x" } & Pick<
-  x_Aggregate_x,
-  "id" | "name" | "auditStatus" | "createdOn" | "submittable" | "auditRemark"
->;
-
-export type PageInfoFragment = { __typename?: "CollectionSegmentInfo" } & Pick<CollectionSegmentInfo, "hasPreviousPage" | "hasNextPage">;
-
-export type BlobObjectBriefFragment = { __typename?: "BlobObject" } & Pick<
-  BlobObject,
-  "id" | "createdOn" | "fileSize" | "mimeType" | "storageType" | "fileName" | "md5" | "url"
->;
-
-export type BlobObjectDetailFragment = { __typename?: "BlobObject" } & Pick<BlobObject, "url">;
+export type BlobObjectDetailFragment = (
+  { __typename?: 'BlobObject' }
+  & Pick<BlobObject, 'url'>
+);
 
 export type CreateBlobObjectMutationVariables = Exact<{
   input?: Maybe<CreateBlobObjectRequestInput>;
 }>;
 
-export type CreateBlobObjectMutation = { __typename?: "Mutation" } & {
-  createBlobObject?: Maybe<
-    { __typename?: "BlobObject" } & Pick<BlobObject, "id" | "md5" | "fileName" | "url" | "mimeType" | "fileSize" | "storageType">
-  >;
-};
+
+export type CreateBlobObjectMutation = (
+  { __typename?: 'Mutation' }
+  & { createBlobObject?: Maybe<(
+    { __typename?: 'BlobObject' }
+    & Pick<BlobObject, 'id' | 'md5' | 'fileName' | 'url' | 'mimeType' | 'fileSize' | 'storageType'>
+  )> }
+);
 
 export type CheckTenantMutationVariables = Exact<{
-  code: Scalars["String"];
+  code: Scalars['String'];
 }>;
 
-export type CheckTenantMutation = { __typename?: "Mutation" } & {
-  checkTenant?: Maybe<{ __typename?: "Tenant" } & Pick<Tenant, "code" | "name" | "isEnabled" | "id" | "createdOn">>;
-};
+
+export type CheckTenantMutation = (
+  { __typename?: 'Mutation' }
+  & { checkTenant?: Maybe<(
+    { __typename?: 'Tenant' }
+    & Pick<Tenant, 'code' | 'name' | 'isEnabled' | 'id' | 'createdOn'>
+  )> }
+);
 
 export type BlobObjectsQueryVariables = Exact<{
-  skip?: Maybe<Scalars["Int"]>;
-  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<IBlobObjectFilterInput>;
-  includeDetail: Scalars["Boolean"];
+  includeDetail: Scalars['Boolean'];
 }>;
 
-export type BlobObjectsQuery = { __typename?: "Query" } & {
-  blobObjects?: Maybe<
-    { __typename?: "BlobObjectCollectionSegment" } & Pick<BlobObjectCollectionSegment, "totalCount"> & {
-        items?: Maybe<Array<Maybe<{ __typename?: "BlobObject" } & BlobObjectBriefFragment & BlobObjectDetailFragment>>>;
-        pageInfo: { __typename?: "CollectionSegmentInfo" } & PageInfoFragment;
-      }
-  >;
-};
 
-export type OrgCacheItemFragment = { __typename?: "OrgCacheItem" } & Pick<OrgCacheItem, "orgType" | "code" | "name" | "parentOrgCode">;
+export type BlobObjectsQuery = (
+  { __typename?: 'Query' }
+  & { blobObjects?: Maybe<(
+    { __typename?: 'BlobObjectCollectionSegment' }
+    & Pick<BlobObjectCollectionSegment, 'totalCount'>
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'BlobObject' }
+      & BlobObjectBriefFragment
+      & BlobObjectDetailFragment
+    )>>>, pageInfo: (
+      { __typename?: 'CollectionSegmentInfo' }
+      & PageInfoFragment
+    ) }
+  )> }
+);
 
-export type OrgsCacheQueryVariables = Exact<{ [key: string]: never }>;
+export type OrgCacheItemFragment = (
+  { __typename?: 'OrgCacheItem' }
+  & Pick<OrgCacheItem, 'orgType' | 'code' | 'name' | 'parentOrgCode'>
+);
 
-export type OrgsCacheQuery = { __typename?: "Query" } & { orgsCache: Array<{ __typename?: "OrgCacheItem" } & OrgCacheItemFragment> };
+export type OrgsCacheQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type OnFrontendCallSubscriptionVariables = Exact<{ [key: string]: never }>;
 
-export type OnFrontendCallSubscription = { __typename?: "Subscription" } & {
-  onFrontendCall: { __typename?: "FrontendCall" } & Pick<FrontendCall, "frontendCallType" | "data">;
-};
+export type OrgsCacheQuery = (
+  { __typename?: 'Query' }
+  & { orgsCache: Array<(
+    { __typename?: 'OrgCacheItem' }
+    & OrgCacheItemFragment
+  )> }
+);
 
-export type OnBroadcastSubscriptionVariables = Exact<{ [key: string]: never }>;
+export type OnFrontendCallSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
-export type OnBroadcastSubscription = { __typename?: "Subscription" } & {
-  onBroadcast: { __typename?: "FrontendCall" } & Pick<FrontendCall, "frontendCallType" | "data">;
-};
 
+export type OnFrontendCallSubscription = (
+  { __typename?: 'Subscription' }
+  & { onFrontendCall: (
+    { __typename?: 'FrontendCall' }
+    & Pick<FrontendCall, 'frontendCallType' | 'data'>
+  ) }
+);
+
+export type OnBroadcastSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type OnBroadcastSubscription = (
+  { __typename?: 'Subscription' }
+  & { onBroadcast: (
+    { __typename?: 'FrontendCall' }
+    & Pick<FrontendCall, 'frontendCallType' | 'data'>
+  ) }
+);
+
+export const BookBriefGql = gql`
+    fragment BookBrief on Book {
+  id
+  name
+  auditStatus
+  createdOn
+}
+    ` as unknown as DocumentNode<BookBriefFragment, unknown>;
+export const BooksDetailGql = gql`
+    fragment BooksDetail on Book {
+  id
+  name
+  auditStatus
+  createdOn
+}
+    ` as unknown as DocumentNode<BooksDetailFragment, unknown>;
 export const RoleBriefGql = gql`
-  fragment RoleBrief on Role {
-    createdOn
-    name
-    id
-    isStatic
-    isDefault
-  }
-` as unknown as DocumentNode<RoleBriefFragment, unknown>;
+    fragment RoleBrief on Role {
+  createdOn
+  name
+  id
+  isStatic
+  isDefault
+}
+    ` as unknown as DocumentNode<RoleBriefFragment, unknown>;
 export const RoleDetailGql = gql`
-  fragment RoleDetail on Role {
-    ...RoleBrief
-    permissions
-    name
-    users {
-      id
-    }
+    fragment RoleDetail on Role {
+  ...RoleBrief
+  permissions
+  name
+  users {
+    id
   }
-  ${RoleBriefGql}
-` as unknown as DocumentNode<RoleDetailFragment, unknown>;
+}
+    ${RoleBriefGql}` as unknown as DocumentNode<RoleDetailFragment, unknown>;
 export const RoleMinimalGql = gql`
-  fragment RoleMinimal on Role {
-    id
-    name
-  }
-` as unknown as DocumentNode<RoleMinimalFragment, unknown>;
+    fragment RoleMinimal on Role {
+  id
+  name
+}
+    ` as unknown as DocumentNode<RoleMinimalFragment, unknown>;
 export const OrgBriefGql = gql`
-  fragment OrgBrief on Org {
-    code
-    name
-    orgType
-    parentOrgCode
-    id
-  }
-` as unknown as DocumentNode<OrgBriefFragment, unknown>;
+    fragment OrgBrief on Org {
+  code
+  name
+  orgType
+  parentOrgCode
+  id
+}
+    ` as unknown as DocumentNode<OrgBriefFragment, unknown>;
 export const OrgDetailGql = gql`
-  fragment OrgDetail on Org {
-    ...OrgBrief
-    allSubOrgs {
-      name
-      code
-    }
-    directSubOrgs {
-      name
-      code
-    }
+    fragment OrgDetail on Org {
+  ...OrgBrief
+  allSubOrgs {
+    name
+    code
   }
-  ${OrgBriefGql}
-` as unknown as DocumentNode<OrgDetailFragment, unknown>;
+  directSubOrgs {
+    name
+    code
+  }
+}
+    ${OrgBriefGql}` as unknown as DocumentNode<OrgDetailFragment, unknown>;
 export const UserBriefGql = gql`
-  fragment UserBrief on User {
-    id
-    username
-    nickname
-    phoneNumber
-    email
-    isEnable
-    openId
-    loginProvider
-    roleNames
-    roleIds
-  }
-` as unknown as DocumentNode<UserBriefFragment, unknown>;
+    fragment UserBrief on User {
+  id
+  username
+  nickname
+  phoneNumber
+  email
+  isEnable
+  openId
+  loginProvider
+  roleNames
+  roleIds
+}
+    ` as unknown as DocumentNode<UserBriefFragment, unknown>;
 export const UserListGql = gql`
-  fragment UserList on User {
-    ...UserBrief
-    createdOn
-    orgCodes
-  }
-  ${UserBriefGql}
-` as unknown as DocumentNode<UserListFragment, unknown>;
+    fragment UserList on User {
+  ...UserBrief
+  createdOn
+  orgCodes
+}
+    ${UserBriefGql}` as unknown as DocumentNode<UserListFragment, unknown>;
 export const UserCacheDtoGql = gql`
-  fragment UserCacheDto on User {
-    ...UserBrief
-    avatarFile {
-      url
-    }
+    fragment UserCacheDto on User {
+  ...UserBrief
+  avatarFile {
+    url
   }
-  ${UserBriefGql}
-` as unknown as DocumentNode<UserCacheDtoFragment, unknown>;
+}
+    ${UserBriefGql}` as unknown as DocumentNode<UserCacheDtoFragment, unknown>;
 export const UserMinimalGql = gql`
-  fragment UserMinimal on User {
-    id
-    openId
-    username
-    nickname
-  }
-` as unknown as DocumentNode<UserMinimalFragment, unknown>;
+    fragment UserMinimal on User {
+  id
+  openId
+  username
+  nickname
+}
+    ` as unknown as DocumentNode<UserMinimalFragment, unknown>;
 export const OrgRecursiveParentGql = gql`
-  fragment OrgRecursiveParent on Org {
+    fragment OrgRecursiveParent on Org {
+  parentOrg {
+    ...OrgBrief
     parentOrg {
       ...OrgBrief
       parentOrg {
@@ -1902,9 +2337,6 @@ export const OrgRecursiveParentGql = gql`
                     ...OrgBrief
                     parentOrg {
                       ...OrgBrief
-                      parentOrg {
-                        ...OrgBrief
-                      }
                     }
                   }
                 }
@@ -1915,561 +2347,533 @@ export const OrgRecursiveParentGql = gql`
       }
     }
   }
-  ${OrgBriefGql}
-` as unknown as DocumentNode<OrgRecursiveParentFragment, unknown>;
+}
+    ${OrgBriefGql}` as unknown as DocumentNode<OrgRecursiveParentFragment, unknown>;
 export const MessageBriefGql = gql`
-  fragment MessageBrief on Message {
-    fromUserId
-    id
-    messageType
-    severity
-    time
-    title
-  }
-` as unknown as DocumentNode<MessageBriefFragment, unknown>;
+    fragment MessageBrief on Message {
+  fromUserId
+  id
+  messageType
+  severity
+  time
+  title
+}
+    ` as unknown as DocumentNode<MessageBriefFragment, unknown>;
 export const MessageDetailGql = gql`
-  fragment MessageDetail on Message {
-    toUserIds
-    createdOn
-    content {
-      _
-    }
+    fragment MessageDetail on Message {
+  toUserIds
+  createdOn
+  content {
+    _
   }
-` as unknown as DocumentNode<MessageDetailFragment, unknown>;
+}
+    ` as unknown as DocumentNode<MessageDetailFragment, unknown>;
 export const BlobObjectBriefGql = gql`
-  fragment BlobObjectBrief on BlobObject {
-    id
-    createdOn
-    fileSize
-    mimeType
-    storageType
-    fileName
-    md5
-    url
-  }
-` as unknown as DocumentNode<BlobObjectBriefFragment, unknown>;
+    fragment BlobObjectBrief on BlobObject {
+  id
+  createdOn
+  fileSize
+  mimeType
+  storageType
+  fileName
+  md5
+  url
+}
+    ` as unknown as DocumentNode<BlobObjectBriefFragment, unknown>;
 export const UserDetailGql = gql`
-  fragment UserDetail on User {
-    ...UserBrief
-    isEnable
-    permissions
-    avatarFile {
-      url
-      ...BlobObjectBrief
-    }
-    orgs {
-      allParentOrgs {
-        code
-        name
-      }
-      name
-      code
-    }
-    claims {
-      claimType
-      claimValue
-    }
-    orgCodes
-    avatarFileId
-    avatarFile {
-      ...BlobObjectBrief
-    }
+    fragment UserDetail on User {
+  ...UserBrief
+  isEnable
+  permissions
+  avatarFile {
+    url
+    ...BlobObjectBrief
   }
-  ${UserBriefGql}
-  ${BlobObjectBriefGql}
-` as unknown as DocumentNode<UserDetailFragment, unknown>;
+  orgs {
+    allParentOrgs {
+      code
+      name
+    }
+    name
+    code
+  }
+  claims {
+    claimType
+    claimValue
+  }
+  orgCodes
+  avatarFileId
+  avatarFile {
+    ...BlobObjectBrief
+  }
+}
+    ${UserBriefGql}
+${BlobObjectBriefGql}` as unknown as DocumentNode<UserDetailFragment, unknown>;
 export const AuthenticateResultFragmentGql = gql`
-  fragment AuthenticateResultFragment on UserToken {
-    userId
-    user {
+    fragment AuthenticateResultFragment on UserToken {
+  userId
+  user {
+    ...UserDetail
+  }
+  token
+}
+    ${UserDetailGql}` as unknown as DocumentNode<AuthenticateResultFragmentFragment, unknown>;
+export const SettingBriefGql = gql`
+    fragment SettingBrief on Setting {
+  id
+  name
+  value
+}
+    ` as unknown as DocumentNode<SettingBriefFragment, unknown>;
+export const SettingDetailGql = gql`
+    fragment SettingDetail on Setting {
+  scope
+  scopedKey
+}
+    ` as unknown as DocumentNode<SettingDetailFragment, unknown>;
+export const PageInfoGql = gql`
+    fragment PageInfo on CollectionSegmentInfo {
+  hasPreviousPage
+  hasNextPage
+}
+    ` as unknown as DocumentNode<PageInfoFragment, unknown>;
+export const BlobObjectDetailGql = gql`
+    fragment BlobObjectDetail on BlobObject {
+  url
+}
+    ` as unknown as DocumentNode<BlobObjectDetailFragment, unknown>;
+export const OrgCacheItemGql = gql`
+    fragment OrgCacheItem on OrgCacheItem {
+  orgType
+  code
+  name
+  parentOrgCode
+}
+    ` as unknown as DocumentNode<OrgCacheItemFragment, unknown>;
+export const BooksGql = gql`
+    query books($input: QueryBookRequestInput!, $skip: Int, $take: Int, $where: BookFilterInput) {
+  books(
+    input: $input
+    skip: $skip
+    take: $take
+    where: $where
+    order: {createdOn: DESC}
+  ) {
+    items {
+      ...BookBrief
+    }
+    pageInfo {
+      ...PageInfo
+    }
+    totalCount
+  }
+}
+    ${BookBriefGql}
+${PageInfoGql}` as unknown as DocumentNode<BooksQuery, BooksQueryVariables>;
+export const BookByIdGql = gql`
+    query bookById($id: String!) {
+  bookById(id: $id) {
+    ...BooksDetail
+  }
+}
+    ${BooksDetailGql}` as unknown as DocumentNode<BookByIdQuery, BookByIdQueryVariables>;
+export const CreateBooksGql = gql`
+    mutation createBooks($input: CreateBookRequestInput!) {
+  createBook(input: $input) {
+    id
+  }
+}
+    ` as unknown as DocumentNode<CreateBooksMutation, CreateBooksMutationVariables>;
+export const DeleteBooksGql = gql`
+    mutation deleteBooks($ids: [String!]!) {
+  deleteBook(input: {ids: $ids})
+}
+    ` as unknown as DocumentNode<DeleteBooksMutation, DeleteBooksMutationVariables>;
+export const EditBooksGql = gql`
+    mutation editBooks($input: EditBookRequestInput!) {
+  editBook(input: $input)
+}
+    ` as unknown as DocumentNode<EditBooksMutation, EditBooksMutationVariables>;
+export const AuditBookGql = gql`
+    mutation auditBook($ids: [String]) {
+  auditBook(ids: $ids)
+}
+    ` as unknown as DocumentNode<AuditBookMutation, AuditBookMutationVariables>;
+export const UnauditBookGql = gql`
+    mutation unauditBook($ids: [String]) {
+  unauditBook(ids: $ids)
+}
+    ` as unknown as DocumentNode<UnauditBookMutation, UnauditBookMutationVariables>;
+export const SubmitBooksGql = gql`
+    mutation submitBooks($ids: [String]) {
+  submitBook(ids: $ids)
+}
+    ` as unknown as DocumentNode<SubmitBooksMutation, SubmitBooksMutationVariables>;
+export const UnSubmitBooksGql = gql`
+    mutation unSubmitBooks($ids: [String]) {
+  unsubmitBook(ids: $ids)
+}
+    ` as unknown as DocumentNode<UnSubmitBooksMutation, UnSubmitBooksMutationVariables>;
+export const UserListsGql = gql`
+    query userLists($skip: Int, $take: Int, $where: IUserFilterInput) {
+  users(skip: $skip, take: $take, where: $where) {
+    items {
+      ...UserList
+    }
+    pageInfo {
+      ...PageInfo
+    }
+    totalCount
+  }
+}
+    ${UserListGql}
+${PageInfoGql}` as unknown as DocumentNode<UserListsQuery, UserListsQueryVariables>;
+export const UserByIdGql = gql`
+    query userById($id: String) {
+  users(skip: 0, take: 1, where: {id: {eq: $id}}) {
+    items {
       ...UserDetail
     }
-    token
   }
-  ${UserDetailGql}
-` as unknown as DocumentNode<AuthenticateResultFragmentFragment, unknown>;
-export const SettingBriefGql = gql`
-  fragment SettingBrief on Setting {
-    id
-    name
-    value
-  }
-` as unknown as DocumentNode<SettingBriefFragment, unknown>;
-export const SettingDetailGql = gql`
-  fragment SettingDetail on Setting {
-    scope
-    scopedKey
-  }
-` as unknown as DocumentNode<SettingDetailFragment, unknown>;
-export const x_Aggregate_xsBriefGql = gql`
-  fragment x_Aggregate_xsBrief on x_Aggregate_x {
-    id
-    name
-    auditStatus
-    createdOn
-  }
-` as unknown as DocumentNode<x_Aggregate_xsBriefFragment, unknown>;
-export const x_Aggregate_xsDetailGql = gql`
-  fragment x_Aggregate_xsDetail on x_Aggregate_x {
-    id
-    name
-    auditStatus
-    createdOn
-    submittable
-    auditRemark
-  }
-` as unknown as DocumentNode<x_Aggregate_xsDetailFragment, unknown>;
-export const PageInfoGql = gql`
-  fragment PageInfo on CollectionSegmentInfo {
-    hasPreviousPage
-    hasNextPage
-  }
-` as unknown as DocumentNode<PageInfoFragment, unknown>;
-export const BlobObjectDetailGql = gql`
-  fragment BlobObjectDetail on BlobObject {
-    url
-  }
-` as unknown as DocumentNode<BlobObjectDetailFragment, unknown>;
-export const OrgCacheItemGql = gql`
-  fragment OrgCacheItem on OrgCacheItem {
-    orgType
-    code
-    name
-    parentOrgCode
-  }
-` as unknown as DocumentNode<OrgCacheItemFragment, unknown>;
-export const UserListsGql = gql`
-  query userLists($skip: Int, $take: Int, $where: IUserFilterInput) {
-    users(skip: $skip, take: $take, where: $where) {
-      items {
-        ...UserList
-      }
-      pageInfo {
-        ...PageInfo
-      }
-      totalCount
-    }
-  }
-  ${UserListGql}
-  ${PageInfoGql}
-` as unknown as DocumentNode<UserListsQuery, UserListsQueryVariables>;
-export const UserByIdGql = gql`
-  query userById($id: String) {
-    users(skip: 0, take: 1, where: { id: { eq: $id } }) {
-      items {
-        ...UserDetail
-      }
-    }
-  }
-  ${UserDetailGql}
-` as unknown as DocumentNode<UserByIdQuery, UserByIdQueryVariables>;
+}
+    ${UserDetailGql}` as unknown as DocumentNode<UserByIdQuery, UserByIdQueryVariables>;
 export const UserMenusGql = gql`
-  query userMenus($where: IUserFilterInput) {
-    users(skip: 0, take: 999, where: $where) {
-      items {
-        ...UserMinimal
-      }
+    query userMenus($where: IUserFilterInput) {
+  users(skip: 0, take: 999, where: $where) {
+    items {
+      ...UserMinimal
     }
   }
-  ${UserMinimalGql}
-` as unknown as DocumentNode<UserMenusQuery, UserMenusQueryVariables>;
+}
+    ${UserMinimalGql}` as unknown as DocumentNode<UserMenusQuery, UserMenusQueryVariables>;
 export const EditUserGql = gql`
-  mutation editUser($input: EditUserRequestInput!) {
-    editUser(input: $input)
-  }
-` as unknown as DocumentNode<EditUserMutation, EditUserMutationVariables>;
+    mutation editUser($input: EditUserRequestInput!) {
+  editUser(input: $input)
+}
+    ` as unknown as DocumentNode<EditUserMutation, EditUserMutationVariables>;
 export const CreateUserGql = gql`
-  mutation createUser($input: CreateUserRequestInput!) {
-    createUser(input: $input)
-  }
-` as unknown as DocumentNode<CreateUserMutation, CreateUserMutationVariables>;
+    mutation createUser($input: CreateUserRequestInput!) {
+  createUser(input: $input)
+}
+    ` as unknown as DocumentNode<CreateUserMutation, CreateUserMutationVariables>;
 export const ResetUserPasswordGql = gql`
-  mutation resetUserPassword($input: ResetUserPasswordRequestInput!) {
-    resetUserPassword(input: $input)
-  }
-` as unknown as DocumentNode<ResetUserPasswordMutation, ResetUserPasswordMutationVariables>;
+    mutation resetUserPassword($input: ResetUserPasswordRequestInput!) {
+  resetUserPassword(input: $input)
+}
+    ` as unknown as DocumentNode<ResetUserPasswordMutation, ResetUserPasswordMutationVariables>;
 export const ChangePasswordGql = gql`
-  mutation changePassword($input: ChangePasswordRequestInput!) {
-    changePassword(input: $input)
-  }
-` as unknown as DocumentNode<ChangePasswordMutation, ChangePasswordMutationVariables>;
+    mutation changePassword($input: ChangePasswordRequestInput!) {
+  changePassword(input: $input)
+}
+    ` as unknown as DocumentNode<ChangePasswordMutation, ChangePasswordMutationVariables>;
 export const RoleListsGql = gql`
-  query roleLists($skip: Int, $take: Int, $where: RoleFilterInput) {
-    roles(skip: $skip, take: $take, where: $where) {
-      items {
-        ...RoleBrief
-      }
-      pageInfo {
-        ...PageInfo
-      }
-      totalCount
+    query roleLists($skip: Int, $take: Int, $where: RoleFilterInput) {
+  roles(skip: $skip, take: $take, where: $where) {
+    items {
+      ...RoleBrief
     }
+    pageInfo {
+      ...PageInfo
+    }
+    totalCount
   }
-  ${RoleBriefGql}
-  ${PageInfoGql}
-` as unknown as DocumentNode<RoleListsQuery, RoleListsQueryVariables>;
+}
+    ${RoleBriefGql}
+${PageInfoGql}` as unknown as DocumentNode<RoleListsQuery, RoleListsQueryVariables>;
 export const RoleMenusGql = gql`
-  query roleMenus($where: RoleFilterInput) {
-    roles(skip: 0, take: 999, where: $where) {
-      items {
-        ...RoleMinimal
-      }
+    query roleMenus($where: RoleFilterInput) {
+  roles(skip: 0, take: 999, where: $where) {
+    items {
+      ...RoleMinimal
     }
   }
-  ${RoleMinimalGql}
-` as unknown as DocumentNode<RoleMenusQuery, RoleMenusQueryVariables>;
+}
+    ${RoleMinimalGql}` as unknown as DocumentNode<RoleMenusQuery, RoleMenusQueryVariables>;
 export const RoleByNameGql = gql`
-  query roleByName($name: String) {
-    roles(skip: 0, take: 1, where: { name: { eq: $name } }) {
-      items {
-        ...RoleDetail
-      }
+    query roleByName($name: String) {
+  roles(skip: 0, take: 1, where: {name: {eq: $name}}) {
+    items {
+      ...RoleDetail
     }
   }
-  ${RoleDetailGql}
-` as unknown as DocumentNode<RoleByNameQuery, RoleByNameQueryVariables>;
+}
+    ${RoleDetailGql}` as unknown as DocumentNode<RoleByNameQuery, RoleByNameQueryVariables>;
 export const RoleByIdGql = gql`
-  query roleById($id: String) {
-    roles(skip: 0, take: 1, where: { id: { eq: $id } }) {
-      items {
-        ...RoleDetail
-      }
+    query roleById($id: String) {
+  roles(skip: 0, take: 1, where: {id: {eq: $id}}) {
+    items {
+      ...RoleDetail
     }
   }
-  ${RoleDetailGql}
-` as unknown as DocumentNode<RoleByIdQuery, RoleByIdQueryVariables>;
+}
+    ${RoleDetailGql}` as unknown as DocumentNode<RoleByIdQuery, RoleByIdQueryVariables>;
 export const CreateRoleGql = gql`
-  mutation createRole($input: CreateRoleInput!) {
-    createRole(input: $input) {
+    mutation createRole($input: CreateRoleInput!) {
+  createRole(input: $input) {
+    id
+    createdOn
+    name
+    users {
       id
-      createdOn
-      name
-      users {
-        id
-        username
-        email
-        phoneNumber
-        ... on User {
-          permissions
-        }
+      username
+      email
+      phoneNumber
+      ... on User {
+        permissions
       }
-      permissions
     }
+    permissions
   }
-` as unknown as DocumentNode<CreateRoleMutation, CreateRoleMutationVariables>;
+}
+    ` as unknown as DocumentNode<CreateRoleMutation, CreateRoleMutationVariables>;
 export const AuthorizeGql = gql`
-  mutation authorize($input: AuthorizeInput!) {
-    authorize(input: $input)
-  }
-` as unknown as DocumentNode<AuthorizeMutation, AuthorizeMutationVariables>;
+    mutation authorize($input: AuthorizeInput!) {
+  authorize(input: $input)
+}
+    ` as unknown as DocumentNode<AuthorizeMutation, AuthorizeMutationVariables>;
 export const OrgsGql = gql`
-  query orgs($where: OrgFilterInput) {
-    orgs(skip: 0, take: 999, where: $where) {
-      items {
-        ...OrgBrief
-      }
-    }
-  }
-  ${OrgBriefGql}
-` as unknown as DocumentNode<OrgsQuery, OrgsQueryVariables>;
-export const CreateOrgGql = gql`
-  mutation createOrg($input: CreateOrgInput!) {
-    createOrg(input: $input) {
+    query orgs($where: OrgFilterInput) {
+  orgs(skip: 0, take: 999, where: $where) {
+    items {
       ...OrgBrief
     }
   }
-  ${OrgBriefGql}
-` as unknown as DocumentNode<CreateOrgMutation, CreateOrgMutationVariables>;
+}
+    ${OrgBriefGql}` as unknown as DocumentNode<OrgsQuery, OrgsQueryVariables>;
+export const CreateOrgGql = gql`
+    mutation createOrg($input: CreateOrgInput!) {
+  createOrg(input: $input) {
+    ...OrgBrief
+  }
+}
+    ${OrgBriefGql}` as unknown as DocumentNode<CreateOrgMutation, CreateOrgMutationVariables>;
 export const AssignOrgsGql = gql`
-  mutation assignOrgs($input: AssignOrgRequestInput!) {
-    assignOrgs(input: $input)
-  }
-` as unknown as DocumentNode<AssignOrgsMutation, AssignOrgsMutationVariables>;
+    mutation assignOrgs($input: AssignOrgRequestInput!) {
+  assignOrgs(input: $input)
+}
+    ` as unknown as DocumentNode<AssignOrgsMutation, AssignOrgsMutationVariables>;
 export const SetRoleDefaultGql = gql`
-  mutation setRoleDefault($roleId: String!) {
-    setRoleDefault(input: { roleId: $roleId })
-  }
-` as unknown as DocumentNode<SetRoleDefaultMutation, SetRoleDefaultMutationVariables>;
+    mutation setRoleDefault($roleId: String!) {
+  setRoleDefault(input: {roleId: $roleId})
+}
+    ` as unknown as DocumentNode<SetRoleDefaultMutation, SetRoleDefaultMutationVariables>;
 export const CreateMessageGql = gql`
-  mutation createMessage($input: CreateMessageRequestInput!) {
-    createMessage(input: $input) {
-      ... on Message {
-        id
-      }
+    mutation createMessage($input: CreateMessageRequestInput!) {
+  createMessage(input: $input) {
+    ... on Message {
+      id
     }
   }
-` as unknown as DocumentNode<CreateMessageMutation, CreateMessageMutationVariables>;
+}
+    ` as unknown as DocumentNode<CreateMessageMutation, CreateMessageMutationVariables>;
 export const EditMessageGql = gql`
-  mutation editMessage($input: EditMessageRequestInput!) {
-    editMessage(input: $input)
-  }
-` as unknown as DocumentNode<EditMessageMutation, EditMessageMutationVariables>;
+    mutation editMessage($input: EditMessageRequestInput!) {
+  editMessage(input: $input)
+}
+    ` as unknown as DocumentNode<EditMessageMutation, EditMessageMutationVariables>;
 export const SendMessageGql = gql`
-  mutation sendMessage($input: SendNotificationMessageRequestInput!) {
-    sendMessage(input: $input)
-  }
-` as unknown as DocumentNode<SendMessageMutation, SendMessageMutationVariables>;
+    mutation sendMessage($input: SendNotificationMessageRequestInput!) {
+  sendMessage(input: $input)
+}
+    ` as unknown as DocumentNode<SendMessageMutation, SendMessageMutationVariables>;
 export const MessagesGql = gql`
-  query messages($skip: Int, $take: Int, $where: IMessageFilterInput, $includeDetail: Boolean!) {
-    messages(skip: $skip, take: $take, where: $where) {
-      items {
-        ...MessageBrief
-        ...MessageDetail @include(if: $includeDetail)
-      }
-      pageInfo {
-        ...PageInfo
-      }
-      totalCount
+    query messages($skip: Int, $take: Int, $where: IMessageFilterInput, $includeDetail: Boolean!) {
+  messages(skip: $skip, take: $take, where: $where) {
+    items {
+      ...MessageBrief
+      ...MessageDetail @include(if: $includeDetail)
     }
+    pageInfo {
+      ...PageInfo
+    }
+    totalCount
   }
-  ${MessageBriefGql}
-  ${MessageDetailGql}
-  ${PageInfoGql}
-` as unknown as DocumentNode<MessagesQuery, MessagesQueryVariables>;
+}
+    ${MessageBriefGql}
+${MessageDetailGql}
+${PageInfoGql}` as unknown as DocumentNode<MessagesQuery, MessagesQueryVariables>;
 export const AuthenticateGql = gql`
-  mutation authenticate($input: AuthenticateInput!) {
-    authenticate(input: $input) {
-      ...AuthenticateResultFragment
-    }
+    mutation authenticate($input: AuthenticateInput!) {
+  authenticate(input: $input) {
+    ...AuthenticateResultFragment
   }
-  ${AuthenticateResultFragmentGql}
-` as unknown as DocumentNode<AuthenticateMutation, AuthenticateMutationVariables>;
+}
+    ${AuthenticateResultFragmentGql}` as unknown as DocumentNode<AuthenticateMutation, AuthenticateMutationVariables>;
 export const FederateAuthenticateGql = gql`
-  mutation federateAuthenticate($code: String!, $loginProvider: LoginProviderEnum!) {
-    federateAuthenticate(input: { code: $code, loginProvider: $loginProvider }) {
-      ...AuthenticateResultFragment
-    }
+    mutation federateAuthenticate($code: String!, $loginProvider: LoginProviderEnum!) {
+  federateAuthenticate(input: {code: $code, loginProvider: $loginProvider}) {
+    ...AuthenticateResultFragment
   }
-  ${AuthenticateResultFragmentGql}
-` as unknown as DocumentNode<FederateAuthenticateMutation, FederateAuthenticateMutationVariables>;
+}
+    ${AuthenticateResultFragmentGql}` as unknown as DocumentNode<FederateAuthenticateMutation, FederateAuthenticateMutationVariables>;
 export const RegisterAndSignInGql = gql`
-  mutation registerAndSignIn($registerInput: RegisterUserRequestInput!, $authenticateInput: AuthenticateInput!) {
-    register(input: $registerInput)
-    authenticate(input: $authenticateInput) {
-      userId
-      user {
-        id
-        ... on User {
-          roleNames
-          roleIds
-          permissions
-          avatarFile {
-            url
-          }
+    mutation registerAndSignIn($registerInput: RegisterUserRequestInput!, $authenticateInput: AuthenticateInput!) {
+  register(input: $registerInput)
+  authenticate(input: $authenticateInput) {
+    userId
+    user {
+      id
+      ... on User {
+        roleNames
+        roleIds
+        permissions
+        avatarFile {
+          url
         }
-        phoneNumber
-        email
-        username
       }
-      token
+      phoneNumber
+      email
+      username
     }
+    token
   }
-` as unknown as DocumentNode<RegisterAndSignInMutation, RegisterAndSignInMutationVariables>;
+}
+    ` as unknown as DocumentNode<RegisterAndSignInMutation, RegisterAndSignInMutationVariables>;
 export const SendSmsCaptchaGql = gql`
-  mutation sendSmsCaptcha($phoneOrEmail: ChinesePhoneNumberType!) {
-    generateCaptcha(input: { captchaProvider: Sms, smsCaptchaPhoneNumber: $phoneOrEmail }) {
-      captchaType
-      key
-    }
+    mutation sendSmsCaptcha($phoneOrEmail: ChinesePhoneNumberType!) {
+  generateCaptcha(
+    input: {captchaProvider: Sms, smsCaptchaPhoneNumber: $phoneOrEmail}
+  ) {
+    captchaType
+    key
   }
-` as unknown as DocumentNode<SendSmsCaptchaMutation, SendSmsCaptchaMutationVariables>;
+}
+    ` as unknown as DocumentNode<SendSmsCaptchaMutation, SendSmsCaptchaMutationVariables>;
 export const ValidateSmsCaptchaGql = gql`
-  mutation validateSmsCaptcha($captchaKey: String!, $captchaCode: String!) {
-    validateCaptcha(input: { captchaProvider: Sms, captchaKey: $captchaKey, captchaCode: $captchaCode })
-  }
-` as unknown as DocumentNode<ValidateSmsCaptchaMutation, ValidateSmsCaptchaMutationVariables>;
+    mutation validateSmsCaptcha($captchaKey: String!, $captchaCode: String!) {
+  validateCaptcha(
+    input: {captchaProvider: Sms, captchaKey: $captchaKey, captchaCode: $captchaCode}
+  )
+}
+    ` as unknown as DocumentNode<ValidateSmsCaptchaMutation, ValidateSmsCaptchaMutationVariables>;
 export const TenantsGql = gql`
-  query tenants($skip: Int, $take: Int, $where: ITenantFilterInput) {
-    tenants(skip: $skip, take: $take, where: $where) {
-      items {
-        code
-        name
-        isEnabled
-        id
-      }
-      pageInfo {
-        ...PageInfo
-      }
-      totalCount
+    query tenants($skip: Int, $take: Int, $where: ITenantFilterInput) {
+  tenants(skip: $skip, take: $take, where: $where) {
+    items {
+      code
+      name
+      isEnabled
+      id
     }
+    pageInfo {
+      ...PageInfo
+    }
+    totalCount
   }
-  ${PageInfoGql}
-` as unknown as DocumentNode<TenantsQuery, TenantsQueryVariables>;
+}
+    ${PageInfoGql}` as unknown as DocumentNode<TenantsQuery, TenantsQueryVariables>;
 export const ToggleTenantAvailabilityGql = gql`
-  mutation toggleTenantAvailability($code: String!) {
-    toggleTenantAvailability(input: { code: $code })
-  }
-` as unknown as DocumentNode<ToggleTenantAvailabilityMutation, ToggleTenantAvailabilityMutationVariables>;
+    mutation toggleTenantAvailability($code: String!) {
+  toggleTenantAvailability(input: {code: $code})
+}
+    ` as unknown as DocumentNode<ToggleTenantAvailabilityMutation, ToggleTenantAvailabilityMutationVariables>;
 export const EditTenantGql = gql`
-  mutation editTenant($code: String!, $name: String!) {
-    editTenant(input: { code: $code, name: $name })
-  }
-` as unknown as DocumentNode<EditTenantMutation, EditTenantMutationVariables>;
+    mutation editTenant($code: String!, $name: String!) {
+  editTenant(input: {code: $code, name: $name})
+}
+    ` as unknown as DocumentNode<EditTenantMutation, EditTenantMutationVariables>;
 export const CreateTenantGql = gql`
-  mutation createTenant($code: String!, $name: String!) {
-    createTenant(input: { code: $code, name: $name }) {
-      code
-      isEnabled
-      name
-      id
-    }
+    mutation createTenant($code: String!, $name: String!) {
+  createTenant(input: {code: $code, name: $name}) {
+    code
+    isEnabled
+    name
+    id
   }
-` as unknown as DocumentNode<CreateTenantMutation, CreateTenantMutationVariables>;
+}
+    ` as unknown as DocumentNode<CreateTenantMutation, CreateTenantMutationVariables>;
 export const EditSettingGql = gql`
-  mutation editSetting($input: EditSettingRequestInput) {
-    editSetting(input: $input) {
-      name
-      value
-    }
+    mutation editSetting($input: EditSettingRequestInput) {
+  editSetting(input: $input) {
+    name
+    value
   }
-` as unknown as DocumentNode<EditSettingMutation, EditSettingMutationVariables>;
+}
+    ` as unknown as DocumentNode<EditSettingMutation, EditSettingMutationVariables>;
 export const SettingsGql = gql`
-  query settings($input: GetSettingsInput!, $skip: Int, $take: Int, $where: ISettingFilterInput, $includeDetail: Boolean!) {
-    settings(input: $input, skip: $skip, take: $take, where: $where) {
-      items {
-        ...SettingBrief
-        ...SettingDetail @include(if: $includeDetail)
-      }
-      pageInfo {
-        ...PageInfo
-      }
-      totalCount
+    query settings($input: GetSettingsInput!, $skip: Int, $take: Int, $where: ISettingFilterInput, $includeDetail: Boolean!) {
+  settings(input: $input, skip: $skip, take: $take, where: $where) {
+    items {
+      ...SettingBrief
+      ...SettingDetail @include(if: $includeDetail)
     }
+    pageInfo {
+      ...PageInfo
+    }
+    totalCount
   }
-  ${SettingBriefGql}
-  ${SettingDetailGql}
-  ${PageInfoGql}
-` as unknown as DocumentNode<SettingsQuery, SettingsQueryVariables>;
+}
+    ${SettingBriefGql}
+${SettingDetailGql}
+${PageInfoGql}` as unknown as DocumentNode<SettingsQuery, SettingsQueryVariables>;
 export const InitSettingsGql = gql`
-  query initSettings {
-    initSettings {
-      name
-      value
-    }
+    query initSettings {
+  initSettings {
+    name
+    value
   }
-` as unknown as DocumentNode<InitSettingsQuery, InitSettingsQueryVariables>;
-export const x_Aggregate_xsGql = gql`
-  query x_aggregate_xs($input: Queryx_Aggregate_xRequestInput!, $skip: Int, $take: Int, $where: x_Aggregate_xFilterInput) {
-    x_Aggregate_xs(input: $input, skip: $skip, take: $take, where: $where, order: { createdOn: DESC }) {
-      items {
-        ...x_Aggregate_xsBrief
-      }
-      pageInfo {
-        ...PageInfo
-      }
-      totalCount
-    }
-  }
-  ${x_Aggregate_xsBriefGql}
-  ${PageInfoGql}
-` as unknown as DocumentNode<x_Aggregate_xsQuery, x_Aggregate_xsQueryVariables>;
-export const x_Aggregate_xByIdGql = gql`
-  query x_aggregate_xById($id: String!) {
-    x_aggregate_xById(id: $id) {
-      ...x_Aggregate_xsDetail
-    }
-  }
-  ${x_Aggregate_xsDetailGql}
-` as unknown as DocumentNode<x_Aggregate_xByIdQuery, x_Aggregate_xByIdQueryVariables>;
-export const Createx_Aggregate_xsGql = gql`
-  mutation createx_Aggregate_xs($input: Createx_Aggregate_xRequestInput!) {
-    createx_Aggregate_x(input: $input) {
-      id
-    }
-  }
-` as unknown as DocumentNode<Createx_Aggregate_xsMutation, Createx_Aggregate_xsMutationVariables>;
-export const Deletex_Aggregate_xsGql = gql`
-  mutation deletex_Aggregate_xs($ids: [String!]!) {
-    deletex_Aggregate_x(input: { ids: $ids })
-  }
-` as unknown as DocumentNode<Deletex_Aggregate_xsMutation, Deletex_Aggregate_xsMutationVariables>;
-export const Editx_Aggregate_xsGql = gql`
-  mutation editx_Aggregate_xs($input: Editx_Aggregate_xRequestInput!) {
-    editx_Aggregate_x(input: $input)
-  }
-` as unknown as DocumentNode<Editx_Aggregate_xsMutation, Editx_Aggregate_xsMutationVariables>;
-export const Auditx_Aggregate_xGql = gql`
-  mutation auditx_Aggregate_x($ids: [String]) {
-    auditx_Aggregate_x(ids: $ids)
-  }
-` as unknown as DocumentNode<Auditx_Aggregate_xMutation, Auditx_Aggregate_xMutationVariables>;
-export const Unauditx_Aggregate_xGql = gql`
-  mutation unauditx_Aggregate_x($ids: [String]) {
-    unauditx_Aggregate_x(ids: $ids)
-  }
-` as unknown as DocumentNode<Unauditx_Aggregate_xMutation, Unauditx_Aggregate_xMutationVariables>;
-export const Submitx_Aggregate_xsGql = gql`
-  mutation submitx_Aggregate_xs($ids: [String]) {
-    submitx_Aggregate_x(ids: $ids)
-  }
-` as unknown as DocumentNode<Submitx_Aggregate_xsMutation, Submitx_Aggregate_xsMutationVariables>;
-export const UnSubmitx_Aggregate_xsGql = gql`
-  mutation unSubmitx_Aggregate_xs($ids: [String]) {
-    unsubmitx_Aggregate_x(ids: $ids)
-  }
-` as unknown as DocumentNode<UnSubmitx_Aggregate_xsMutation, UnSubmitx_Aggregate_xsMutationVariables>;
+}
+    ` as unknown as DocumentNode<InitSettingsQuery, InitSettingsQueryVariables>;
 export const CreateBlobObjectGql = gql`
-  mutation createBlobObject($input: CreateBlobObjectRequestInput) {
-    createBlobObject(input: $input) {
-      id
-      md5
-      fileName
-      url
-      mimeType
-      fileSize
-      storageType
-    }
+    mutation createBlobObject($input: CreateBlobObjectRequestInput) {
+  createBlobObject(input: $input) {
+    id
+    md5
+    fileName
+    url
+    mimeType
+    fileSize
+    storageType
   }
-` as unknown as DocumentNode<CreateBlobObjectMutation, CreateBlobObjectMutationVariables>;
+}
+    ` as unknown as DocumentNode<CreateBlobObjectMutation, CreateBlobObjectMutationVariables>;
 export const CheckTenantGql = gql`
-  mutation checkTenant($code: String!) {
-    checkTenant(code: $code) {
-      code
-      name
-      isEnabled
-      id
-      createdOn
-    }
+    mutation checkTenant($code: String!) {
+  checkTenant(code: $code) {
+    code
+    name
+    isEnabled
+    id
+    createdOn
   }
-` as unknown as DocumentNode<CheckTenantMutation, CheckTenantMutationVariables>;
+}
+    ` as unknown as DocumentNode<CheckTenantMutation, CheckTenantMutationVariables>;
 export const BlobObjectsGql = gql`
-  query blobObjects($skip: Int, $take: Int, $where: IBlobObjectFilterInput, $includeDetail: Boolean!) {
-    blobObjects(skip: $skip, take: $take, where: $where) {
-      items {
-        ...BlobObjectBrief
-        ...BlobObjectDetail @include(if: $includeDetail)
-      }
-      pageInfo {
-        ...PageInfo
-      }
-      totalCount
+    query blobObjects($skip: Int, $take: Int, $where: IBlobObjectFilterInput, $includeDetail: Boolean!) {
+  blobObjects(skip: $skip, take: $take, where: $where) {
+    items {
+      ...BlobObjectBrief
+      ...BlobObjectDetail @include(if: $includeDetail)
     }
+    pageInfo {
+      ...PageInfo
+    }
+    totalCount
   }
-  ${BlobObjectBriefGql}
-  ${BlobObjectDetailGql}
-  ${PageInfoGql}
-` as unknown as DocumentNode<BlobObjectsQuery, BlobObjectsQueryVariables>;
+}
+    ${BlobObjectBriefGql}
+${BlobObjectDetailGql}
+${PageInfoGql}` as unknown as DocumentNode<BlobObjectsQuery, BlobObjectsQueryVariables>;
 export const OrgsCacheGql = gql`
-  query orgsCache {
-    orgsCache {
-      ...OrgCacheItem
-    }
+    query orgsCache {
+  orgsCache {
+    ...OrgCacheItem
   }
-  ${OrgCacheItemGql}
-` as unknown as DocumentNode<OrgsCacheQuery, OrgsCacheQueryVariables>;
+}
+    ${OrgCacheItemGql}` as unknown as DocumentNode<OrgsCacheQuery, OrgsCacheQueryVariables>;
 export const OnFrontendCallGql = gql`
-  subscription onFrontendCall {
-    onFrontendCall {
-      frontendCallType
-      data
-    }
+    subscription onFrontendCall {
+  onFrontendCall {
+    frontendCallType
+    data
   }
-` as unknown as DocumentNode<OnFrontendCallSubscription, OnFrontendCallSubscriptionVariables>;
+}
+    ` as unknown as DocumentNode<OnFrontendCallSubscription, OnFrontendCallSubscriptionVariables>;
 export const OnBroadcastGql = gql`
-  subscription onBroadcast {
-    onBroadcast {
-      frontendCallType
-      data
-    }
+    subscription onBroadcast {
+  onBroadcast {
+    frontendCallType
+    data
   }
-` as unknown as DocumentNode<OnBroadcastSubscription, OnBroadcastSubscriptionVariables>;
+}
+    ` as unknown as DocumentNode<OnBroadcastSubscription, OnBroadcastSubscriptionVariables>;

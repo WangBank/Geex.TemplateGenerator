@@ -2,7 +2,7 @@
 query <%= camelize(name) %>s($input: Query<%= classify(name) %>RequestInput!, $skip: Int, $take: Int, $where: <%= classify(name) %>FilterInput) {
   <%= camelize(name) %>s(input: $input, skip: $skip, take: $take, where: $where, order: { createdOn: DESC }) {
     items {
-      ...<%= classify(name) %>sBrief
+      ...<%= classify(name) %>Brief
     }
     pageInfo {
       ...PageInfo
@@ -15,16 +15,14 @@ query <%= camelize(name) %>s($input: Query<%= classify(name) %>RequestInput!, $s
 # query <%= camelize(name) %>s($where: I<%= classify(name) %>FilterInput) {
 #   <%= camelize(name) %>s(skip: 0, take: 999, where: $where, order: { createdOn: DESC }) {
 #     items {
-#       ...<%= classify(name) %>sBrief
+#       ...<%= classify(name) %>Brief
 #     }
 #   }
 # }
 # <%= camelize(name) %>详情
 query <%= camelize(name) %>ById($id: String!) {
-  <%= camelize(name) %>s(input: {}, skip: 0, take: 1, where: { id: { eq: $id } }) {
-    items {
-      ...<%= classify(name) %>sDetail
-    }
+  <%= camelize(name) %>ById(id: $id) {
+    ...<%= classify(name) %>sDetail
   }
 }
 # 新增<%= camelize(name) %>
@@ -58,7 +56,7 @@ mutation unSubmit<%= classify(name) %>s($ids: [String]) {
   unsubmit<%= classify(name) %>(ids: $ids)
 }
 
-fragment <%= classify(name) %>sBrief on <%= classify(name) %> {
+fragment <%= classify(name) %>Brief on <%= classify(name) %> {
   id
   name
   auditStatus

@@ -15,6 +15,7 @@ export class <%= classify(name) %>EditPageResolve extends RoutedComponentResolve
   }
   routeQueryParamsToParams(queryParams: { [x: string]: any }): <%= classify(name) %>EditPageParams {
     let resolvedParams: <%= classify(name) %>EditPageParams = {
+      id: queryParams.id ?? undefined,
       name: queryParams.name ?? undefined,
     };
     return resolvedParams;

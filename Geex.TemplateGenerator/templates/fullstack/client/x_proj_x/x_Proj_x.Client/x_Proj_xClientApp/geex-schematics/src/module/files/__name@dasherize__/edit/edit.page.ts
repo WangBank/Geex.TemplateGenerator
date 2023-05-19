@@ -3,7 +3,7 @@ import { FormBuilder, FormControl } from "@angular/forms";
 import { deepCopy } from "@delon/util";
 import { isEqual } from "lodash-es";
 
-import { MyFormGroup, RoutedComponent } from "../../../shared/components/routed.component.base";
+import { EditDataContext, RoutedEditComponent } from "../../../shared/components/routed-components/routed-edit.component.base";
 import {
   <%= classify(name) %>ByIdQuery,
   <%= classify(name) %>ByIdQueryVariables,
@@ -19,24 +19,23 @@ import { EditMode } from "../../../shared/types/common";
 type EntityEditablePart = Pick<<%= classify(name) %>, "name">;
 
 export type <%= classify(name) %>EditPageParams = {
+  id: string;
   name: string;
 };
-
-type <%= classify(name) %>EditPageData = {
-  id: string;
-  entityForm: MyFormGroup<Pick<<%= classify(name) %>, "name">>;
+type <%= classify(name) %>EditPageData = EditDataContext<<%= classify(name) %>, ["name"]> & {
   disabled: boolean;
 };
 
 @Component({
-  selector: "app-<%= classify(name) %>s-edit",
+  selector: "app-<%= name %>-edit",
   templateUrl: "./edit.page.html",
   styles: [],
 })
-export class <%= classify(name) %>EditPage extends RoutedComponent<<%= classify(name) %>EditPageParams, <%= classify(name) %>EditPageData> {
+export class <%= classify(name) %>EditPage extends RoutedEditComponent<<%= classify(name) %>EditPageParams, <%= classify(name) %>, ["name"]> {
   mode: EditMode;
+  context: <%= classify(name) %>EditPageData;
 
-  constructor(private injector: Injector) {
+  constructor(injector: Injector) {
     super(injector);
   }
 
@@ -54,8 +53,8 @@ export class <%= classify(name) %>EditPage extends RoutedComponent<<%= classify(
   }
 
   async fetchData() {
-    //let params = this.params.value;
-    const id = this.route.snapshot.params.id;
+    let params = this.params.value;
+    const id = params.id;
     this.mode = id ? "edit" : "create";
     let result: <%= classify(name) %>EditPageData;
     let fb: FormBuilder = new FormBuilder();
@@ -75,17 +74,17 @@ export class <%= classify(name) %>EditPage extends RoutedComponent<<%= classify(
     } else {
       formConfig = { name: new FormControl("") };
     }
+    let entityForm = fb.group(formConfig);
     result = {
       id,
-      entityForm: fb.group(formConfig) as MyFormGroup<EntityEditablePart>,
+      entityForm,
+      originalValue: entityForm.value,
       disabled: false,
     };
-    this.initialParamsValue = result.entityForm.value;
     return result;
   }
 
   async submit(): Promise<void> {
-    debugger;
     if (this.mode === "create") {
       await this.apollo
         .mutate({
@@ -98,7 +97,7 @@ export class <%= classify(name) %>EditPage extends RoutedComponent<<%= classify(
         })
         .toPromise();
       this.msgSrv.success("添加成功");
-      await this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true });
+      await this.back();
     } else {
       if (this.mode === "edit") {
         await this.apollo
@@ -113,17 +112,8 @@ export class <%= classify(name) %>EditPage extends RoutedComponent<<%= classify(
           })
           .toPromise();
         this.msgSrv.success("修改成功");
-        await this.router.navigate(["../../"], { relativeTo: this.route, replaceUrl: true });
-
+        await this.back();
       }
-    }
-  }
-
-  back() {
-    if (this.mode == "edit") {
-      this.router.navigate(["../../"], { relativeTo: this.route, replaceUrl: true });
-    } else {
-      this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true });
     }
   }
 }

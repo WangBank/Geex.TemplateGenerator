@@ -12,6 +12,7 @@ import {
   template,
   url,
 } from "@angular-devkit/schematics";
+import { NodePackageInstallTask, RunSchematicTask } from "@angular-devkit/schematics/tasks";
 import { parseName } from "@schematics/angular/utility/parse-name";
 import { validateHtmlSelector } from "@schematics/angular/utility/validation";
 import { buildDefaultPath, getWorkspace } from "@schematics/angular/utility/workspace";
@@ -21,10 +22,13 @@ import { addRoute, addRouteToNgModule, findRoutingModuleFromOptions } from "./ro
 import type { Schema as PageOptions } from "./schema";
 
 export default function (options: PageOptions): Rule {
-  return async (host: Tree) => {
+  return async (host: Tree, context) => {
     if (!options.project) {
       throw new SchematicsException("Option (project) is required.");
     }
+
+    const installTask = new NodePackageInstallTask({ packageManager: "yarn" });
+    context.addTask(installTask);
 
     const workspace = await getWorkspace(host);
     const project = workspace.projects.get(options.project);
@@ -52,6 +56,9 @@ export default function (options: PageOptions): Rule {
       }),
       move(parsedPath.path),
     ]);
+
+    // const myCommand = `my-npm-command ${options.name}`;
+    // context.addTask(new RunSchematicTask("run-npm-command", { command: myCommand }));
 
     return chain([
       branchAndMerge(chain([options.standalone ? addRoute(options) : addRouteToNgModule(options), mergeWith(templateSource)])),
