@@ -20,7 +20,7 @@
   "schematics": {
     "module": {
       "description": "A schematic using a source and a schema to validate options.",
-      "factory": "./module",
+      "factory": "./module/index#module",
       "schema": "./module/schema.json"
     }
   }

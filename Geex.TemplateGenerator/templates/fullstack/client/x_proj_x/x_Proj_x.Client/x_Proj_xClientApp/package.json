@@ -25,7 +25,7 @@
     "icon": "ng g ng-alain:plugin icon",
     "lint:ts": "ng lint --fix",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less --fix",
-    "postinstall": "npx patch-package && cd .. && cd .. && cd .. && cd .. && husky install client/x_proj_x/x_Proj_x.Client/x_Proj_xClientApp/.husky",
+    "postinstall": "yarn patch-package && cd .. && cd .. && cd .. && cd .. && yarn husky install client/x_proj_x/x_Proj_x.Client/x_Proj_xClientApp/.husky",
     "pregqlgen": "set NODE_TLS_REJECT_UNAUTHORIZED='0'"
   },
   "private": true,

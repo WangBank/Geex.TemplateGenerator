@@ -12,7 +12,6 @@ import {
   template,
   url,
 } from "@angular-devkit/schematics";
-import { NodePackageInstallTask, RunSchematicTask } from "@angular-devkit/schematics/tasks";
 import { parseName } from "@schematics/angular/utility/parse-name";
 import { validateHtmlSelector } from "@schematics/angular/utility/validation";
 import { buildDefaultPath, getWorkspace } from "@schematics/angular/utility/workspace";
@@ -21,14 +20,16 @@ import { buildSelector } from "../util";
 import { addRoute, addRouteToNgModule, findRoutingModuleFromOptions } from "./route-utils";
 import type { Schema as PageOptions } from "./schema";
 
-export default function (options: PageOptions): Rule {
-  return async (host: Tree, context) => {
+export function module(options: PageOptions): Rule {
+  return async (host: Tree) => {
     if (!options.project) {
       throw new SchematicsException("Option (project) is required.");
     }
 
-    const installTask = new NodePackageInstallTask({ packageManager: "yarn" });
-    context.addTask(installTask);
+    const { execSync } = require("child_process");
+    // 在项目根路径下执行自定义npm命令
+    execSync("yarn", { cwd: host.root.path, stdio: "inherit" });
+    execSync("yarn", { cwd: `..${host.root.path}\\x_Proj_xClientApp`, stdio: "inherit" });
 
     const workspace = await getWorkspace(host);
     const project = workspace.projects.get(options.project);
@@ -57,8 +58,9 @@ export default function (options: PageOptions): Rule {
       move(parsedPath.path),
     ]);
 
-    // const myCommand = `my-npm-command ${options.name}`;
-    // context.addTask(new RunSchematicTask("run-npm-command", { command: myCommand }));
+    setTimeout(() => {
+      execSync("yarn gqlgen", { cwd: `..${host.root.path}\\x_Proj_xClientApp`, stdio: "inherit" });
+    }, 2000);
 
     return chain([
       branchAndMerge(chain([options.standalone ? addRoute(options) : addRouteToNgModule(options), mergeWith(templateSource)])),
