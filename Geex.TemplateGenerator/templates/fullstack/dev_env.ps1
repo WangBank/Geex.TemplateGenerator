@@ -108,6 +108,11 @@ if (-not (Check-Command yarn))
     choco install yarn -y -f
 }
 
+if (-not (Check-Command husky))
+{
+    yarn global add husky
+}
+
 if (-not (Test-Path ".\\client\\x_proj_x\\x_Proj_x.Client\\x_Proj_xClientApp\\node_modules")) {
     $curDir = pwd;
     cd ".\\client\\x_proj_x\\x_Proj_x.Client\\x_Proj_xClientApp"

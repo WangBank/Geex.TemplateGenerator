@@ -6,6 +6,8 @@ import { Observable } from "rxjs";
 
 import { <%= classify(name) %>ListPageParam } from "./list.page";
 
+import { RoutedComponentResolveBase } from "@/app/shared/resolvers/route-component.resolver.base";
+
 @Injectable({
   providedIn: "root",
 })
@@ -13,20 +15,11 @@ export class <%= classify(name) %>ListPageResolve extends RoutedComponentResolve
   constructor(injector: Injector) {
     super(injector);
   }
-  completeRouteParams(queryParams: { [x: string]: any }): void {
-    queryParams.pi ??= 1;
-    queryParams.ps ??= 10;
-  }
-  routeQueryParamsToParams(params: { [x: string]: any }): <%= classify(name) %>ListPageParam {
-    let buyDate = null;
-    if (params.buyDate?.length) {
-      buyDate = params.buyDate.split(",").map(x => new Date(x));
-    }
-    let resolvedParams: <%= classify(name) %>ListPageParam = {
-      pi: params.pi,
-      ps: params.ps,
-      filterText: params.filterText ?? null,
-    };
-    return resolvedParams;
+  routeQueryParamsToParams(params: <%= classify(name) %>ListPageParam): <%= classify(name) %>ListPageParam {
+    params.pi ??= 1;
+    params.ps ??= 10;
+    params.filterText ??= null;
+    params.sort ??= {};
+    return params;
   }
 }

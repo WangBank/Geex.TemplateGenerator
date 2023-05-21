@@ -41,5 +41,6 @@ declare module "@angular/router" {
   interface Router {
     navigationStart$: Observable<NavigationStart>;
     navigationEnd$: Observable<NavigationEnd>;
+    virtualNavigate(commands: any[], extras?: NavigationExtras): void;
   }
 }

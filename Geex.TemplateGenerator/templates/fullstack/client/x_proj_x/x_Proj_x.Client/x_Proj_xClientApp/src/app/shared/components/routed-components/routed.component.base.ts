@@ -60,39 +60,21 @@ export abstract class RoutedComponent<TParams extends {}, TContext> extends Busi
   refresh() {
     let paramsValues = this.params.getRawValue();
     this.router.navigate(this.paramsToPathParam(paramsValues), {
-      queryParams: this.paramsToQueryParam(paramsValues),
+      queryParams: paramsValues,
+      forceReload: true,
+    });
+  }
+
+  //重置
+  reset() {
+    this.router.navigate(this.paramsToPathParam({} as any), {
+      queryParams: {},
       forceReload: true,
     });
   }
 
   //根据组件参数换区数据上下文
   abstract fetchData(): Promise<TContext>;
-
-  //组件参数转路由查询参数
-  paramsToQueryParam(params: TParams) {
-    // for in (仅取出有值的键值对，用于路由传参)
-    let validParams = {};
-    for (const key in params) {
-      let item = params[key];
-      if (Array.isArray(item)) {
-        if (item.any()) {
-          validParams[key as string] = item
-            .map(x => {
-              if (isDate(x)) {
-                return x.toISOString();
-              }
-              return x.toString();
-            })
-            .join(",");
-        }
-      } else {
-        if (item !== undefined || item !== null) {
-          validParams[key as string] = item;
-        }
-      }
-    }
-    return validParams;
-  }
 
   paramsToPathParam(params: TParams) {
     return [];

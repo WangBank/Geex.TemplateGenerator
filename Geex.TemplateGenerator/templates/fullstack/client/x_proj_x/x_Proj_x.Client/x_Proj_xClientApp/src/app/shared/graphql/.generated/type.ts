@@ -278,7 +278,7 @@ export interface CreateBlobObjectRequestInput {
   md5?: Maybe<Scalars['String']>;
 }
 
-export interface CreateBookRequestInput {
+export interface CreateBookInput {
   name: Scalars['String'];
 }
 
@@ -328,18 +328,13 @@ export interface DeleteBlobObjectRequestInput {
   storageType?: Maybe<BlobStorageType>;
 }
 
-export interface DeleteBookRequestInput {
-  ids: Array<Scalars['String']>;
-}
-
 export interface DeleteMessageDistributionsInput {
   messageId: Scalars['String'];
   userIds: Array<Scalars['String']>;
 }
 
-export interface EditBookRequestInput {
-  id: Scalars['String'];
-  name: Scalars['String'];
+export interface EditBookInput {
+  name?: Maybe<Scalars['String']>;
 }
 
 export interface EditMessageRequestInput {
@@ -919,17 +914,18 @@ export interface MutationUnauditBookArgs {
 
 
 export interface MutationCreateBookArgs {
-  input: CreateBookRequestInput;
+  input: CreateBookInput;
 }
 
 
 export interface MutationEditBookArgs {
-  input: EditBookRequestInput;
+  id: Scalars['String'];
+  input: EditBookInput;
 }
 
 
 export interface MutationDeleteBookArgs {
-  input: DeleteBookRequestInput;
+  ids: Array<Scalars['String']>;
 }
 
 
@@ -1068,7 +1064,7 @@ export interface QuerySettingsArgs {
 export interface QueryBooksArgs {
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
-  input: QueryBookRequestInput;
+  input: QueryBookInput;
   where?: Maybe<BookFilterInput>;
   order?: Maybe<Array<BookSortInput>>;
 }
@@ -1078,7 +1074,7 @@ export interface QueryBookByIdArgs {
   id: Scalars['String'];
 }
 
-export interface QueryBookRequestInput {
+export interface QueryBookInput {
   name?: Maybe<Scalars['String']>;
   _?: Maybe<Scalars['String']>;
 }

@@ -10,9 +10,6 @@ import { <%= classify(name) %>EditPageParams } from "./edit.page";
   providedIn: "root",
 })
 export class <%= classify(name) %>EditPageResolve extends RoutedComponentResolveBase<<%= classify(name) %>EditPageParams> {
-  completeRouteParams(queryParams: { [x: string]: any }): void | Promise<void> {
-    return;
-  }
   routeQueryParamsToParams(queryParams: { [x: string]: any }): <%= classify(name) %>EditPageParams {
     let resolvedParams: <%= classify(name) %>EditPageParams = {
       id: queryParams.id ?? undefined,

@@ -2,7 +2,6 @@ import { Component, Injector, OnInit, ViewChild } from "@angular/core";
 import { STChange, STColumn, STComponent } from "@delon/abc/st";
 import { ModalHelper, _HttpClient } from "@delon/theme";
 
-import { RoutedComponent } from "@/app/shared/components/routed-components/routed.component.base";
 import {
   AppPermission,
   RoleBriefFragment,
@@ -12,6 +11,8 @@ import {
   RoleListsQueryVariables,
   SetRoleDefaultGql,
 } from "../../../shared/graphql/.generated/type";
+
+import { RoutedComponent } from "@/app/shared/components/routed-components/routed.component.base";
 
 export type RoleParams = {
   pi: number;
@@ -130,24 +131,6 @@ export class RoleListComponent extends RoutedComponent<RoleParams, RoleListCompo
     };
   }
 
-  // 组件参数转路由查询参数（把表单查询数据转换成路由参数）
-  paramsToQueryParam(params: RoleParams): object {
-    // for in (仅取出有值的键值对，用于路由传参)
-    let validParams = {};
-    for (const key in params) {
-      let item = params[key];
-      if (Array.isArray(item)) {
-        if (item.any()) {
-          validParams[key] = item.toString();
-        }
-      } else {
-        if (item !== undefined || item !== null) {
-          validParams[key] = item;
-        }
-      }
-    }
-    return validParams;
-  }
   stChange(args: STChange) {
     if (args.type == "pi" || args.type == "ps") {
       this.router.navigate([], { queryParams: { pi: args.pi, ps: args.ps, name: this.params.value.name } });

@@ -1,5 +1,6 @@
 import { Injector } from "@angular/core";
 import { Resolve, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
+import * as rison from "rison";
 import { Observable } from "rxjs";
 
 export abstract class RoutedComponentResolveBase<TParams> implements Resolve<TParams> {
@@ -11,24 +12,31 @@ export abstract class RoutedComponentResolveBase<TParams> implements Resolve<TPa
     this.router = injector.get(Router);
   }
   async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<TParams> {
-    var [routeParams, queryParams] = [{ ...route.params }, { ...route.queryParams }];
-    // 补全路由参数
-    await this.completeRouteParams(queryParams);
+    var queryParams = { ...route.queryParams };
+    let params = {} as TParams;
     // 路由参数转换为组件参数
-    let params = this.routeQueryParamsToParams(queryParams);
+    Object.entries(queryParams).forEach(([key, value]) => {
+      if (typeof value == "string" && value != "") {
+        if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(value)) {
+          params[key] = Date.parse(value);
+          return;
+        }
+        try {
+          params[key] = rison.decode(value);
+        } catch (error) {
+          params[key] = value;
+        }
+      }
+    });
+    // let a = rison.decode(queryParams["a"]);
+    // let params = this.routeQueryParamsToParams(queryParams);
+    // this.router.virtualNavigate(["./"], { queryParams: params, relativeTo: this.router.routerState.root });
     return params;
   }
-  // 补全路由参数
-  abstract completeRouteParams(queryParams: { [x: string]: any }): void | Promise<void>;
+
   // 路由参数转换为组件参数
   abstract routeQueryParamsToParams(queryParams: { [x: string]: any }): TParams;
-  /**根据url字符串返回Boolean类型值 */
-  getBooleanValue(value: string): boolean {
-    if (value) {
-      if (value.toLowerCase() == "true") return true;
-      if (value.toLowerCase() == "false") return false;
-      return true;
-    }
-    return false;
+  parseNestedObject(parts: string[], value: any): Record<string, any> {
+    return parts.reduceRight((acc, cur) => ({ [cur]: acc }), value);
   }
 }

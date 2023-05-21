@@ -1,33 +1,66 @@
 <!-- [acl]="AppPermission.<%= classify(name) %>sMutationCreate<%= classify(name) %>" -->
 
-<page-header>
-  <div style="display: flex;flex-wrap: wrap;">
-    <div>
-      <input type="text"
-             nz-input
-             [(ngModel)]="filter"
-             placeholder="请输入搜索条件" />
-    </div>
-    <div>
-      <button (click)="refresh()"
-              nz-button
-              nzType="primary">
+<page-header [title]="'<%= classify(name) %>管理'"
+             [tab]="phTab"
+             [extra]="phExtra"
+             [action]="phActionTpl">
+  <form nz-form
+        *ngIf="params"
+        nzLayout="inline">
+    <nz-form-item>
+      <nz-form-label>筛选</nz-form-label>
+      <nz-form-control>
+        <input nz-input
+               placeholder="请输入搜索条件"
+               [formControl]="params.controls.filterText" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <button nz-button
+              nzType="primary"
+              (click)="refresh()">
+        <i nz-icon
+           nzType="search"
+           nzTheme="outline"></i>搜索
+      </button>
+    </nz-form-item>
+    <nz-form-item>
+      <button nz-button
+              nzType="default"
+              (click)="reset()">
         <i nz-icon
            nzType="reload"
-           nzTheme="outline"></i>
-        刷新</button>
-      <button (click)="add()"
-              nz-button
-              nzType="primary">
-        <i nz-icon
-           nzType="plus"
-           nzTheme="outline"></i>
-        新建</button>
-    </div>
-  </div>
-
-
+           nzTheme="outline"></i>重置
+      </button>
+    </nz-form-item>
+  </form>
+  <ng-template #phExtra>
+    <!-- [acl]="AppPermission.<%= classify(name) %>MutationCreate<%= classify(name) %>" -->
+    <button (click)="add()"
+            nz-button
+            nzType="primary">
+      <i nz-icon
+         nzType="plus"></i>
+      新增</button>
+  </ng-template>
+  <ng-template #phTab>
+    <!-- <nz-tabset #contentTabSet>
+      <nz-tab nzTitle="没有实现功能的tab 1"></nz-tab>
+      <nz-tab nzTitle="没有实现功能的tab 2"></nz-tab>
+      <nz-tab nzTitle="没有实现功能的tab 3"></nz-tab>
+    </nz-tabset> -->
+  </ng-template>
+  <ng-template #phActionTpl>
+    <!-- <nz-row style="display: flex; align-items: center;">
+      <nz-tag nzColor="warning">
+        <span nz-icon
+              nzType="exclamation-circle"></span>
+        <span>您有新项目待处理</span>
+      </nz-tag>
+    </nz-row> -->
+  </ng-template>
 </page-header>
+
 <nz-card>
   <nz-alert [nzType]="'info'"
             [nzShowIcon]="true"
@@ -42,13 +75,6 @@
         </a>
         <ng-container>
           <nz-divider nzType="vertical"></nz-divider>
-          <a (click)="filter='';refresh()"><i nz-icon
-               nzType="clear"></i>
-            清空
-          </a>
-        </ng-container>
-        <ng-container>
-          <nz-divider nzType="vertical"></nz-divider>
           <a (click)="batchOperation('delete','<%= classify(name) %>')"><i nz-icon
                nzType="delete"></i>
             批量删除
@@ -58,33 +84,16 @@
       </div>
     </ng-template>
   </nz-alert>
-  <nz-table #basicTable
-            [nzData]="context?.data">
-    <thead>
-      <tr>
-        <th [nzChecked]="allSelected"
-            [nzIndeterminate]="!allSelected && selectedData?.length > 0"
-            (nzCheckedChange)="onAllChecked($event)"></th>
-        <th>显示名称</th>
-        <th>操作</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of basicTable.data">
-        <td [nzChecked]="selectedData.contains(data)"
-            (nzCheckedChange)="onItemChecked(data, $event)"></td>
-        <td style="text-align: center;">{{data.name}}</td>
-        <td style="text-align: center;">
-          <a (click)="edit(data.id)">编辑</a>
-          <nz-divider nzType="vertical"></nz-divider>
-          <a nz-popconfirm
-             nzPopconfirmTitle="是否确定删除?"
-             (nzOnConfirm)="delete(data.id)">删除</a>
-          <!-- <a (click)="submit(data.id)">{{data.submittable?"上报":"取消上报"}}</a>
-          <nz-divider nzType="vertical"></nz-divider>
-          <a (click)="submit(data.id)">{{data.auditable?"审批":"取消审批"}}</a> -->
-        </td>
-      </tr>
-    </tbody>
-  </nz-table>
+  <st class="mt-sm"
+      #st
+      [multiSort]="true"
+      [loading]="!context?.data"
+      [total]="context?.total"
+      [data]="context?.data"
+      (change)="tableChange($event)"
+      [columns]="context?.columns">
+    <!-- <ng-template st-row="name" let-item let-index="index">
+                      <span>{{item.name}}</span>
+                    </ng-template> -->
+  </st>
 </nz-card>

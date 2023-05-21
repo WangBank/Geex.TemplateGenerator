@@ -60,7 +60,7 @@ export class StartupService {
       let user$ = this.injector.get(UserDataState$);
       let router = this.injector.get(Router);
 
-      oAuthService.configure(environment.auth.x_org_x);
+      oAuthService.configure(environment.auth.geex);
       try {
         await oAuthService.loadDiscoveryDocumentAndTryLogin({
           customRedirectUri: location.href.split(/[&\?#]code=[^&\$]*/)[0].trimEnd("/"),
@@ -98,7 +98,7 @@ export class StartupService {
                 aclService.set({});
                 let user = await user$.pipe(take(1)).toPromise();
                 switch (user.loginProvider) {
-                 /*  case LoginProviderEnum.XOrgX:
+                  /*  case LoginProviderEnum.XOrgX:
                     clearHistory();
                     break; */
                   default:

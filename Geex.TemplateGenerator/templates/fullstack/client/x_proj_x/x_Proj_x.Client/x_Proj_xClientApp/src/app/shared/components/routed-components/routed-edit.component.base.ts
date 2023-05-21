@@ -10,17 +10,19 @@ import { MyFormGroup, RoutedComponent } from "./routed.component.base";
 
 type PropValueType<T, K extends keyof T> = T[K];
 
-type FormControlPropMap<X, T extends [keyof X]> = {
-  [K in T[number]]?: FormControl<PropValueType<{ [P in K]?: X[T[number]] }, K>> | PropValueType<{ [P in K]?: X[T[number]] }, K>;
+type FormControlPropMap<X, T extends keyof X> = {
+  [K in T]?: FormControl<PropValueType<{ [P in K]?: X[T] }, K>> | PropValueType<{ [P in K]?: X[T] }, K>;
 };
 
-// type test = FormControlPropMap<{ id: string; name: string }, ["id"]>;
+// type test = FormControlPropMap<{ id: string; name: string }, "id" | "name">;
+// type test = { [key in keyof ["id","name"]]: never };
 
 /**数据上下文 */
-export class EditDataContext<T extends { id?: string }, TEditable extends [keyof T]> {
-  id: string;
-  entityForm: MyFormGroup<FormControlPropMap<T, TEditable>>;
-  originalValue: Partial<T>;
+export class EditDataContext<T extends { id?: string }, TEditable extends keyof T> {
+  id?: string;
+  entity?: Partial<T>;
+  entityForm?: MyFormGroup<FormControlPropMap<T, TEditable>>;
+  originalValue?: { [key in TEditable]?: T[key] };
 }
 
 /**
@@ -34,11 +36,11 @@ export class EditDataContext<T extends { id?: string }, TEditable extends [keyof
 export abstract class RoutedEditComponent<
   TParams extends {},
   TDto extends { id?: string },
-  TEditable extends [keyof TDto], // 设置默认类型参数
+  TEditable extends keyof TDto, // 设置默认类型参数
 > extends RoutedComponent<TParams, EditDataContext<TDto, TEditable>> {
   mode: EditMode;
 
-  constructor(private injector: Injector) {
+  constructor(injector: Injector) {
     super(injector);
   }
 
@@ -55,7 +57,7 @@ export abstract class RoutedEditComponent<
     }
   }
 
-  async back() {
-    await this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true });
+  async back(reload: boolean = false) {
+    await this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true, forceReload: true });
   }
 }

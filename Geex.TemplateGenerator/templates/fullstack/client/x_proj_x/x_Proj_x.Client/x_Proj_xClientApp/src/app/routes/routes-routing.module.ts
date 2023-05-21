@@ -8,6 +8,7 @@ import {
   RouterStateSnapshot,
   CanActivate,
   UrlTree,
+  UrlSerializer,
 } from "@angular/router";
 import { ACLGuard, ACLService } from "@delon/acl";
 import { JWTGuard } from "@delon/auth";

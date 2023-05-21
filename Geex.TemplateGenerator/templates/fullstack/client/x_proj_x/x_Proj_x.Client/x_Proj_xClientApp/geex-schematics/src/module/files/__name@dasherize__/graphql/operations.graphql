@@ -1,6 +1,6 @@
 # 获取<%= camelize(name) %>列表
-query <%= camelize(name) %>s($input: Query<%= classify(name) %>RequestInput!, $skip: Int, $take: Int, $where: <%= classify(name) %>FilterInput) {
-  <%= camelize(name) %>s(input: $input, skip: $skip, take: $take, where: $where, order: { createdOn: DESC }) {
+query <%= camelize(name) %>s($input: Query<%= classify(name) %>Input!, $skip: Int, $take: Int, $where: <%= classify(name) %>FilterInput, $order: [<%= classify(name) %>SortInput!] = [{ createdOn: DESC }]) {
+  <%= camelize(name) %>s(input: $input, skip: $skip, take: $take, where: $where, order: $order) {
     items {
       ...<%= classify(name) %>Brief
     }
@@ -22,22 +22,22 @@ query <%= camelize(name) %>s($input: Query<%= classify(name) %>RequestInput!, $s
 # <%= camelize(name) %>详情
 query <%= camelize(name) %>ById($id: String!) {
   <%= camelize(name) %>ById(id: $id) {
-    ...<%= classify(name) %>sDetail
+    ...<%= classify(name) %>Detail
   }
 }
 # 新增<%= camelize(name) %>
-mutation create<%= classify(name) %>s($input: Create<%= classify(name) %>RequestInput!) {
+mutation create<%= classify(name) %>s($input: Create<%= classify(name) %>Input!) {
   create<%= classify(name) %>(input: $input) {
     id
   }
 }
 # 删除<%= camelize(name) %>
 mutation delete<%= classify(name) %>s($ids: [String!]!) {
-  delete<%= classify(name) %>(input: { ids: $ids })
+  delete<%= classify(name) %>(ids: $ids)
 }
 # 编辑<%= camelize(name) %>
-mutation edit<%= classify(name) %>s($input: Edit<%= classify(name) %>RequestInput!) {
-  edit<%= classify(name) %>(input: $input)
+mutation edit<%= classify(name) %>s($id: String!,$input: Edit<%= classify(name) %>Input!) {
+  edit<%= classify(name) %>(id: $id, input: $input)
 }
 # 审核<%= camelize(name) %>
 mutation audit<%= classify(name) %>($ids: [String]) {
@@ -52,7 +52,7 @@ mutation submit<%= classify(name) %>s($ids: [String]) {
   submit<%= classify(name) %>(ids: $ids)
 }
 # 取消提交<%= camelize(name) %>
-mutation unSubmit<%= classify(name) %>s($ids: [String]) {
+mutation unsubmit<%= classify(name) %>s($ids: [String]) {
   unsubmit<%= classify(name) %>(ids: $ids)
 }
 
@@ -62,7 +62,7 @@ fragment <%= classify(name) %>Brief on <%= classify(name) %> {
   auditStatus
   createdOn
 }
-fragment <%= classify(name) %>sDetail on <%= classify(name) %> {
+fragment <%= classify(name) %>Detail on <%= classify(name) %> {
   id
   name
   auditStatus

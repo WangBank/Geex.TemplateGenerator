@@ -1,37 +1,33 @@
 import { Component, Injector, OnInit, ViewChild } from "@angular/core";
-import { AbstractControl, FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { STChange, STColumn } from "@delon/abc/st";
 import { gql } from "apollo-angular";
 import { isDate } from "lodash-es";
 import { combineLatest, forkJoin, zip } from "rxjs";
 import { filter, map } from "rxjs/operators";
 
-import { AuditStatus, Role } from "../../graphql/.generated/type";
+import { AuditStatus, Role, SortEnumType } from "../../graphql/.generated/type";
 import { EditDataContext, RoutedEditComponent } from "./routed-edit.component.base";
-import { RoutedComponent } from "./routed.component.base";
-
-export class Test extends RoutedEditComponent<{}, Role, ["name"]> {
-  async fetchData(): Promise<EditDataContext<Role, ["name"]>> {
-    let entity = {} as Role;
-    return {
-      id: entity.id,
-      originalValue: { name: "233" },
-      entityForm: new FormBuilder().group({
-        name: "233",
-      }),
-    };
-  }
-}
+import { MyFormGroup, RoutedComponent } from "./routed.component.base";
 
 export type BatchOperationName = "delete" | "audit" | "submit" | "unaudit" | "unsubmit";
 
 /**数据上下文 */
 export class ListDataContext<T extends { id?: string }> {
-  data: Array<Partial<T>>;
+  data?: Array<Partial<T>>;
+  columns?: Array<STColumn<Partial<T>>>;
   total?: number;
 }
+
+export class ListPageParams<T> {
+  pi?: number;
+  ps?: number;
+  sort?: { [key in keyof T]?: SortEnumType };
+}
+
 type ListDataContextFactory<TDto extends { id?: string }> = (dto: TDto) => ListDataContext<TDto>;
 
-type InferListDataContext<TDto> = ReturnType<ListDataContextFactory<TDto>>;
+type InferredListDataContext<TDto> = ReturnType<ListDataContextFactory<TDto>>;
 
 /**
  *
@@ -42,11 +38,12 @@ type InferListDataContext<TDto> = ReturnType<ListDataContextFactory<TDto>>;
  */
 @Component({ template: "" })
 export abstract class RoutedListComponent<
-  TParams extends {},
+  TParams extends ListPageParams<TDto>,
   TDto extends { id?: string },
-  TContext extends InferListDataContext<TDto> = InferListDataContext<TDto>, // 设置默认类型参数
+  TContext extends InferredListDataContext<TDto> = InferredListDataContext<TDto>, // 设置默认类型参数
 > extends RoutedComponent<TParams, TContext> {
   selectedData: Array<Partial<TDto>> = [];
+  override params: MyFormGroup<TParams>;
 
   public get allSelected() {
     return this.selectedData.length > 0 && this.context?.data?.length == this.selectedData.length;
@@ -64,6 +61,37 @@ export abstract class RoutedListComponent<
     } else {
       this.selectedData = this.selectedData.filter(x => x.id !== data.id);
     }
+  }
+
+  async tableChange(args: STChange) {
+    if (args.type == "checkbox") {
+      this.selectedData = args.checkbox;
+      console.log(this.selectedData);
+      return;
+    }
+
+    if (args.type == "pi" || args.type == "ps") {
+      if (args.pi !== this.params.value.pi || args.ps !== this.params.value.ps) {
+        this.params.patchValue({ pi: args.pi, ps: args.ps });
+        await this.router.navigate([], { queryParams: this.params.value });
+      }
+    }
+
+    if (args.sort?.column?.index) {
+      let thisSortName = args.sort.column["indexKey"];
+      let sorts = args.sort.map["sort"].split("-").map(x => x.split("."));
+      let thisSort = sorts.find(x => x[0] == thisSortName);
+      if (thisSort) {
+        sorts.remove(thisSort);
+      }
+      sorts.push(thisSort);
+      sorts = sorts.where(x => x != undefined);
+      let sortsForm = new FormGroup(Object.fromEntries(sorts.map(x => [x[0], new FormControl(x[1])])));
+      this.params.setControl("sort", sortsForm);
+      console.log(this.params.value);
+      await this.router.navigate([], { queryParams: this.params.value });
+    }
+    console.log(args);
   }
 
   batchOperation(sth: BatchOperationName, entityType: string, remark?: string) {
@@ -96,15 +124,15 @@ export abstract class RoutedListComponent<
         return;
       }
 
-      let apiName = `
+      let apiName = gql`
       mutation ${sth}${entityType}($ids: [String], $remark:String) {
         ${sth}${entityType}(ids: $ids, remark:$remark)
       }
       `;
       if (sth === "delete") {
-        apiName = `
-          mutation ${sth}${entityType}($ids: [String]) {
-            ${sth}${entityType}(input: { ids: $ids })
+        apiName = gql`
+          mutation ${sth}${entityType}($ids: [String!]!) {
+            ${sth}${entityType}(ids: $ids)
           }
         `;
       }
@@ -115,7 +143,7 @@ export abstract class RoutedListComponent<
         nzOnOk: async () => {
           await this.apollo
             .mutate({
-              mutation: apiName as any,
+              mutation: apiName,
               variables: {
                 remark,
                 ids,
@@ -124,6 +152,7 @@ export abstract class RoutedListComponent<
             .toPromise();
           resolve(true);
           this.msgSrv.success(this.I18N.Common.message.get(sth));
+          this.refresh();
         },
       });
     });

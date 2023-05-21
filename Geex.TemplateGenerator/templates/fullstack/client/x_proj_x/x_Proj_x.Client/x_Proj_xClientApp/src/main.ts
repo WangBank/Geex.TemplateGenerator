@@ -1,4 +1,5 @@
 import "./shared/array.extension";
+import "./shared/string.extension";
 import "./shared/extensions";
 import "./shared/angular.extension";
 import "./shared/file.extensions";

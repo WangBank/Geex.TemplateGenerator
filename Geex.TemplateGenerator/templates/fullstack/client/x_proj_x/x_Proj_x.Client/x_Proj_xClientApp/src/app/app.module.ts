@@ -1,22 +1,34 @@
-/* eslint-disable import/order */
+import { registerLocaleData } from "@angular/common";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { default as ngLang } from "@angular/common/locales/zh";
-import { APP_INITIALIZER, Injector, LOCALE_ID, NgModule, Type } from "@angular/core";
+import { APP_INITIALIZER, LOCALE_ID, NgModule, Type } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterModule, UrlSerializer } from "@angular/router";
 import { GeexTranslateLoader, I18NService, DefaultInterceptor, StartupService } from "@core";
-import { DA_SERVICE_TOKEN, JWTTokenModel, SimpleInterceptor, TokenService } from "@delon/auth";
-import { DELON_LOCALE, zh_CN as delonLang, ALAIN_I18N_TOKEN, SettingsService } from "@delon/theme";
+import { SimpleInterceptor } from "@delon/auth";
+import { DELON_LOCALE, zh_CN as delonLang, ALAIN_I18N_TOKEN } from "@delon/theme";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
+import { NgxsStoragePluginModule } from "@ngxs/storage-plugin";
+import { NgxsModule } from "@ngxs/store";
 import { JsonSchemaModule } from "@shared";
+import { OAuthModule, OAuthStorage } from "angular-oauth2-oidc";
 import { zhCN as dateLang } from "date-fns/locale";
 import { NZ_DATE_LOCALE, NZ_I18N, zh_CN as zorroLang } from "ng-zorro-antd/i18n";
 import { NzMessageModule } from "ng-zorro-antd/message";
 import { NzNotificationModule } from "ng-zorro-antd/notification";
-import { NgxsModule, Store } from "@ngxs/store";
-import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
-import { NgxsStoragePluginModule } from "@ngxs/storage-plugin";
-import { NgxsRouterPluginModule } from "@ngxs/router-plugin";
+
+import { environment } from "../environments/environment";
+import { AppComponent } from "./app.component";
+import { CoreModule } from "./core/core.module";
+import { GlobalConfigModule } from "./global-config.module";
+import { LayoutModule } from "./layout/layout.module";
+import { RoutesModule } from "./routes/routes.module";
+import { CacheDataState } from "./shared/states/cache-data.state";
+import { TenantState } from "./shared/states/tenant.state";
+import { UserDataState } from "./shared/states/user-data.state";
 
 // #region default language
 // Reference: https://ng-alain.com/docs/i18n
@@ -28,7 +40,6 @@ const LANG = {
   delon: delonLang,
 };
 // register angular
-import { registerLocaleData } from "@angular/common";
 registerLocaleData(LANG.ng, LANG.abbr);
 const LANG_PROVIDES = [
   { provide: LOCALE_ID, useValue: LANG.abbr },
@@ -89,25 +100,6 @@ const APPINIT_PROVIDES = [
 ];
 // #endregion
 
-import { AppComponent } from "./app.component";
-import { CoreModule } from "./core/core.module";
-import { GlobalConfigModule } from "./global-config.module";
-import { LayoutModule } from "./layout/layout.module";
-import { RoutesModule } from "./routes/routes.module";
-
-import { FormsModule } from "@angular/forms";
-import { ActivatedRouteSnapshot, Router, RouterModule } from "@angular/router";
-import { environment } from "../environments/environment";
-import { UserDataState, UserDataState$ } from "./shared/states/user-data.state";
-import { TenantState } from "./shared/states/tenant.state";
-import { OAuthModule, OAuthService, OAuthStorage } from "angular-oauth2-oidc";
-import gql from "graphql-tag";
-import { from, Observable } from "rxjs";
-import { filter, take } from "rxjs/operators";
-import { NzModalService } from "ng-zorro-antd/modal";
-import { ACLService } from "@delon/acl";
-import { LoginProviderEnum } from "./shared/graphql/.generated/type";
-import { CacheDataState } from "./shared/states/cache-data.state";
 @NgModule({
   declarations: [AppComponent],
   imports: [

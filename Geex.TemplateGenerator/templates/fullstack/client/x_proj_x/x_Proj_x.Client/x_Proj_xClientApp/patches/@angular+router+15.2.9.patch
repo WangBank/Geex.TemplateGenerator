@@ -1,0 +1,63 @@
+diff --git a/node_modules/@angular/router/esm2020/src/create_url_tree.mjs b/node_modules/@angular/router/esm2020/src/create_url_tree.mjs
+index 71283a3..d479dc7 100644
+--- a/node_modules/@angular/router/esm2020/src/create_url_tree.mjs
++++ b/node_modules/@angular/router/esm2020/src/create_url_tree.mjs
+@@ -9,6 +9,7 @@ import { ɵRuntimeError as RuntimeError } from '@angular/core';
+ import { PRIMARY_OUTLET } from './shared';
+ import { createRoot, squashSegmentGroup, UrlSegment, UrlSegmentGroup, UrlTree } from './url_tree';
+ import { forEach, last, shallowEqual } from './utils/collection';
++import * as rison from "rison";
+ const NG_DEV_MODE = typeof ngDevMode === 'undefined' || ngDevMode;
+ /**
+  * Creates a `UrlTree` relative to an `ActivatedRouteSnapshot`.
+@@ -140,7 +141,7 @@ function tree(oldRoot, oldSegmentGroup, newSegmentGroup, queryParams, fragment)
+     let qp = {};
+     if (queryParams) {
+         forEach(queryParams, (value, name) => {
+-            qp[name] = Array.isArray(value) ? value.map((v) => `${v}`) : `${value}`;
++            qp[name] = typeof value == "string" ? value : rison.encode(value);
+         });
+     }
+     let rootCandidate;
+diff --git a/node_modules/@angular/router/fesm2015/router.mjs b/node_modules/@angular/router/fesm2015/router.mjs
+index 665d869..332f8fb 100644
+--- a/node_modules/@angular/router/fesm2015/router.mjs
++++ b/node_modules/@angular/router/fesm2015/router.mjs
+@@ -11,6 +11,7 @@ import * as i3 from '@angular/common';
+ import { Location, ViewportScroller, LOCATION_INITIALIZED, LocationStrategy, HashLocationStrategy, PathLocationStrategy } from '@angular/common';
+ import { map, switchMap, take, startWith, filter, mergeMap, first, concatMap, tap, catchError, scan, last as last$1, takeWhile, defaultIfEmpty, takeLast, mapTo, finalize, refCount, mergeAll } from 'rxjs/operators';
+ import * as i1 from '@angular/platform-browser';
++import * as rison from "rison";
+ 
+ /**
+  * The primary routing outlet.
+@@ -933,7 +934,7 @@ function tree(oldRoot, oldSegmentGroup, newSegmentGroup, queryParams, fragment)
+     let qp = {};
+     if (queryParams) {
+         forEach(queryParams, (value, name) => {
+-            qp[name] = Array.isArray(value) ? value.map((v) => `${v}`) : `${value}`;
++            qp[name] = typeof value == "string" ? value : rison.encode(value);
+         });
+     }
+     let rootCandidate;
+diff --git a/node_modules/@angular/router/fesm2020/router.mjs b/node_modules/@angular/router/fesm2020/router.mjs
+index dc3ee7a..c7d948d 100644
+--- a/node_modules/@angular/router/fesm2020/router.mjs
++++ b/node_modules/@angular/router/fesm2020/router.mjs
+@@ -11,6 +11,7 @@ import * as i3 from '@angular/common';
+ import { Location, ViewportScroller, LOCATION_INITIALIZED, LocationStrategy, HashLocationStrategy, PathLocationStrategy } from '@angular/common';
+ import { map, switchMap, take, startWith, filter, mergeMap, first, concatMap, tap, catchError, scan, last as last$1, takeWhile, defaultIfEmpty, takeLast, mapTo, finalize, refCount, mergeAll } from 'rxjs/operators';
+ import * as i1 from '@angular/platform-browser';
++import * as rison from "rison";
+ 
+ /**
+  * The primary routing outlet.
+@@ -931,7 +932,7 @@ function tree(oldRoot, oldSegmentGroup, newSegmentGroup, queryParams, fragment)
+     let qp = {};
+     if (queryParams) {
+         forEach(queryParams, (value, name) => {
+-            qp[name] = Array.isArray(value) ? value.map((v) => `${v}`) : `${value}`;
++            qp[name] = typeof value == "string" ? value : rison.encode(value);
+         });
+     }
+     let rootCandidate;

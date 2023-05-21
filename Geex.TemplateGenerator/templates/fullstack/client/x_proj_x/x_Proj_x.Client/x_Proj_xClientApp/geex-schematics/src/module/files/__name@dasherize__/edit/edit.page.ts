@@ -9,8 +9,8 @@ import {
   <%= classify(name) %>ByIdQueryVariables,
   <%= classify(name) %>ByIdGql,
   Create<%= classify(name) %>sGql,
-  Create<%= classify(name) %>RequestInput,
-  Edit<%= classify(name) %>RequestInput,
+  Create<%= classify(name) %>Input,
+  Edit<%= classify(name) %>Input,
   Edit<%= classify(name) %>sGql,
   <%= classify(name) %>,
 } from "../../../shared/graphql/.generated/type";
@@ -22,7 +22,7 @@ export type <%= classify(name) %>EditPageParams = {
   id: string;
   name: string;
 };
-type <%= classify(name) %>EditPageData = EditDataContext<<%= classify(name) %>, ["name"]> & {
+type <%= classify(name) %>EditPageContext = EditDataContext<<%= classify(name) %>, "name"> & {
   disabled: boolean;
 };
 
@@ -31,16 +31,16 @@ type <%= classify(name) %>EditPageData = EditDataContext<<%= classify(name) %>, 
   templateUrl: "./edit.page.html",
   styles: [],
 })
-export class <%= classify(name) %>EditPage extends RoutedEditComponent<<%= classify(name) %>EditPageParams, <%= classify(name) %>, ["name"]> {
+export class <%= classify(name) %>EditPage extends RoutedEditComponent<<%= classify(name) %>EditPageParams, <%= classify(name) %>, "name"> {
   mode: EditMode;
-  context: <%= classify(name) %>EditPageData;
+  context: <%= classify(name) %>EditPageContext;
 
   constructor(injector: Injector) {
     super(injector);
   }
 
   close() {
-    if (isEqual(this.context.entityForm.value, this.initialParamsValue)) {
+    if (isEqual(this.context.entityForm.value, this.context.originalValue)) {
       this.back();
     } else {
       this.nzModalSrv.confirm({
@@ -56,7 +56,10 @@ export class <%= classify(name) %>EditPage extends RoutedEditComponent<<%= class
     let params = this.params.value;
     const id = params.id;
     this.mode = id ? "edit" : "create";
-    let result: <%= classify(name) %>EditPageData;
+    let result: <%= classify(name) %>EditPageContext={
+      id,
+      disabled: false,
+    }
     let fb: FormBuilder = new FormBuilder();
 
     let formConfig: { [key in keyof EntityEditablePart]: FormControl };
@@ -70,17 +73,14 @@ export class <%= classify(name) %>EditPage extends RoutedEditComponent<<%= class
         })
         .toPromise();
       let entity = res.data.<%= camelize(name) %>ById;
+      result.entity = entity;
       formConfig = { name: new FormControl(entity.name) };
     } else {
       formConfig = { name: new FormControl("") };
     }
     let entityForm = fb.group(formConfig);
-    result = {
-      id,
-      entityForm,
-      originalValue: entityForm.value,
-      disabled: false,
-    };
+    result.entityForm = entityForm;
+    result.originalValue = entityForm.value;
     return result;
   }
 
@@ -92,27 +92,27 @@ export class <%= classify(name) %>EditPage extends RoutedEditComponent<<%= class
           variables: {
             input: {
               name: this.context.entityForm.value.name,
-            } as Create<%= classify(name) %>RequestInput,
+            } as Create<%= classify(name) %>Input,
           },
         })
         .toPromise();
       this.msgSrv.success("添加成功");
-      await this.back();
+      await this.back(true);
     } else {
       if (this.mode === "edit") {
         await this.apollo
           .mutate({
             mutation: Edit<%= classify(name) %>sGql,
             variables: {
+              id: this.context.id,
               input: {
-                id: this.context.id,
                 name: this.context.entityForm.value.name,
-              } as Edit<%= classify(name) %>RequestInput,
+              } as Edit<%= classify(name) %>Input,
             },
           })
           .toPromise();
         this.msgSrv.success("修改成功");
-        await this.back();
+        await this.back(true);
       }
     }
   }

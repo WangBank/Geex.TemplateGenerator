@@ -184,7 +184,6 @@ export class OrgListComponent extends BusinessComponentBase implements OnInit {
     // todo Api需要parentId,这里不直接拿取this.activenode.id是避免单机节点激活后点击头部的新增按钮
     // const parentId = this.orgBrief.find(x => x.code == parentCode).id;
     this.modalSrv.createStatic(OrgEditComponent, { org }, { size: 500, exact: true }).subscribe(res => {
-      debugger;
       if (res) {
         this.refresh();
       }

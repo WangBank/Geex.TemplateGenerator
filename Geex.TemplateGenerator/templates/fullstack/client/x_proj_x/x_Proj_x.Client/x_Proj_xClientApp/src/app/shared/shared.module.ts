@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Injector, ModuleWithProviders, NgModule, Type } from "@angular/core";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { RouterModule, ActivatedRouteSnapshot } from "@angular/router";
+import { RouterModule, ActivatedRouteSnapshot, UrlSerializer } from "@angular/router";
 import { STWidgetRegistry } from "@delon/abc/st";
 import { ACLService, DelonACLModule } from "@delon/acl";
 import { DelonAuthModule, SimpleInterceptor } from "@delon/auth";
@@ -40,6 +40,7 @@ import { STSwitchWidget } from "./widgets/switch.widget";
 import { UeditorWidget } from "./widgets/text-editor.widget";
 import { UserSelectWidget } from "./widgets/user-select.widget";
 import { STYnExportWidget } from "./widgets/yn-export.widget";
+
 // #region third libs
 const THIRDMODULES: Array<Type<any>> = [GraphQLModule];
 
