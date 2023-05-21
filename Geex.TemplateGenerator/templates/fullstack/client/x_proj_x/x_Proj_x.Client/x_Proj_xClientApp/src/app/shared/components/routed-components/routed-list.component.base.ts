@@ -85,7 +85,7 @@ export abstract class RoutedListComponent<
         sorts.remove(thisSort);
       }
       sorts.push(thisSort);
-      sorts = sorts.where(x => x != undefined);
+      sorts = sorts.where(x => x != undefined && x[0] != "");
       let sortsForm = new FormGroup(Object.fromEntries(sorts.map(x => [x[0], new FormControl(x[1])])));
       this.params.setControl("sort", sortsForm);
       console.log(this.params.value);

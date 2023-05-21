@@ -1,11 +1,21 @@
 import { Component, Injector, OnInit } from "@angular/core";
+import { STChange } from "@delon/abc/st";
 import { deepCopy } from "@delon/util";
 import { Apollo } from "apollo-angular";
 import _ from "lodash";
 import { take } from "rxjs/operators";
 
-import { ListDataContext, ListPageParams, RoutedListComponent } from "../../../shared/components/routed-components/routed-list.component.base";
-import { <%= classify(name) %>BriefFragment, <%= classify(name) %>sGql, <%= classify(name) %>sQuery, Delete<%= classify(name) %>sGql, <%= classify(name) %>sQueryVariables, SortEnumType } from "../../../shared/graphql/.generated/type";
+import {
+  ListDataContext,
+  ListPageParams,
+  RoutedListComponent,
+} from "../../../shared/components/routed-components/routed-list.component.base";
+import { <%= classify(name) %>BriefFragment,
+  <%= classify(name) %>sGql,
+  <%= classify(name) %>sQuery,
+  Delete<%= classify(name) %>sGql,
+  <%= classify(name) %>sQueryVariables,
+  SortEnumType } from "../../../shared/graphql/.generated/type";
 import { <%= classify(name) %>EditPage } from "../edit/edit.page";
 
 export type <%= classify(name) %>ListPageParam = ListPageParams<<%= classify(name) %>BriefFragment> & {

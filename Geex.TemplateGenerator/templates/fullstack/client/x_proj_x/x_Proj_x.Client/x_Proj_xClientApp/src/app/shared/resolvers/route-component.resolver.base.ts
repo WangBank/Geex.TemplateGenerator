@@ -21,21 +21,17 @@ export abstract class RoutedComponentResolveBase<TParams> implements Resolve<TPa
           params[key] = Date.parse(value);
           return;
         }
-        try {
-          params[key] = rison.decode(value);
-        } catch (error) {
-          params[key] = value;
-        }
+        params[key] = rison.decode(value);
       }
     });
     // let a = rison.decode(queryParams["a"]);
-    // let params = this.routeQueryParamsToParams(queryParams);
-    // this.router.virtualNavigate(["./"], { queryParams: params, relativeTo: this.router.routerState.root });
+    params = this.normalizeParams(params);
+    this.router.virtualNavigate([], { queryParams: params, relativeTo: this.router.routerState.root });
     return params;
   }
 
   // 路由参数转换为组件参数
-  abstract routeQueryParamsToParams(queryParams: { [x: string]: any }): TParams;
+  abstract normalizeParams(queryParams: TParams): TParams;
   parseNestedObject(parts: string[], value: any): Record<string, any> {
     return parts.reduceRight((acc, cur) => ({ [cur]: acc }), value);
   }

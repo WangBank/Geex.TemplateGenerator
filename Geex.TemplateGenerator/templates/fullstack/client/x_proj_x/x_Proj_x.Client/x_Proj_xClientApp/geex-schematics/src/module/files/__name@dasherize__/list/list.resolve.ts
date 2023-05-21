@@ -1,4 +1,3 @@
-import { RoutedComponentResolveBase } from "@/app/shared/resolvers/route-component.resolver.base";
 import { Injectable, Injector } from "@angular/core";
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@angular/router";
 import { merge } from "lodash";
@@ -15,11 +14,11 @@ export class <%= classify(name) %>ListPageResolve extends RoutedComponentResolve
   constructor(injector: Injector) {
     super(injector);
   }
-  routeQueryParamsToParams(params: <%= classify(name) %>ListPageParam): <%= classify(name) %>ListPageParam {
+  override normalizeParams(params: <%= classify(name) %>ListPageParam): <%= classify(name) %>ListPageParam {
     params.pi ??= 1;
     params.ps ??= 10;
-    params.filterText ??= null;
-    params.sort ??= {};
+    params.filterText ??= "";
+    params.sort ??= undefined;
     return params;
   }
 }

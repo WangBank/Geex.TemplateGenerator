@@ -52,13 +52,13 @@ export abstract class RoutedComponent<TParams extends {}, TContext> extends Busi
       });
   }
   async prepare(resolvedParams: TParams) {
-    let group = Object.entries(resolvedParams).map(x => [x[0], [x[1]]]);
+    let group = Object.entries(resolvedParams).map(x => [x[0], new FormControl(x[1])]);
     this.initialParamsValue = resolvedParams;
     this.params = this.fb.group(Object.fromEntries(group)) as MyFormGroup<TParams>;
   }
   //刷新
   refresh() {
-    let paramsValues = this.params.getRawValue();
+    let paramsValues = this.params.value;
     this.router.navigate(this.paramsToPathParam(paramsValues), {
       queryParams: paramsValues,
       forceReload: true,

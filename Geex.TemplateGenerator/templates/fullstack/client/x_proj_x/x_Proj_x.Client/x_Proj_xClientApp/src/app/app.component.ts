@@ -63,7 +63,7 @@ export class AppComponent {
       //   segments.removeAt(0);
       // }
       if (currentNavigation.extras?.forceReload == true) {
-        currentNavigation.extractedUrl.queryParams.reloadTs = new Date().toISOString();
+        currentNavigation.extractedUrl.queryParams.reloadTs = new Date().getTime();
       }
     });
     this.router.navigationEnd$.subscribe(x => {
