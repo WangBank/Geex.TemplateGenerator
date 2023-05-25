@@ -5,8 +5,8 @@ import { SharedModule } from "@shared";
 
 import { <%= classify(name) %>RoutingModule } from './<%= dasherize(name) %>-routing.module';
 
-import { <%= classify(name) %>ListPage } from './list/list.page';
-import { <%= classify(name) %>EditPage } from './edit/edit.page';
+import { <%= classify(aggregateName) %>ListPage } from './list/list.page';
+import { <%= classify(aggregateName) %>EditPage } from './edit/edit.page';
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { <%= classify(name) %>EditPage } from './edit/edit.page';
     FormsModule,
     <%= classify(name) %>RoutingModule
   ],
-  declarations: [<%= classify(name) %>ListPage,<%= classify(name) %>EditPage]
+  declarations: [<%= classify(aggregateName) %>ListPage,<%= classify(aggregateName) %>EditPage]
 })
 export class <%= classify(name) %>Module {}

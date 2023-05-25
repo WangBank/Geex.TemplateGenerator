@@ -27,9 +27,6 @@ export interface Scalars {
 
 
 
-
-
-
 export enum AppPermission {
   AuthorizationMutationAuthorize = 'authorization_mutation_authorize',
   IdentityMutationCreateOrg = 'identity_mutation_createOrg',
@@ -56,7 +53,8 @@ export enum AppSettings {
 
 export enum ApplyPolicy {
   BeforeResolver = 'BEFORE_RESOLVER',
-  AfterResolver = 'AFTER_RESOLVER'
+  AfterResolver = 'AFTER_RESOLVER',
+  Validation = 'VALIDATION'
 }
 
 export interface AssignOrgRequestInput {
@@ -114,11 +112,13 @@ export interface BlobObject extends IBlobObject, IEntityBase {
   storageType?: Maybe<BlobStorageType>;
 }
 
-export interface BlobObjectCollectionSegment {
-  __typename?: 'BlobObjectCollectionSegment';
-  items?: Maybe<Array<Maybe<BlobObject>>>;
+/** A segment of a collection. */
+export interface BlobObjectsCollectionSegment {
+  __typename?: 'BlobObjectsCollectionSegment';
   /** Information to aid in pagination. */
   pageInfo: CollectionSegmentInfo;
+  /** A flattened list of the items. */
+  items?: Maybe<Array<Maybe<BlobObject>>>;
   totalCount: Scalars['Int'];
 }
 
@@ -132,56 +132,42 @@ export enum BlobStorageType {
   RedisCache = 'RedisCache'
 }
 
-export enum BmsFrontCallType {
-  CacheDataChange = 'CacheDataChange'
-}
-
-export enum BmsLoginProviderEnum {
-  Geex = 'Geex'
-}
-
-/** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
-export interface Book extends IEntityBase, IAuditEntity {
+export interface Book extends IEntityBase {
   __typename?: 'Book';
   id?: Maybe<Scalars['String']>;
   createdOn: Scalars['DateTime'];
   modifiedOn: Scalars['DateTime'];
-  auditStatus: AuditStatus;
-  submittable: Scalars['Boolean'];
   name: Scalars['String'];
-  auditRemark?: Maybe<Scalars['String']>;
 }
 
-export interface BookCollectionSegment {
-  __typename?: 'BookCollectionSegment';
-  items?: Maybe<Array<Maybe<Book>>>;
-  /** Information to aid in pagination. */
-  pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars['Int'];
-}
-
-/** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
 export interface BookFilterInput {
   and?: Maybe<Array<BookFilterInput>>;
   or?: Maybe<Array<BookFilterInput>>;
   name?: Maybe<StringOperationFilterInput>;
-  auditStatus?: Maybe<AuditStatusOperationFilterInput>;
-  auditRemark?: Maybe<StringOperationFilterInput>;
-  submittable?: Maybe<BooleanOperationFilterInput>;
-  modifiedOn?: Maybe<ComparableDateTimeOffsetOperationFilterInput>;
+  modifiedOn?: Maybe<DateTimeOperationFilterInput>;
   id?: Maybe<StringOperationFilterInput>;
-  createdOn?: Maybe<ComparableDateTimeOffsetOperationFilterInput>;
+  createdOn?: Maybe<DateTimeOperationFilterInput>;
 }
 
-/** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
 export interface BookSortInput {
   name?: Maybe<SortEnumType>;
-  auditStatus?: Maybe<SortEnumType>;
-  auditRemark?: Maybe<SortEnumType>;
-  submittable?: Maybe<SortEnumType>;
   modifiedOn?: Maybe<SortEnumType>;
   id?: Maybe<SortEnumType>;
   createdOn?: Maybe<SortEnumType>;
+}
+
+export enum BookingSettings {
+  BookingModuleName = 'BookingModuleName'
+}
+
+/** A segment of a collection. */
+export interface BooksCollectionSegment {
+  __typename?: 'BooksCollectionSegment';
+  /** Information to aid in pagination. */
+  pageInfo: CollectionSegmentInfo;
+  /** A flattened list of the items. */
+  items?: Maybe<Array<Maybe<Book>>>;
+  totalCount: Scalars['Int'];
 }
 
 export interface BooleanOperationFilterInput {
@@ -242,43 +228,13 @@ export interface CollectionSegmentInfo {
   hasPreviousPage: Scalars['Boolean'];
 }
 
-export interface ComparableDateTimeOffsetOperationFilterInput {
-  eq?: Maybe<Scalars['DateTime']>;
-  neq?: Maybe<Scalars['DateTime']>;
-  in?: Maybe<Array<Scalars['DateTime']>>;
-  nin?: Maybe<Array<Scalars['DateTime']>>;
-  gt?: Maybe<Scalars['DateTime']>;
-  ngt?: Maybe<Scalars['DateTime']>;
-  gte?: Maybe<Scalars['DateTime']>;
-  ngte?: Maybe<Scalars['DateTime']>;
-  lt?: Maybe<Scalars['DateTime']>;
-  nlt?: Maybe<Scalars['DateTime']>;
-  lte?: Maybe<Scalars['DateTime']>;
-  nlte?: Maybe<Scalars['DateTime']>;
-}
-
-export interface ComparableInt64OperationFilterInput {
-  eq?: Maybe<Scalars['Long']>;
-  neq?: Maybe<Scalars['Long']>;
-  in?: Maybe<Array<Scalars['Long']>>;
-  nin?: Maybe<Array<Scalars['Long']>>;
-  gt?: Maybe<Scalars['Long']>;
-  ngt?: Maybe<Scalars['Long']>;
-  gte?: Maybe<Scalars['Long']>;
-  ngte?: Maybe<Scalars['Long']>;
-  lt?: Maybe<Scalars['Long']>;
-  nlt?: Maybe<Scalars['Long']>;
-  lte?: Maybe<Scalars['Long']>;
-  nlte?: Maybe<Scalars['Long']>;
-}
-
 export interface CreateBlobObjectRequestInput {
   file?: Maybe<Scalars['Upload']>;
   storageType?: Maybe<BlobStorageType>;
   md5?: Maybe<Scalars['String']>;
 }
 
-export interface CreateBookInput {
+export interface CreateBookRequestInput {
   name: Scalars['String'];
 }
 
@@ -322,6 +278,25 @@ export interface CreateUserRequestInput {
   provider?: Maybe<LoginProviderEnum>;
 }
 
+export interface Createx_Aggregate_XInput {
+  name: Scalars['String'];
+}
+
+
+export interface DateTimeOperationFilterInput {
+  eq?: Maybe<Scalars['DateTime']>;
+  neq?: Maybe<Scalars['DateTime']>;
+  in?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
+  nin?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
+  gt?: Maybe<Scalars['DateTime']>;
+  ngt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
+  ngte?: Maybe<Scalars['DateTime']>;
+  lt?: Maybe<Scalars['DateTime']>;
+  nlt?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  nlte?: Maybe<Scalars['DateTime']>;
+}
 
 export interface DeleteBlobObjectRequestInput {
   ids?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -366,6 +341,10 @@ export interface EditUserRequestInput {
   claims: Array<UserClaimInput>;
   phoneNumber?: Maybe<Scalars['String']>;
   username: Scalars['String'];
+}
+
+export interface Editx_Aggregate_XInput {
+  name?: Maybe<Scalars['String']>;
 }
 
 export interface FederateAuthenticateInput {
@@ -446,7 +425,7 @@ export interface IBlobObjectFilterInput {
   md5?: Maybe<StringOperationFilterInput>;
   mimeType?: Maybe<StringOperationFilterInput>;
   storageType?: Maybe<ClassEnumOperationFilterInputOfBlobStorageTypeFilterInput>;
-  fileSize?: Maybe<ComparableInt64OperationFilterInput>;
+  fileSize?: Maybe<LongOperationFilterInput>;
   fileName?: Maybe<StringOperationFilterInput>;
 }
 
@@ -493,7 +472,7 @@ export interface IMessageFilterInput {
   toUserIds?: Maybe<ListStringOperationFilterInput>;
   severity?: Maybe<MessageSeverityTypeOperationFilterInput>;
   title?: Maybe<StringOperationFilterInput>;
-  time?: Maybe<ComparableDateTimeOffsetOperationFilterInput>;
+  time?: Maybe<DateTimeOperationFilterInput>;
 }
 
 export interface IOrg {
@@ -555,14 +534,6 @@ export interface ITenant {
   isEnabled: Scalars['Boolean'];
   id?: Maybe<Scalars['String']>;
   createdOn: Scalars['DateTime'];
-}
-
-export interface ITenantCollectionSegment {
-  __typename?: 'ITenantCollectionSegment';
-  items?: Maybe<Array<ITenant>>;
-  /** Information to aid in pagination. */
-  pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars['Int'];
 }
 
 export interface ITenantFilterInput {
@@ -637,11 +608,26 @@ export enum LocalizationSettings {
 }
 
 export enum LoginProviderEnum {
-  Geex = 'Geex',
   Local = 'Local',
-  Trusted = 'Trusted'
+  Trusted = 'Trusted',
+  XOrgX = 'x_Org_x'
 }
 
+
+export interface LongOperationFilterInput {
+  eq?: Maybe<Scalars['Long']>;
+  neq?: Maybe<Scalars['Long']>;
+  in?: Maybe<Array<Maybe<Scalars['Long']>>>;
+  nin?: Maybe<Array<Maybe<Scalars['Long']>>>;
+  gt?: Maybe<Scalars['Long']>;
+  ngt?: Maybe<Scalars['Long']>;
+  gte?: Maybe<Scalars['Long']>;
+  ngte?: Maybe<Scalars['Long']>;
+  lt?: Maybe<Scalars['Long']>;
+  nlt?: Maybe<Scalars['Long']>;
+  lte?: Maybe<Scalars['Long']>;
+  nlte?: Maybe<Scalars['Long']>;
+}
 
 export interface MarkMessagesReadInput {
   messageIds: Array<Scalars['String']>;
@@ -660,14 +646,6 @@ export interface Message extends IMessage, IEntityBase {
   title: Scalars['String'];
   time: Scalars['DateTime'];
   severity: MessageSeverityType;
-}
-
-export interface MessageCollectionSegment {
-  __typename?: 'MessageCollectionSegment';
-  items?: Maybe<Array<Maybe<Message>>>;
-  /** Information to aid in pagination. */
-  pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars['Int'];
 }
 
 export enum MessageSeverityType {
@@ -696,6 +674,16 @@ export interface MessageTypeOperationFilterInput {
   neq?: Maybe<MessageType>;
   in?: Maybe<Array<MessageType>>;
   nin?: Maybe<Array<MessageType>>;
+}
+
+/** A segment of a collection. */
+export interface MessagesCollectionSegment {
+  __typename?: 'MessagesCollectionSegment';
+  /** Information to aid in pagination. */
+  pageInfo: CollectionSegmentInfo;
+  /** A flattened list of the items. */
+  items?: Maybe<Array<Maybe<Message>>>;
+  totalCount: Scalars['Int'];
 }
 
 export enum MessagingSettings {
@@ -741,15 +729,18 @@ export interface Mutation {
   authorize: Scalars['Boolean'];
   generateCaptcha: Captcha;
   validateCaptcha: Scalars['Boolean'];
-  submitBook?: Maybe<Scalars['Boolean']>;
-  auditBook?: Maybe<Scalars['Boolean']>;
-  unsubmitBook?: Maybe<Scalars['Boolean']>;
-  unauditBook?: Maybe<Scalars['Boolean']>;
-  /** 创建Book */
+  submitx_Aggregate_x?: Maybe<Scalars['Boolean']>;
+  auditx_Aggregate_x?: Maybe<Scalars['Boolean']>;
+  unsubmitx_Aggregate_x?: Maybe<Scalars['Boolean']>;
+  unauditx_Aggregate_x?: Maybe<Scalars['Boolean']>;
+  /** 创建x_Aggregate_x */
+  createx_Aggregate_x: X_Aggregate_X;
+  /** 编辑x_Aggregate_x */
+  editx_Aggregate_x: Scalars['Boolean'];
+  /** 删除x_Aggregate_x */
+  deletex_Aggregate_x: Scalars['Boolean'];
   createBook: Book;
-  /** 编辑Book */
   editBook: Scalars['Boolean'];
-  /** 删除Book */
   deleteBook: Scalars['Boolean'];
 }
 
@@ -889,32 +880,48 @@ export interface MutationValidateCaptchaArgs {
 }
 
 
-export interface MutationSubmitBookArgs {
+export interface MutationSubmitx_Aggregate_XArgs {
   ids?: Maybe<Array<Maybe<Scalars['String']>>>;
   remark?: Maybe<Scalars['String']>;
 }
 
 
-export interface MutationAuditBookArgs {
+export interface MutationAuditx_Aggregate_XArgs {
   ids?: Maybe<Array<Maybe<Scalars['String']>>>;
   remark?: Maybe<Scalars['String']>;
 }
 
 
-export interface MutationUnsubmitBookArgs {
+export interface MutationUnsubmitx_Aggregate_XArgs {
   ids?: Maybe<Array<Maybe<Scalars['String']>>>;
   remark?: Maybe<Scalars['String']>;
 }
 
 
-export interface MutationUnauditBookArgs {
+export interface MutationUnauditx_Aggregate_XArgs {
   ids?: Maybe<Array<Maybe<Scalars['String']>>>;
   remark?: Maybe<Scalars['String']>;
+}
+
+
+export interface MutationCreatex_Aggregate_XArgs {
+  input: Createx_Aggregate_XInput;
+}
+
+
+export interface MutationEditx_Aggregate_XArgs {
+  id: Scalars['String'];
+  input: Editx_Aggregate_XInput;
+}
+
+
+export interface MutationDeletex_Aggregate_XArgs {
+  ids: Array<Scalars['String']>;
 }
 
 
 export interface MutationCreateBookArgs {
-  input: CreateBookInput;
+  input: CreateBookRequestInput;
 }
 
 
@@ -931,21 +938,20 @@ export interface MutationDeleteBookArgs {
 
 export interface Org extends IEntityBase, IOrg {
   __typename?: 'Org';
-  allParentOrgCodes: Array<Scalars['String']>;
-  allParentOrgs: Array<IOrg>;
-  allSubOrgCodes: Array<Scalars['String']>;
-  allSubOrgs: Array<IOrg>;
-  directSubOrgCodes: Array<Scalars['String']>;
-  directSubOrgs: Array<IOrg>;
-  parentOrg: IOrg;
-  parentOrgCode: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
+  modifiedOn: Scalars['DateTime'];
   code: Scalars['String'];
   name: Scalars['String'];
   orgType: OrgTypeEnum;
-  tenantCode?: Maybe<Scalars['String']>;
-  modifiedOn: Scalars['DateTime'];
-  id?: Maybe<Scalars['String']>;
-  createdOn: Scalars['DateTime'];
+  allSubOrgCodes: Array<Scalars['String']>;
+  directSubOrgCodes: Array<Scalars['String']>;
+  allSubOrgs: Array<IOrg>;
+  directSubOrgs: Array<IOrg>;
+  parentOrgCode: Scalars['String'];
+  parentOrg: IOrg;
+  allParentOrgCodes: Array<Scalars['String']>;
+  allParentOrgs: Array<IOrg>;
 }
 
 export interface OrgCacheItem {
@@ -954,14 +960,6 @@ export interface OrgCacheItem {
   code?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   parentOrgCode: Scalars['String'];
-}
-
-export interface OrgCollectionSegment {
-  __typename?: 'OrgCollectionSegment';
-  items?: Maybe<Array<Maybe<Org>>>;
-  /** Information to aid in pagination. */
-  pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars['Int'];
 }
 
 export interface OrgFilterInput {
@@ -983,25 +981,37 @@ export enum OrgTypeEnum {
   Default = 'Default'
 }
 
+/** A segment of a collection. */
+export interface OrgsCollectionSegment {
+  __typename?: 'OrgsCollectionSegment';
+  /** Information to aid in pagination. */
+  pageInfo: CollectionSegmentInfo;
+  /** A flattened list of the items. */
+  items?: Maybe<Array<Maybe<Org>>>;
+  totalCount: Scalars['Int'];
+}
+
 export interface Query {
   __typename?: 'Query';
   _?: Maybe<Scalars['String']>;
-  tenants?: Maybe<ITenantCollectionSegment>;
-  users?: Maybe<UserCollectionSegment>;
+  tenants?: Maybe<TenantsCollectionSegment>;
+  users?: Maybe<UsersCollectionSegment>;
   currentUser: IUser;
-  orgs?: Maybe<OrgCollectionSegment>;
-  roles?: Maybe<RoleCollectionSegment>;
-  messages?: Maybe<MessageCollectionSegment>;
+  orgs?: Maybe<OrgsCollectionSegment>;
+  roles?: Maybe<RolesCollectionSegment>;
+  messages?: Maybe<MessagesCollectionSegment>;
   unreadMessages: Array<IMessage>;
-  blobObjects?: Maybe<BlobObjectCollectionSegment>;
-  settings?: Maybe<SettingCollectionSegment>;
+  blobObjects?: Maybe<BlobObjectsCollectionSegment>;
+  settings?: Maybe<SettingsCollectionSegment>;
   initSettings?: Maybe<Array<Maybe<ISetting>>>;
   myPermissions?: Maybe<Array<Maybe<Scalars['String']>>>;
   _hint?: Maybe<HintType>;
   orgsCache: Array<OrgCacheItem>;
-  /** 列表获取book */
-  books?: Maybe<BookCollectionSegment>;
-  /** 列表获取book */
+  /** 列表获取_aggregate_ */
+  x_aggregate_xs?: Maybe<X_Aggregate_XsCollectionSegment>;
+  /** 列表获取_aggregate_ */
+  x_aggregate_xById: X_Aggregate_X;
+  books?: Maybe<BooksCollectionSegment>;
   bookById: Book;
 }
 
@@ -1061,10 +1071,24 @@ export interface QuerySettingsArgs {
 }
 
 
+export interface QueryX_Aggregate_XsArgs {
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  input: Queryx_Aggregate_XInput;
+  where?: Maybe<X_Aggregate_XFilterInput>;
+  order?: Maybe<Array<X_Aggregate_XSortInput>>;
+}
+
+
+export interface QueryX_Aggregate_XByIdArgs {
+  id: Scalars['String'];
+}
+
+
 export interface QueryBooksArgs {
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
-  input: QueryBookInput;
+  input: QueryBookRequestInput;
   where?: Maybe<BookFilterInput>;
   order?: Maybe<Array<BookSortInput>>;
 }
@@ -1074,7 +1098,12 @@ export interface QueryBookByIdArgs {
   id: Scalars['String'];
 }
 
-export interface QueryBookInput {
+export interface QueryBookRequestInput {
+  name?: Maybe<Scalars['String']>;
+  _?: Maybe<Scalars['String']>;
+}
+
+export interface Queryx_Aggregate_XInput {
   name?: Maybe<Scalars['String']>;
   _?: Maybe<Scalars['String']>;
 }
@@ -1093,6 +1122,9 @@ export interface ResetUserPasswordRequestInput {
 
 export interface Role extends IEntityBase, IRole {
   __typename?: 'Role';
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
+  modifiedOn: Scalars['DateTime'];
   name: Scalars['String'];
   code: Scalars['String'];
   users: Array<IUser>;
@@ -1101,17 +1133,6 @@ export interface Role extends IEntityBase, IRole {
   isDefault: Scalars['Boolean'];
   isStatic: Scalars['Boolean'];
   isEnabled: Scalars['Boolean'];
-  modifiedOn: Scalars['DateTime'];
-  id?: Maybe<Scalars['String']>;
-  createdOn: Scalars['DateTime'];
-}
-
-export interface RoleCollectionSegment {
-  __typename?: 'RoleCollectionSegment';
-  items?: Maybe<Array<Maybe<Role>>>;
-  /** Information to aid in pagination. */
-  pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars['Int'];
 }
 
 export interface RoleFilterInput {
@@ -1126,6 +1147,16 @@ export enum RolePermission {
   IdentityMutationCreateRole = 'identity_mutation_createRole',
   IdentityMutationEditRole = 'identity_mutation_editRole',
   IdentityQueryRoles = 'identity_query_roles'
+}
+
+/** A segment of a collection. */
+export interface RolesCollectionSegment {
+  __typename?: 'RolesCollectionSegment';
+  /** Information to aid in pagination. */
+  pageInfo: CollectionSegmentInfo;
+  /** A flattened list of the items. */
+  items?: Maybe<Array<Maybe<Role>>>;
+  totalCount: Scalars['Int'];
 }
 
 export interface SendCaptchaInput {
@@ -1154,14 +1185,6 @@ export interface Setting extends ISetting, IEntityBase {
   value?: Maybe<Scalars['Any']>;
 }
 
-export interface SettingCollectionSegment {
-  __typename?: 'SettingCollectionSegment';
-  items?: Maybe<Array<Maybe<Setting>>>;
-  /** Information to aid in pagination. */
-  pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars['Int'];
-}
-
 export enum SettingDefinition {
   AppAppMenu = 'AppAppMenu',
   AppAppName = 'AppAppName',
@@ -1170,7 +1193,8 @@ export enum SettingDefinition {
   BookingModuleName = 'BookingModuleName',
   LocalizationData = 'LocalizationData',
   LocalizationLanguage = 'LocalizationLanguage',
-  MessagingModuleName = 'MessagingModuleName'
+  MessagingModuleName = 'MessagingModuleName',
+  XModXModuleName = 'x_Mod_xModuleName'
 }
 
 export interface SettingDefinitionOperationFilterInput {
@@ -1191,6 +1215,16 @@ export interface SettingScopeEnumerationOperationFilterInput {
   neq?: Maybe<SettingScopeEnumeration>;
   in?: Maybe<Array<Maybe<SettingScopeEnumeration>>>;
   nin?: Maybe<Array<Maybe<SettingScopeEnumeration>>>;
+}
+
+/** A segment of a collection. */
+export interface SettingsCollectionSegment {
+  __typename?: 'SettingsCollectionSegment';
+  /** Information to aid in pagination. */
+  pageInfo: CollectionSegmentInfo;
+  /** A flattened list of the items. */
+  items?: Maybe<Array<Maybe<Setting>>>;
+  totalCount: Scalars['Int'];
 }
 
 export enum SettingsPermission {
@@ -1249,6 +1283,16 @@ export enum TenantPermission {
   MultiTenantQueryTenants = 'multiTenant_query_tenants'
 }
 
+/** A segment of a collection. */
+export interface TenantsCollectionSegment {
+  __typename?: 'TenantsCollectionSegment';
+  /** Information to aid in pagination. */
+  pageInfo: CollectionSegmentInfo;
+  /** A flattened list of the items. */
+  items?: Maybe<Array<ITenant>>;
+  totalCount: Scalars['Int'];
+}
+
 export interface ToggleTenantAvailabilityRequestInput {
   code: Scalars['String'];
 }
@@ -1256,29 +1300,29 @@ export interface ToggleTenantAvailabilityRequestInput {
 
 export interface User extends IUser, IEntityBase {
   __typename?: 'User';
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
+  modifiedOn: Scalars['DateTime'];
+  avatarFile?: Maybe<IBlobObject>;
+  claims: Array<UserClaim>;
+  checkPassword: Scalars['Boolean'];
+  setPassword: User;
   phoneNumber?: Maybe<Scalars['String']>;
   isEnable: Scalars['Boolean'];
   username: Scalars['String'];
   nickname?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   password: Scalars['String'];
-  claims: Array<UserClaim>;
   orgs: Array<IOrg>;
   orgCodes: Array<Scalars['String']>;
   permissions: Array<Scalars['String']>;
   roleIds: Array<Scalars['String']>;
-  avatarFile?: Maybe<IBlobObject>;
   avatarFileId?: Maybe<Scalars['String']>;
   roles: Array<IRole>;
   roleNames: Array<Scalars['String']>;
   loginProvider: LoginProviderEnum;
   openId?: Maybe<Scalars['String']>;
   tenantCode?: Maybe<Scalars['String']>;
-  modifiedOn: Scalars['DateTime'];
-  id?: Maybe<Scalars['String']>;
-  createdOn: Scalars['DateTime'];
-  checkPassword: Scalars['Boolean'];
-  setPassword: User;
 }
 
 
@@ -1314,14 +1358,6 @@ export interface UserClaimInput {
   claimValue: Scalars['String'];
 }
 
-export interface UserCollectionSegment {
-  __typename?: 'UserCollectionSegment';
-  items?: Maybe<Array<Maybe<User>>>;
-  /** Information to aid in pagination. */
-  pageInfo: CollectionSegmentInfo;
-  totalCount: Scalars['Int'];
-}
-
 export interface UserOrgMapItemInput {
   userId: Scalars['String'];
   orgCodes: Array<Scalars['String']>;
@@ -1342,136 +1378,79 @@ export interface UserToken {
   name: Scalars['String'];
 }
 
+/** A segment of a collection. */
+export interface UsersCollectionSegment {
+  __typename?: 'UsersCollectionSegment';
+  /** Information to aid in pagination. */
+  pageInfo: CollectionSegmentInfo;
+  /** A flattened list of the items. */
+  items?: Maybe<Array<Maybe<User>>>;
+  totalCount: Scalars['Int'];
+}
+
 export interface ValidateCaptchaInput {
   captchaKey: Scalars['String'];
   captchaProvider: CaptchaProvider;
   captchaCode: Scalars['String'];
 }
 
-export enum BookingSettings {
-  BookingModuleName = 'BookingModuleName'
+/** A segment of a collection. */
+export interface X_Aggregate_XsCollectionSegment {
+  __typename?: 'X_aggregate_xsCollectionSegment';
+  /** Information to aid in pagination. */
+  pageInfo: CollectionSegmentInfo;
+  /** A flattened list of the items. */
+  items?: Maybe<Array<Maybe<X_Aggregate_X>>>;
+  totalCount: Scalars['Int'];
 }
 
-export type BooksQueryVariables = Exact<{
-  input: QueryBookInput;
-  skip?: Maybe<Scalars['Int']>;
-  take?: Maybe<Scalars['Int']>;
-  where?: Maybe<BookFilterInput>;
-  order?: Maybe<Array<BookSortInput> | BookSortInput>;
-}>;
+export enum _Mod_Settings {
+  XModXModuleName = 'x_Mod_xModuleName'
+}
 
+/** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
+export interface X_Aggregate_X extends IEntityBase, IAuditEntity {
+  __typename?: 'x_Aggregate_x';
+  id?: Maybe<Scalars['String']>;
+  createdOn: Scalars['DateTime'];
+  modifiedOn: Scalars['DateTime'];
+  auditStatus: AuditStatus;
+  submittable: Scalars['Boolean'];
+  name: Scalars['String'];
+  auditRemark?: Maybe<Scalars['String']>;
+}
 
-export type BooksQuery = (
-  { __typename?: 'Query' }
-  & { books?: Maybe<(
-    { __typename?: 'BookCollectionSegment' }
-    & Pick<BookCollectionSegment, 'totalCount'>
-    & { items?: Maybe<Array<Maybe<(
-      { __typename?: 'Book' }
-      & BookBriefFragment
-    )>>>, pageInfo: (
-      { __typename?: 'CollectionSegmentInfo' }
-      & PageInfoFragment
-    ) }
-  )> }
-);
+/** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
+export interface X_Aggregate_XFilterInput {
+  and?: Maybe<Array<X_Aggregate_XFilterInput>>;
+  or?: Maybe<Array<X_Aggregate_XFilterInput>>;
+  name?: Maybe<StringOperationFilterInput>;
+  auditStatus?: Maybe<AuditStatusOperationFilterInput>;
+  auditRemark?: Maybe<StringOperationFilterInput>;
+  submittable?: Maybe<BooleanOperationFilterInput>;
+  modifiedOn?: Maybe<DateTimeOperationFilterInput>;
+  id?: Maybe<StringOperationFilterInput>;
+  createdOn?: Maybe<DateTimeOperationFilterInput>;
+}
 
-export type BookByIdQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
+/** this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name */
+export interface X_Aggregate_XSortInput {
+  name?: Maybe<SortEnumType>;
+  auditStatus?: Maybe<SortEnumType>;
+  auditRemark?: Maybe<SortEnumType>;
+  submittable?: Maybe<SortEnumType>;
+  modifiedOn?: Maybe<SortEnumType>;
+  id?: Maybe<SortEnumType>;
+  createdOn?: Maybe<SortEnumType>;
+}
 
+export enum X_Proj_XFrontCallType {
+  CacheDataChange = 'CacheDataChange'
+}
 
-export type BookByIdQuery = (
-  { __typename?: 'Query' }
-  & { bookById: (
-    { __typename?: 'Book' }
-    & BookDetailFragment
-  ) }
-);
-
-export type CreateBooksMutationVariables = Exact<{
-  input: CreateBookInput;
-}>;
-
-
-export type CreateBooksMutation = (
-  { __typename?: 'Mutation' }
-  & { createBook: (
-    { __typename?: 'Book' }
-    & Pick<Book, 'id'>
-  ) }
-);
-
-export type DeleteBooksMutationVariables = Exact<{
-  ids: Array<Scalars['String']> | Scalars['String'];
-}>;
-
-
-export type DeleteBooksMutation = (
-  { __typename?: 'Mutation' }
-  & Pick<Mutation, 'deleteBook'>
-);
-
-export type EditBooksMutationVariables = Exact<{
-  id: Scalars['String'];
-  input: EditBookInput;
-}>;
-
-
-export type EditBooksMutation = (
-  { __typename?: 'Mutation' }
-  & Pick<Mutation, 'editBook'>
-);
-
-export type AuditBookMutationVariables = Exact<{
-  ids?: Maybe<Array<Maybe<Scalars['String']>> | Maybe<Scalars['String']>>;
-}>;
-
-
-export type AuditBookMutation = (
-  { __typename?: 'Mutation' }
-  & Pick<Mutation, 'auditBook'>
-);
-
-export type UnauditBookMutationVariables = Exact<{
-  ids?: Maybe<Array<Maybe<Scalars['String']>> | Maybe<Scalars['String']>>;
-}>;
-
-
-export type UnauditBookMutation = (
-  { __typename?: 'Mutation' }
-  & Pick<Mutation, 'unauditBook'>
-);
-
-export type SubmitBooksMutationVariables = Exact<{
-  ids?: Maybe<Array<Maybe<Scalars['String']>> | Maybe<Scalars['String']>>;
-}>;
-
-
-export type SubmitBooksMutation = (
-  { __typename?: 'Mutation' }
-  & Pick<Mutation, 'submitBook'>
-);
-
-export type UnsubmitBooksMutationVariables = Exact<{
-  ids?: Maybe<Array<Maybe<Scalars['String']>> | Maybe<Scalars['String']>>;
-}>;
-
-
-export type UnsubmitBooksMutation = (
-  { __typename?: 'Mutation' }
-  & Pick<Mutation, 'unsubmitBook'>
-);
-
-export type BookBriefFragment = (
-  { __typename?: 'Book' }
-  & Pick<Book, 'id' | 'name' | 'auditStatus' | 'createdOn'>
-);
-
-export type BookDetailFragment = (
-  { __typename?: 'Book' }
-  & Pick<Book, 'id' | 'name' | 'auditStatus' | 'createdOn'>
-);
+export enum X_Proj_XLoginProviderEnum {
+  XOrgX = 'x_Org_x'
+}
 
 export type RoleBriefFragment = (
   { __typename?: 'Role' }
@@ -1610,8 +1589,8 @@ export type UserListsQueryVariables = Exact<{
 export type UserListsQuery = (
   { __typename?: 'Query' }
   & { users?: Maybe<(
-    { __typename?: 'UserCollectionSegment' }
-    & Pick<UserCollectionSegment, 'totalCount'>
+    { __typename?: 'UsersCollectionSegment' }
+    & Pick<UsersCollectionSegment, 'totalCount'>
     & { items?: Maybe<Array<Maybe<(
       { __typename?: 'User' }
       & UserListFragment
@@ -1630,7 +1609,7 @@ export type UserByIdQueryVariables = Exact<{
 export type UserByIdQuery = (
   { __typename?: 'Query' }
   & { users?: Maybe<(
-    { __typename?: 'UserCollectionSegment' }
+    { __typename?: 'UsersCollectionSegment' }
     & { items?: Maybe<Array<Maybe<(
       { __typename?: 'User' }
       & UserDetailFragment
@@ -1646,7 +1625,7 @@ export type UserMenusQueryVariables = Exact<{
 export type UserMenusQuery = (
   { __typename?: 'Query' }
   & { users?: Maybe<(
-    { __typename?: 'UserCollectionSegment' }
+    { __typename?: 'UsersCollectionSegment' }
     & { items?: Maybe<Array<Maybe<(
       { __typename?: 'User' }
       & UserMinimalFragment
@@ -1704,8 +1683,8 @@ export type RoleListsQueryVariables = Exact<{
 export type RoleListsQuery = (
   { __typename?: 'Query' }
   & { roles?: Maybe<(
-    { __typename?: 'RoleCollectionSegment' }
-    & Pick<RoleCollectionSegment, 'totalCount'>
+    { __typename?: 'RolesCollectionSegment' }
+    & Pick<RolesCollectionSegment, 'totalCount'>
     & { items?: Maybe<Array<Maybe<(
       { __typename?: 'Role' }
       & RoleBriefFragment
@@ -1724,7 +1703,7 @@ export type RoleMenusQueryVariables = Exact<{
 export type RoleMenusQuery = (
   { __typename?: 'Query' }
   & { roles?: Maybe<(
-    { __typename?: 'RoleCollectionSegment' }
+    { __typename?: 'RolesCollectionSegment' }
     & { items?: Maybe<Array<Maybe<(
       { __typename?: 'Role' }
       & RoleMinimalFragment
@@ -1740,7 +1719,7 @@ export type RoleByNameQueryVariables = Exact<{
 export type RoleByNameQuery = (
   { __typename?: 'Query' }
   & { roles?: Maybe<(
-    { __typename?: 'RoleCollectionSegment' }
+    { __typename?: 'RolesCollectionSegment' }
     & { items?: Maybe<Array<Maybe<(
       { __typename?: 'Role' }
       & RoleDetailFragment
@@ -1756,7 +1735,7 @@ export type RoleByIdQueryVariables = Exact<{
 export type RoleByIdQuery = (
   { __typename?: 'Query' }
   & { roles?: Maybe<(
-    { __typename?: 'RoleCollectionSegment' }
+    { __typename?: 'RolesCollectionSegment' }
     & { items?: Maybe<Array<Maybe<(
       { __typename?: 'Role' }
       & RoleDetailFragment
@@ -1799,7 +1778,7 @@ export type OrgsQueryVariables = Exact<{
 export type OrgsQuery = (
   { __typename?: 'Query' }
   & { orgs?: Maybe<(
-    { __typename?: 'OrgCollectionSegment' }
+    { __typename?: 'OrgsCollectionSegment' }
     & { items?: Maybe<Array<Maybe<(
       { __typename?: 'Org' }
       & OrgBriefFragment
@@ -1898,8 +1877,8 @@ export type MessagesQueryVariables = Exact<{
 export type MessagesQuery = (
   { __typename?: 'Query' }
   & { messages?: Maybe<(
-    { __typename?: 'MessageCollectionSegment' }
-    & Pick<MessageCollectionSegment, 'totalCount'>
+    { __typename?: 'MessagesCollectionSegment' }
+    & Pick<MessagesCollectionSegment, 'totalCount'>
     & { items?: Maybe<Array<Maybe<(
       { __typename?: 'Message' }
       & MessageBriefFragment
@@ -2004,8 +1983,8 @@ export type TenantsQueryVariables = Exact<{
 export type TenantsQuery = (
   { __typename?: 'Query' }
   & { tenants?: Maybe<(
-    { __typename?: 'ITenantCollectionSegment' }
-    & Pick<ITenantCollectionSegment, 'totalCount'>
+    { __typename?: 'TenantsCollectionSegment' }
+    & Pick<TenantsCollectionSegment, 'totalCount'>
     & { items?: Maybe<Array<(
       { __typename?: 'Tenant' }
       & Pick<Tenant, 'code' | 'name' | 'isEnabled' | 'id'>
@@ -2086,8 +2065,8 @@ export type SettingsQueryVariables = Exact<{
 export type SettingsQuery = (
   { __typename?: 'Query' }
   & { settings?: Maybe<(
-    { __typename?: 'SettingCollectionSegment' }
-    & Pick<SettingCollectionSegment, 'totalCount'>
+    { __typename?: 'SettingsCollectionSegment' }
+    & Pick<SettingsCollectionSegment, 'totalCount'>
     & { items?: Maybe<Array<Maybe<(
       { __typename?: 'Setting' }
       & SettingBriefFragment
@@ -2162,8 +2141,8 @@ export type BlobObjectsQueryVariables = Exact<{
 export type BlobObjectsQuery = (
   { __typename?: 'Query' }
   & { blobObjects?: Maybe<(
-    { __typename?: 'BlobObjectCollectionSegment' }
-    & Pick<BlobObjectCollectionSegment, 'totalCount'>
+    { __typename?: 'BlobObjectsCollectionSegment' }
+    & Pick<BlobObjectsCollectionSegment, 'totalCount'>
     & { items?: Maybe<Array<Maybe<(
       { __typename?: 'BlobObject' }
       & BlobObjectBriefFragment
@@ -2213,22 +2192,6 @@ export type OnBroadcastSubscription = (
   ) }
 );
 
-export const BookBriefGql = gql`
-    fragment BookBrief on Book {
-  id
-  name
-  auditStatus
-  createdOn
-}
-    ` as unknown as DocumentNode<BookBriefFragment, unknown>;
-export const BookDetailGql = gql`
-    fragment BookDetail on Book {
-  id
-  name
-  auditStatus
-  createdOn
-}
-    ` as unknown as DocumentNode<BookDetailFragment, unknown>;
 export const RoleBriefGql = gql`
     fragment RoleBrief on Role {
   createdOn
@@ -2448,64 +2411,6 @@ export const OrgCacheItemGql = gql`
   parentOrgCode
 }
     ` as unknown as DocumentNode<OrgCacheItemFragment, unknown>;
-export const BooksGql = gql`
-    query books($input: QueryBookInput!, $skip: Int, $take: Int, $where: BookFilterInput, $order: [BookSortInput!] = [{createdOn: DESC}]) {
-  books(input: $input, skip: $skip, take: $take, where: $where, order: $order) {
-    items {
-      ...BookBrief
-    }
-    pageInfo {
-      ...PageInfo
-    }
-    totalCount
-  }
-}
-    ${BookBriefGql}
-${PageInfoGql}` as unknown as DocumentNode<BooksQuery, BooksQueryVariables>;
-export const BookByIdGql = gql`
-    query bookById($id: String!) {
-  bookById(id: $id) {
-    ...BookDetail
-  }
-}
-    ${BookDetailGql}` as unknown as DocumentNode<BookByIdQuery, BookByIdQueryVariables>;
-export const CreateBooksGql = gql`
-    mutation createBooks($input: CreateBookInput!) {
-  createBook(input: $input) {
-    id
-  }
-}
-    ` as unknown as DocumentNode<CreateBooksMutation, CreateBooksMutationVariables>;
-export const DeleteBooksGql = gql`
-    mutation deleteBooks($ids: [String!]!) {
-  deleteBook(ids: $ids)
-}
-    ` as unknown as DocumentNode<DeleteBooksMutation, DeleteBooksMutationVariables>;
-export const EditBooksGql = gql`
-    mutation editBooks($id: String!, $input: EditBookInput!) {
-  editBook(id: $id, input: $input)
-}
-    ` as unknown as DocumentNode<EditBooksMutation, EditBooksMutationVariables>;
-export const AuditBookGql = gql`
-    mutation auditBook($ids: [String]) {
-  auditBook(ids: $ids)
-}
-    ` as unknown as DocumentNode<AuditBookMutation, AuditBookMutationVariables>;
-export const UnauditBookGql = gql`
-    mutation unauditBook($ids: [String]) {
-  unauditBook(ids: $ids)
-}
-    ` as unknown as DocumentNode<UnauditBookMutation, UnauditBookMutationVariables>;
-export const SubmitBooksGql = gql`
-    mutation submitBooks($ids: [String]) {
-  submitBook(ids: $ids)
-}
-    ` as unknown as DocumentNode<SubmitBooksMutation, SubmitBooksMutationVariables>;
-export const UnsubmitBooksGql = gql`
-    mutation unsubmitBooks($ids: [String]) {
-  unsubmitBook(ids: $ids)
-}
-    ` as unknown as DocumentNode<UnsubmitBooksMutation, UnsubmitBooksMutationVariables>;
 export const UserListsGql = gql`
     query userLists($skip: Int, $take: Int, $where: IUserFilterInput) {
   users(skip: $skip, take: $take, where: $where) {

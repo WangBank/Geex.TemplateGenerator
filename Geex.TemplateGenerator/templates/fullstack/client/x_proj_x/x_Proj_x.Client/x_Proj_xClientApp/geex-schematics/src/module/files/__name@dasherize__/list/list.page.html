@@ -1,6 +1,6 @@
-<!-- [acl]="AppPermission.<%= classify(name) %>sMutationCreate<%= classify(name) %>" -->
+<!-- [acl]="AppPermission.<%= classify(name) %>sMutationCreate<%= classify(aggregateName) %>" -->
 
-<page-header [title]="'<%= classify(name) %>管理'"
+<page-header [title]="'<%= classify(aggregateName) %>管理'"
              [tab]="phTab"
              [extra]="phExtra"
              [action]="phActionTpl">
@@ -35,7 +35,7 @@
     </nz-form-item>
   </form>
   <ng-template #phExtra>
-    <!-- [acl]="AppPermission.<%= classify(name) %>MutationCreate<%= classify(name) %>" -->
+    <!-- [acl]="AppPermission.<%= classify(name) %>MutationCreate<%= classify(aggregateName) %>" -->
     <button (click)="add()"
             nz-button
             nzType="primary">
@@ -75,7 +75,7 @@
         </a>
         <ng-container>
           <nz-divider nzType="vertical"></nz-divider>
-          <a (click)="batchOperation('delete','<%= classify(name) %>')"><i nz-icon
+          <a (click)="batchOperation('delete','<%= classify(aggregateName) %>')"><i nz-icon
                nzType="delete"></i>
             批量删除
           </a>

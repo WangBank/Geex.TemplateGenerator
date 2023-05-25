@@ -21,7 +21,10 @@ namespace x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs
         protected override void Configure(IObjectTypeDescriptor<x_Aggregate_xQuery> descriptor)
         {
             descriptor.Field(x => x.x_Aggregate_xs(default))
-            .UseOffsetPaging<x_Aggregate_xGqlType>();
+            .UseOffsetPaging<x_Aggregate_xGqlType>()
+            .UseFiltering<x_Aggregate_x>()
+            .UseSorting<x_Aggregate_x>()
+            ;
             base.Configure(descriptor);
         }
 
@@ -36,5 +39,14 @@ namespace x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs
             return result;
         }
 
+        /// <summary>
+        /// 列表获取_aggregate_
+        /// </summary>
+        /// <returns></returns>
+        public async Task<x_Aggregate_x> x_Aggregate_xById(string id)
+        {
+            var result = _dbContext.Queryable<x_Aggregate_x>().FirstOrDefault(x => x.Id == id);
+            return result;
+        }
     }
 }

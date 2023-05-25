@@ -1,30 +1,30 @@
-<page-header [title]="context.id?'<%= classify(name) %>：'+context.id:'新增'"
-            *ngIf="context"
-            [extra]="phExtra"
-            [action]="phActionTpl">
-            
-            <ng-template #phExtra>
-              <nz-row>
-                <!-- [acl]="AppPermission.<%= classify(name) %>MutationAudit<%= classify(name) %>" -->
-                <!-- <button (click)="null"
+<page-header [title]="context.id?'<%= classify(aggregateName) %>：'+context.id:'新增'"
+             *ngIf="context"
+             [extra]="phExtra"
+             [action]="phActionTpl">
+
+  <ng-template #phExtra>
+    <nz-row>
+      <!-- [acl]="AppPermission.<%= classify(name) %>MutationAudit<%= classify(aggregateName) %>" -->
+      <!-- <button (click)="null"
                                       *ngIf="context.entity.auditable"
                                       nz-button
                                       nzType="primary">
                                 <i nz-icon
                                    nzType="audit"></i>
                                 审批</button> -->
-                <!-- [acl]="AppPermission.<%= classify(name) %>MutationSubmit<%= classify(name) %>" -->
-                <!-- <button (click)="null"
+      <!-- [acl]="AppPermission.<%= classify(name) %>MutationSubmit<%= classify(aggregateName) %>" -->
+      <!-- <button (click)="null"
                                       *ngIf="context.entity.submittable"
                                       nz-button
                                       nzType="primary">
                                 <i nz-icon
                                    nzType="upload"></i>
                                 上报</button> -->
-              </nz-row>
-            </ng-template>
-            <ng-template #phActionTpl>
-              <!-- <nz-row [ngSwitch]="context.originalValue.auditStatus"
+    </nz-row>
+  </ng-template>
+  <ng-template #phActionTpl>
+    <!-- <nz-row [ngSwitch]="context.originalValue.auditStatus"
                                   style="display: flex; align-items: center;">
                             <nz-tag *ngSwitchCase="AuditStatus.Audited"
                                     nzColor="success">
@@ -58,7 +58,7 @@
                               <span>待提交</span>
                             </nz-tag>
                           </nz-row> -->
-            </ng-template>
+  </ng-template>
 </page-header>
 
 <nz-card *ngIf="context">
