@@ -4,12 +4,14 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
     <IsPackable>false</IsPackable>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\_org_._proj_._mod_.Core\_org_._proj_._mod_.Core.csproj" />
+    <ProjectReference Include="..\x_Org_x.x_Proj_x.x_Mod_x.Core\x_Org_x.x_Proj_x.x_Mod_x.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Geex.Common.Testing" Version="3.0.35" />
+    <PackageReference Include="Geex.Common.Testing" Version="3.0.43" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">

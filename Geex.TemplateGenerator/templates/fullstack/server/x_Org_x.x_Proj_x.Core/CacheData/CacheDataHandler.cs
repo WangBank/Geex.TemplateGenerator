@@ -46,7 +46,7 @@ namespace x_Org_x.x_Proj_x.Core.CacheData
         private async Task NotifyCacheDataChange(CacheDataType type)
         {
             // bug:这里的type无法正常序列化为枚举, 暂时toString
-            await this._topicEventSender.SendAsync<string, IFrontendCall>(nameof(MessageSubscription.OnBroadcast), new FrontendCall(x_Proj_xFrontCallType.CacheDataChange, JsonSerializer.SerializeToNode(new { Type = type.ToString() })));
+            await this._topicEventSender.SendAsync<IFrontendCall>(nameof(MessageSubscription.OnBroadcast), new FrontendCall(x_Proj_xFrontCallType.CacheDataChange, JsonSerializer.SerializeToNode(new { Type = type.ToString() })));
         }
     }
 }

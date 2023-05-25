@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["_org_._proj_._mod_/_org_._proj_._mod_.csproj", "_org_._proj_._mod_/"]
-RUN dotnet restore "_org_._proj_._mod_/_org_._proj_._mod_.csproj"
+COPY ["x_Org_x.x_Proj_x.x_Mod_x/x_Org_x.x_Proj_x.x_Mod_x.csproj", "x_Org_x.x_Proj_x.x_Mod_x/"]
+RUN dotnet restore "x_Org_x.x_Proj_x.x_Mod_x/x_Org_x.x_Proj_x.x_Mod_x.csproj"
 COPY . .
-WORKDIR "/src/_org_._proj_._mod_"
-RUN dotnet build "_org_._proj_._mod_.csproj" -c Release -o /app/build
+WORKDIR "/src/x_Org_x.x_Proj_x.x_Mod_x"
+RUN dotnet build "x_Org_x.x_Proj_x.x_Mod_x.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "_org_._proj_._mod_.csproj" -c Release -o /app/publish
+RUN dotnet publish "x_Org_x.x_Proj_x.x_Mod_x.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "_org_._proj_._mod_.dll"]
+ENTRYPOINT ["dotnet", "x_Org_x.x_Proj_x.x_Mod_x.dll"]

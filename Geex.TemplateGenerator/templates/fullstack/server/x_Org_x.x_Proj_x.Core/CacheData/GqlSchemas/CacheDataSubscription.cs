@@ -14,7 +14,7 @@ namespace x_Org_x.x_Proj_x.Core.CacheData.GqlSchemas
         [SubscribeAndResolve]
         public ValueTask<ISourceStream<IFrontendCall>> OnCacheDataChange([Service] ITopicEventReceiver receiver)
         {
-            return receiver.SubscribeAsync<string, IFrontendCall>(x_Proj_xFrontCallType.CacheDataChange);
+            return receiver.SubscribeAsync<IFrontendCall>(x_Proj_xFrontCallType.CacheDataChange);
         }
     }
 }

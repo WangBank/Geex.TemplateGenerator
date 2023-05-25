@@ -6,7 +6,7 @@ using GeexBox.ElasticSearch.Zero.Logging.Elasticsearch;
 using Autofac.Extensions.DependencyInjection;
 using Volo.Abp.DependencyInjection;
 
-namespace _org_._proj_._mod_
+namespace x_Org_x.x_Proj_x.x_Mod_x
 {
     public class Program
     {

@@ -1,8 +1,8 @@
 ﻿using Geex.Common.Abstraction.Gql.Types;
 
-namespace _org_._proj_._mod_.Core.GqlSchemas._aggregate_s
+namespace x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs
 {
-    public class _aggregate_Subscription : SubscriptionExtension<_aggregate_Subscription>
+    public class x_Aggregate_xSubscription : SubscriptionExtension<x_Aggregate_xSubscription>
     {
         // todo
     }

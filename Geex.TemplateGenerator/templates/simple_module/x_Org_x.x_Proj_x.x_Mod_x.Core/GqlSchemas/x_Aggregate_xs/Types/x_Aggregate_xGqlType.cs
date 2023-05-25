@@ -1,14 +1,15 @@
-﻿using _org_._proj_._mod_.Core.Aggregates._aggregate_s;
+﻿using x_Org_x.x_Proj_x.x_Mod_x.Core.Aggregates.x_Aggregate_xs;
 using HotChocolate.Types;
 
-namespace _org_._proj_._mod_.Core.GqlSchemas._aggregate_s.Types
+namespace x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs.Types
 {
-    public class _aggregate_GqlType : ObjectType<_aggregate_>
+    public class x_Aggregate_xGqlType : ObjectType<x_Aggregate_x>
     {
-        protected override void Configure(IObjectTypeDescriptor<_aggregate_> descriptor)
+        protected override void Configure(IObjectTypeDescriptor<x_Aggregate_x> descriptor)
         {
             // Implicitly binding all fields, if you want to bind fields explicitly, read more about hot chocolate
             descriptor.BindFieldsImplicitly();
+            descriptor.ConfigEntity();
             base.Configure(descriptor);
         }
     }

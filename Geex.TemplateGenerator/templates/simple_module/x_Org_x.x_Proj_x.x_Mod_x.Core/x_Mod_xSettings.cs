@@ -1,18 +1,18 @@
 ﻿using System.Text.Json.Nodes;
 using Geex.Common.Settings.Abstraction;
 
-namespace _org_._proj_._mod_.Core
+namespace x_Org_x.x_Proj_x.x_Mod_x.Core
 {
-    public class _mod_Settings : SettingDefinition
+    public class x_Mod_xSettings : SettingDefinition
     {
-        public _mod_Settings(string name,
+        public x_Mod_xSettings(string name,
             SettingScopeEnumeration[] validScopes = default,
             string description = null,
             JsonNode defaultValue = null,
-            bool isHiddenForClients = false) : base(nameof(_mod_) + name, validScopes, description, isHiddenForClients, defaultValue)
+            bool isHiddenForClients = false) : base(nameof(x_Mod_x) + name, validScopes, description, isHiddenForClients, defaultValue)
         {
         }
-        public static _mod_Settings ModuleName { get; } = new(nameof(ModuleName), new[] { SettingScopeEnumeration.Global, }, "name of this module", "_mod_");
+        public static x_Mod_xSettings ModuleName { get; } = new(nameof(ModuleName), new[] { SettingScopeEnumeration.Global, }, "name of this module", "x_Mod_x");
 
     }
 }

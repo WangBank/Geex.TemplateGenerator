@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Geex.Common.Settings" Version="3.0.35" />
+    <PackageReference Include="Geex.Common.Settings" Version="3.0.43" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,8 @@
 using MediatR;
 
-namespace _org_._proj_._mod_.Core.GqlSchemas._aggregate_s.Inputs
+namespace x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs.Inputs
 {
-    public class Edit_aggregate_Request : IRequest<Unit>
+    public class Editx_Aggregate_xRequest : IRequest<Unit>
     {
         public string Id { get; set; }
         public string Name { get; set; }

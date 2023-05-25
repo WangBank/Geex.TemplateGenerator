@@ -1,16 +1,7 @@
 {
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "https://127.0.0.1:8020/",
-      "sslPort": 8000
-    }
-  },
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,26 +11,26 @@
       "executablePath": "dotnet",
       "commandLineArgs": "watch run",
       "workingDirectory": "$(ProjectDir)",
-      "launchBrowser": false,
-      "applicationUrl": "https://127.0.0.1:8020",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
+      "applicationUrl": "https://127.0.0.1:8020",
       "dotnetRunMessages": true
     },
     "x_Org_x.x_Proj_x.Server": {
       "commandName": "Project",
-      "launchBrowser": false,
-      "applicationUrl": "https://127.0.0.1:8020",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "Docker": {
-      "commandName": "Docker",
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
-      "publishAllPorts": true,
-      "useSSL": true
+      },
+      "applicationUrl": "https://127.0.0.1:8020"
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "https://127.0.0.1:8020/",
+      "sslPort": 8000
     }
   }
 }

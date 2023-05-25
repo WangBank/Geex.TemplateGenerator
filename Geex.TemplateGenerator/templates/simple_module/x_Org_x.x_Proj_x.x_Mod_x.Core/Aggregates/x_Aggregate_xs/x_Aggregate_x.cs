@@ -1,13 +1,13 @@
 ﻿using Geex.Common.Abstraction.Storage;
 
-namespace _org_._proj_._mod_.Core.Aggregates._aggregate_s
+namespace x_Org_x.x_Proj_x.x_Mod_x.Core.Aggregates.x_Aggregate_xs
 {
     /// <summary>
     /// this is a aggregate root of this module, we name it the same as the module feel free to change it to its real name
     /// </summary>
-    public class _aggregate_ : Entity<_aggregate_>
+    public class x_Aggregate_x : Entity<x_Aggregate_x>
     {
-        public _aggregate_(string name)
+        public x_Aggregate_x(string name)
         {
             Name = name;
         }

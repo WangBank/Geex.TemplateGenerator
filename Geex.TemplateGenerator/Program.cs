@@ -40,10 +40,14 @@ namespace Geex.TemplateGenerator
             var aggregateP = aggregateName.Pascalize();
 
             var cwd = Directory.GetCurrentDirectory();
-            var target = Path.Combine(cwd, ".generated");
+            var target = Path.Combine(cwd, $".generated/{orgP}.{projP}.{moduleP}");
             var templatePath = "../../../templates/" + templateName;
             var renameEntries = Directory.GetFileSystemEntries(templatePath, "*", SearchOption.AllDirectories);
-            renameEntries = renameEntries.Where(x => !x.Contains("\\node_modules")).Where(x => !x.Contains("\\.submodules")).ToArray();
+            renameEntries = renameEntries
+                .Where(x => !x.Contains("\\.vs\\"))
+                .Where(x => !x.Contains("\\bin\\Debug\\"))
+                .Where(x => !x.Contains("\\obj\\"))
+                .Where(x => !x.Contains("\\.submodules")).ToArray();
             var total = renameEntries.Length;
             Parallel.ForEach(renameEntries, (renameEntry, _, index) =>
             {

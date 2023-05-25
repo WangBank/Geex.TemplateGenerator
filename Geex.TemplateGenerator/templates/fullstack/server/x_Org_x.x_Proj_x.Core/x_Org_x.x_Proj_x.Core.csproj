@@ -21,15 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Geex.Common.Abstraction" Version="3.0.38" />
-    <PackageReference Include="Geex.Common.Authorization" Version="3.0.38" />
-    <PackageReference Include="Geex.Common.BlobStorage" Version="3.0.38" />
-    <PackageReference Include="Geex.Common.Identity" Version="3.0.38" />
-    <PackageReference Include="Geex.Common.Logging" Version="3.0.38" />
-    <PackageReference Include="Geex.Common.Messaging" Version="3.0.38" />
-    <PackageReference Include="Geex.Common.MultiTenant" Version="3.0.38" />
-    <PackageReference Include="Geex.Common.Settings" Version="3.0.38" />
-    <PackageReference Include="Geex.Common" Version="3.0.38" />
+    <PackageReference Include="Geex.Common.Abstraction" Version="3.0.43" />
+    <PackageReference Include="Geex.Common.Authorization" Version="3.0.43" />
+    <PackageReference Include="Geex.Common.BlobStorage" Version="3.0.43" />
+    <PackageReference Include="Geex.Common.Identity" Version="3.0.43" />
+    <PackageReference Include="Geex.Common.Logging" Version="3.0.43" />
+    <PackageReference Include="Geex.Common.Messaging" Version="3.0.43" />
+    <PackageReference Include="Geex.Common.MultiTenant" Version="3.0.43" />
+    <PackageReference Include="Geex.Common.Settings" Version="3.0.43" />
+    <PackageReference Include="Geex.Common" Version="3.0.43" />
   </ItemGroup>
 
   <ItemGroup>

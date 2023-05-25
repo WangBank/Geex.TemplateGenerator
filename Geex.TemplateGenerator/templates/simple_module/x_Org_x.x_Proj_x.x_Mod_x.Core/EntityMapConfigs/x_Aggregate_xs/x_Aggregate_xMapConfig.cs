@@ -1,15 +1,15 @@
-﻿using _org_._proj_._mod_.Core.Aggregates._aggregate_s;
+﻿using x_Org_x.x_Proj_x.x_Mod_x.Core.Aggregates.x_Aggregate_xs;
 using Geex.Common.Abstraction;
 using MongoDB.Bson.Serialization;
 
-namespace _org_._proj_._mod_.Core.EntityMapConfigs._aggregate_s
+namespace x_Org_x.x_Proj_x.x_Mod_x.Core.EntityMapConfigs.x_Aggregate_xs
 {
-    public class _aggregate_MapConfig : EntityMapConfig<_aggregate_>
+    public class x_Aggregate_xMapConfig : EntityMapConfig<x_Aggregate_x>
     {
-        public override void Map(BsonClassMap<_aggregate_> map)
+        public override void Map(BsonClassMap<x_Aggregate_x> map)
         {
             map.SetIsRootClass(true);
-            map.Inherit<_aggregate_>();
+            map.Inherit<x_Aggregate_x>();
             map.AutoMap();
         }
     }

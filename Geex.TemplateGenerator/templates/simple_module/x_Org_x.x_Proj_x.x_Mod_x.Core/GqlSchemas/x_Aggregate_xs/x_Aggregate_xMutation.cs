@@ -1,53 +1,53 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using _org_._proj_._mod_.Core.Aggregates._aggregate_s;
-using _org_._proj_._mod_.Core.GqlSchemas._aggregate_s.Inputs;
+using x_Org_x.x_Proj_x.x_Mod_x.Core.Aggregates.x_Aggregate_xs;
+using x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs.Inputs;
 using Geex.Common.Abstraction.Gql.Types;
 using MongoDB.Entities;
 
-namespace _org_._proj_._mod_.Core.GqlSchemas._aggregate_s
+namespace x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs
 {
-    public class _aggregate_Mutation : MutationExtension<_aggregate_Mutation>
+    public class x_Aggregate_xMutation : MutationExtension<x_Aggregate_xMutation>
     {
         private readonly DbContext _dbContext;
 
-        public _aggregate_Mutation(DbContext dbContext)
+        public x_Aggregate_xMutation(DbContext dbContext)
         {
             _dbContext = dbContext;
         }
         /// <summary>
-        /// 创建_aggregate_
+        /// 创建x_Aggregate_x
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<_aggregate_> Create_aggregate_(
-            Create_aggregate_Request input)
+        public async Task<x_Aggregate_x> Createx_Aggregate_x(
+            Createx_Aggregate_xRequest input)
         {
-            var entity = new _aggregate_(input.Name);
+            var entity = new x_Aggregate_x(input.Name);
             return _dbContext.Attach(entity);
         }
 
         /// <summary>
-        /// 编辑_aggregate_
+        /// 编辑x_Aggregate_x
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<bool> Edit_aggregate_(Edit_aggregate_Request input)
+        public async Task<bool> Editx_Aggregate_x(Editx_Aggregate_xRequest input)
         {
-            var entity = _dbContext.Queryable<_aggregate_>().FirstOrDefault(x=>x.Id == input.Id);
+            var entity = _dbContext.Queryable<x_Aggregate_x>().FirstOrDefault(x=>x.Id == input.Id);
             entity.Name = input.Name;
             return true;
         }
 
         /// <summary>
-        /// 删除_aggregate_
+        /// 删除x_Aggregate_x
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<bool> Delete_aggregate_(
-            Delete_aggregate_Request input)
+        public async Task<bool> Deletex_Aggregate_x(
+            Deletex_Aggregate_xRequest input)
         {
-            await _dbContext.DeleteAsync<_aggregate_>(x=>input.Ids.Contains(x.Id));
+            await _dbContext.DeleteAsync<x_Aggregate_x>(x=>input.Ids.Contains(x.Id));
             return true;
         }
     }

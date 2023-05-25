@@ -1,8 +1,8 @@
 ﻿using Geex.Common.Abstractions;
 
-namespace _org_._proj_._mod_.Core
+namespace x_Org_x.x_Proj_x.x_Mod_x.Core
 {
-    public class _proj__mod_CoreModule : GeexModule<_proj__mod_CoreModule>
+    public class x_Proj_xx_Mod_xCoreModule : GeexModule<x_Proj_xx_Mod_xCoreModule>
     {
     }
 }

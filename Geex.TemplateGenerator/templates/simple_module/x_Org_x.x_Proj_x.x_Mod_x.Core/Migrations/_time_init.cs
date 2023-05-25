@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Entities;
-using _org_._proj_._mod_.Core.Aggregates._aggregate_s;
+using x_Org_x.x_Proj_x.x_Mod_x.Core.Aggregates.x_Aggregate_xs;
 
-namespace _org_._proj_._mod_.Core.Migrations
+namespace x_Org_x.x_Proj_x.x_Mod_x.Core.Migrations
 {
     //public class _time_init : IMigration
     //{
     //    public override async Task UpgradeAsync(DbContext dbContext)
     //    {
-    //        var _aggregate_Entity = new _aggregate_()
+    //        var x_Aggregate_xEntity = new x_Aggregate_x()
     //        {
-    //            Name = "_aggregate_",
+    //            Name = "x_Aggregate_x",
     //        };
-    //        dbContext.AttachContextSession(_aggregate_Entity);
-    //        await _aggregate_Entity.SaveAsync();
+    //        dbContext.AttachContextSession(x_Aggregate_xEntity);
+    //        await x_Aggregate_xEntity.SaveAsync();
     //    }
     //}
 }
