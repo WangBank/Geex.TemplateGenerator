@@ -5,58 +5,49 @@ import { isEqual } from "lodash-es";
 
 import { EditDataContext, RoutedEditComponent } from "../../../shared/components/routed-components/routed-edit.component.base";
 import {
-  <%= classify(aggregateName) %>ByIdQuery,
-  <%= classify(aggregateName) %>ByIdQueryVariables,
-  <%= classify(aggregateName) %>ByIdGql,
-  Create<%= classify(aggregateName) %>sGql,
-  Create<%= classify(aggregateName) %>Input,
-  Edit<%= classify(aggregateName) %>Input,
-  Edit<%= classify(aggregateName) %>sGql,
-  <%= classify(aggregateName) %>,
+  <%= classify(name) %>ByIdQuery,
+  <%= classify(name) %>ByIdQueryVariables,
+  <%= classify(name) %>ByIdGql,
+  Create<%= classify(name) %>sGql,
+  Create<%= classify(name) %>Input,
+  Edit<%= classify(name) %>Input,
+  Edit<%= classify(name) %>sGql,
+  <%= classify(name) %>,
 } from "../../../shared/graphql/.generated/type";
 import { EditMode } from "../../../shared/types/common";
 
-type EntityEditablePart = Pick<<%= classify(aggregateName) %>, "name">;
+type EntityEditablePart = Pick<<%= classify(name) %>, "name">;
 
-export type <%= classify(aggregateName) %>EditPageParams = {
+export type <%= classify(name) %>EditPageParams = {
   id: string;
   name: string;
 };
-type <%= classify(aggregateName) %>EditPageContext = EditDataContext<<%= classify(aggregateName) %>, "name"> & {
+type <%= classify(name) %>EditPageContext = EditDataContext<<%= classify(name) %>, "name"> & {
   disabled: boolean;
 };
 
 @Component({
-  selector: "app-<%= dasherize(aggregateName) %>-edit",
+  selector: "app-<%= dasherize(name) %>-edit",
   templateUrl: "./edit.page.html",
   styles: [],
 })
-export class <%= classify(aggregateName) %>EditPage extends RoutedEditComponent<<%= classify(aggregateName) %>EditPageParams, <%= classify(aggregateName) %>, "name"> {
+export class <%= classify(name) %>EditPage extends RoutedEditComponent<<%= classify(name) %>EditPageParams, <%= classify(name) %>, "name"> {
   mode: EditMode;
-  context: <%= classify(aggregateName) %>EditPageContext;
+  context: <%= classify(name) %>EditPageContext;
 
   constructor(injector: Injector) {
     super(injector);
   }
 
-  close() {
-    if (isEqual(this.context.entityForm.value, this.context.originalValue)) {
-      this.back();
-    } else {
-      this.nzModalSrv.confirm({
-        nzTitle: "当前页面内容未保存，确定离开？",
-        nzOnOk: () => {
-          this.back();
-        },
-      });
-    }
+  override close() {
+    return super.close();
   }
 
   async fetchData() {
     let params = this.params.value;
     const id = params.id;
     this.mode = id ? "edit" : "create";
-    let result: <%= classify(aggregateName) %>EditPageContext={
+    let result: <%= classify(name) %>EditPageContext={
       id,
       disabled: false,
     }
@@ -65,14 +56,14 @@ export class <%= classify(aggregateName) %>EditPage extends RoutedEditComponent<
     let formConfig: { [key in keyof EntityEditablePart]: FormControl };
     if (id) {
       let res = await this.apollo
-        .query<<%= classify(aggregateName) %>ByIdQuery, <%= classify(aggregateName) %>ByIdQueryVariables>({
-          query: <%= classify(aggregateName) %>ByIdGql,
+        .query<<%= classify(name) %>ByIdQuery, <%= classify(name) %>ByIdQueryVariables>({
+          query: <%= classify(name) %>ByIdGql,
           variables: {
             id: id,
           },
         })
         .toPromise();
-      let entity = res.data.<%= camelize(aggregateName) %>ById;
+      let entity = res.data.<%= camelize(name) %>ById;
       result.entity = entity;
       formConfig = { name: new FormControl(entity.name) };
     } else {
@@ -88,11 +79,11 @@ export class <%= classify(aggregateName) %>EditPage extends RoutedEditComponent<
     if (this.mode === "create") {
       await this.apollo
         .mutate({
-          mutation: Create<%= classify(aggregateName) %>sGql,
+          mutation: Create<%= classify(name) %>sGql,
           variables: {
             input: {
               name: this.context.entityForm.value.name,
-            } as Create<%= classify(aggregateName) %>Input,
+            } as Create<%= classify(name) %>Input,
           },
         })
         .toPromise();
@@ -102,12 +93,12 @@ export class <%= classify(aggregateName) %>EditPage extends RoutedEditComponent<
       if (this.mode === "edit") {
         await this.apollo
           .mutate({
-            mutation: Edit<%= classify(aggregateName) %>sGql,
+            mutation: Edit<%= classify(name) %>sGql,
             variables: {
               id: this.context.id,
               input: {
                 name: this.context.entityForm.value.name,
-              } as Edit<%= classify(aggregateName) %>Input,
+              } as Edit<%= classify(name) %>Input,
             },
           })
           .toPromise();

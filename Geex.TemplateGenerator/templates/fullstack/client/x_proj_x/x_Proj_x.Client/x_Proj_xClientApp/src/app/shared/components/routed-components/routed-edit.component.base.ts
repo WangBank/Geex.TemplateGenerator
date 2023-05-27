@@ -44,20 +44,33 @@ export abstract class RoutedEditComponent<
     super(injector);
   }
 
-  close() {
-    if (isEqual(this.context.entityForm.value, this.context.originalValue)) {
-      this.back();
-    } else {
-      this.nzModalSrv.confirm({
-        nzTitle: "当前页面内容未保存，确定离开？",
-        nzOnOk: () => {
-          this.back();
-        },
-      });
+  async close() {
+    if (await this.closableCheck()) {
+      await this.back();
     }
   }
 
+  closableCheck() {
+    if (isEqual(this.context.entityForm.value, this.context.originalValue)) {
+      return Promise.resolve(true);
+    }
+    let promise = new Promise<boolean>((resolve, reject) => {
+      this.nzModalSrv.confirm({
+        nzTitle: "当前页面内容未保存，确定离开？",
+        nzOnOk: async () => {
+          this.context.entityForm.reset(this.context.originalValue);
+          this.context.entityForm.markAsPristine();
+          resolve(true);
+        },
+        nzOnCancel: () => {
+          resolve(false);
+        },
+      });
+    });
+    return promise;
+  }
+
   async back(reload: boolean = false) {
-    await this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true, forceReload: true });
+    await this.router.navigate(["../"], { relativeTo: this.route, replaceUrl: true, forceReload: reload });
   }
 }

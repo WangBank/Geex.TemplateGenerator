@@ -17,12 +17,15 @@ export type BlobObjectsCollectionSegmentFieldPolicy = {
 	items?: FieldPolicy<any> | FieldReadFunction<any>,
 	totalCount?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type BookKeySpecifier = ('id' | 'createdOn' | 'modifiedOn' | 'name' | BookKeySpecifier)[];
+export type BookKeySpecifier = ('id' | 'createdOn' | 'modifiedOn' | 'auditStatus' | 'submittable' | 'name' | 'auditRemark' | BookKeySpecifier)[];
 export type BookFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdOn?: FieldPolicy<any> | FieldReadFunction<any>,
 	modifiedOn?: FieldPolicy<any> | FieldReadFunction<any>,
-	name?: FieldPolicy<any> | FieldReadFunction<any>
+	auditStatus?: FieldPolicy<any> | FieldReadFunction<any>,
+	submittable?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	auditRemark?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type BooksCollectionSegmentKeySpecifier = ('pageInfo' | 'items' | 'totalCount' | BooksCollectionSegmentKeySpecifier)[];
 export type BooksCollectionSegmentFieldPolicy = {
@@ -180,7 +183,7 @@ export type MessagesCollectionSegmentFieldPolicy = {
 	items?: FieldPolicy<any> | FieldReadFunction<any>,
 	totalCount?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MutationKeySpecifier = ('_' | 'authenticate' | 'federateAuthenticate' | 'cancelAuthentication' | 'createTenant' | 'editTenant' | 'toggleTenantAvailability' | 'checkTenant' | 'changePassword' | 'register' | 'assignRoles' | 'assignOrgs' | 'editUser' | 'createUser' | 'resetUserPassword' | 'createOrg' | 'fixUserOrg' | 'createRole' | 'setRoleDefault' | 'markMessagesRead' | 'deleteMessageDistributions' | 'sendMessage' | 'createMessage' | 'editMessage' | 'createBlobObject' | 'deleteBlobObject' | 'editSetting' | 'authorize' | 'generateCaptcha' | 'validateCaptcha' | 'submitx_Aggregate_x' | 'auditx_Aggregate_x' | 'unsubmitx_Aggregate_x' | 'unauditx_Aggregate_x' | 'createx_Aggregate_x' | 'editx_Aggregate_x' | 'deletex_Aggregate_x' | 'createBook' | 'editBook' | 'deleteBook' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('_' | 'authenticate' | 'federateAuthenticate' | 'cancelAuthentication' | 'createTenant' | 'editTenant' | 'toggleTenantAvailability' | 'checkTenant' | 'changePassword' | 'register' | 'assignRoles' | 'assignOrgs' | 'editUser' | 'createUser' | 'resetUserPassword' | 'createOrg' | 'fixUserOrg' | 'createRole' | 'setRoleDefault' | 'markMessagesRead' | 'deleteMessageDistributions' | 'sendMessage' | 'createMessage' | 'editMessage' | 'createBlobObject' | 'deleteBlobObject' | 'editSetting' | 'authorize' | 'generateCaptcha' | 'validateCaptcha' | 'submitx_Aggregate_x' | 'auditx_Aggregate_x' | 'unsubmitx_Aggregate_x' | 'unauditx_Aggregate_x' | 'createx_Aggregate_x' | 'editx_Aggregate_x' | 'deletex_Aggregate_x' | 'submitBook' | 'auditBook' | 'unsubmitBook' | 'unauditBook' | 'createBook' | 'editBook' | 'deleteBook' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
 	_?: FieldPolicy<any> | FieldReadFunction<any>,
 	authenticate?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -219,6 +222,10 @@ export type MutationFieldPolicy = {
 	createx_Aggregate_x?: FieldPolicy<any> | FieldReadFunction<any>,
 	editx_Aggregate_x?: FieldPolicy<any> | FieldReadFunction<any>,
 	deletex_Aggregate_x?: FieldPolicy<any> | FieldReadFunction<any>,
+	submitBook?: FieldPolicy<any> | FieldReadFunction<any>,
+	auditBook?: FieldPolicy<any> | FieldReadFunction<any>,
+	unsubmitBook?: FieldPolicy<any> | FieldReadFunction<any>,
+	unauditBook?: FieldPolicy<any> | FieldReadFunction<any>,
 	createBook?: FieldPolicy<any> | FieldReadFunction<any>,
 	editBook?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteBook?: FieldPolicy<any> | FieldReadFunction<any>

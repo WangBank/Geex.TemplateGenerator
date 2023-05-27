@@ -132,18 +132,24 @@ export enum BlobStorageType {
   RedisCache = 'RedisCache'
 }
 
-export interface Book extends IEntityBase {
+export interface Book extends IEntityBase, IAuditEntity {
   __typename?: 'Book';
   id?: Maybe<Scalars['String']>;
   createdOn: Scalars['DateTime'];
   modifiedOn: Scalars['DateTime'];
+  auditStatus: AuditStatus;
+  submittable: Scalars['Boolean'];
   name: Scalars['String'];
+  auditRemark?: Maybe<Scalars['String']>;
 }
 
 export interface BookFilterInput {
   and?: Maybe<Array<BookFilterInput>>;
   or?: Maybe<Array<BookFilterInput>>;
   name?: Maybe<StringOperationFilterInput>;
+  auditStatus?: Maybe<AuditStatusOperationFilterInput>;
+  auditRemark?: Maybe<StringOperationFilterInput>;
+  submittable?: Maybe<BooleanOperationFilterInput>;
   modifiedOn?: Maybe<DateTimeOperationFilterInput>;
   id?: Maybe<StringOperationFilterInput>;
   createdOn?: Maybe<DateTimeOperationFilterInput>;
@@ -151,6 +157,9 @@ export interface BookFilterInput {
 
 export interface BookSortInput {
   name?: Maybe<SortEnumType>;
+  auditStatus?: Maybe<SortEnumType>;
+  auditRemark?: Maybe<SortEnumType>;
+  submittable?: Maybe<SortEnumType>;
   modifiedOn?: Maybe<SortEnumType>;
   id?: Maybe<SortEnumType>;
   createdOn?: Maybe<SortEnumType>;
@@ -234,7 +243,7 @@ export interface CreateBlobObjectRequestInput {
   md5?: Maybe<Scalars['String']>;
 }
 
-export interface CreateBookRequestInput {
+export interface CreateBookInput {
   name: Scalars['String'];
 }
 
@@ -739,6 +748,10 @@ export interface Mutation {
   editx_Aggregate_x: Scalars['Boolean'];
   /** 删除x_Aggregate_x */
   deletex_Aggregate_x: Scalars['Boolean'];
+  submitBook?: Maybe<Scalars['Boolean']>;
+  auditBook?: Maybe<Scalars['Boolean']>;
+  unsubmitBook?: Maybe<Scalars['Boolean']>;
+  unauditBook?: Maybe<Scalars['Boolean']>;
   createBook: Book;
   editBook: Scalars['Boolean'];
   deleteBook: Scalars['Boolean'];
@@ -920,8 +933,32 @@ export interface MutationDeletex_Aggregate_XArgs {
 }
 
 
+export interface MutationSubmitBookArgs {
+  ids?: Maybe<Array<Maybe<Scalars['String']>>>;
+  remark?: Maybe<Scalars['String']>;
+}
+
+
+export interface MutationAuditBookArgs {
+  ids?: Maybe<Array<Maybe<Scalars['String']>>>;
+  remark?: Maybe<Scalars['String']>;
+}
+
+
+export interface MutationUnsubmitBookArgs {
+  ids?: Maybe<Array<Maybe<Scalars['String']>>>;
+  remark?: Maybe<Scalars['String']>;
+}
+
+
+export interface MutationUnauditBookArgs {
+  ids?: Maybe<Array<Maybe<Scalars['String']>>>;
+  remark?: Maybe<Scalars['String']>;
+}
+
+
 export interface MutationCreateBookArgs {
-  input: CreateBookRequestInput;
+  input: CreateBookInput;
 }
 
 
@@ -1088,7 +1125,7 @@ export interface QueryX_Aggregate_XByIdArgs {
 export interface QueryBooksArgs {
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
-  input: QueryBookRequestInput;
+  input: QueryBookInput;
   where?: Maybe<BookFilterInput>;
   order?: Maybe<Array<BookSortInput>>;
 }
@@ -1098,7 +1135,7 @@ export interface QueryBookByIdArgs {
   id: Scalars['String'];
 }
 
-export interface QueryBookRequestInput {
+export interface QueryBookInput {
   name?: Maybe<Scalars['String']>;
   _?: Maybe<Scalars['String']>;
 }
@@ -1451,6 +1488,127 @@ export enum X_Proj_XFrontCallType {
 export enum X_Proj_XLoginProviderEnum {
   XOrgX = 'x_Org_x'
 }
+
+export type BooksQueryVariables = Exact<{
+  input: QueryBookInput;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<BookFilterInput>;
+  order?: Maybe<Array<BookSortInput> | BookSortInput>;
+}>;
+
+
+export type BooksQuery = (
+  { __typename?: 'Query' }
+  & { books?: Maybe<(
+    { __typename?: 'BooksCollectionSegment' }
+    & Pick<BooksCollectionSegment, 'totalCount'>
+    & { items?: Maybe<Array<Maybe<(
+      { __typename?: 'Book' }
+      & BookBriefFragment
+    )>>>, pageInfo: (
+      { __typename?: 'CollectionSegmentInfo' }
+      & PageInfoFragment
+    ) }
+  )> }
+);
+
+export type BookByIdQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type BookByIdQuery = (
+  { __typename?: 'Query' }
+  & { bookById: (
+    { __typename?: 'Book' }
+    & BookDetailFragment
+  ) }
+);
+
+export type CreateBooksMutationVariables = Exact<{
+  input: CreateBookInput;
+}>;
+
+
+export type CreateBooksMutation = (
+  { __typename?: 'Mutation' }
+  & { createBook: (
+    { __typename?: 'Book' }
+    & Pick<Book, 'id'>
+  ) }
+);
+
+export type DeleteBooksMutationVariables = Exact<{
+  ids: Array<Scalars['String']> | Scalars['String'];
+}>;
+
+
+export type DeleteBooksMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteBook'>
+);
+
+export type EditBooksMutationVariables = Exact<{
+  id: Scalars['String'];
+  input: EditBookInput;
+}>;
+
+
+export type EditBooksMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'editBook'>
+);
+
+export type AuditBookMutationVariables = Exact<{
+  ids?: Maybe<Array<Maybe<Scalars['String']>> | Maybe<Scalars['String']>>;
+}>;
+
+
+export type AuditBookMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'auditBook'>
+);
+
+export type UnauditBookMutationVariables = Exact<{
+  ids?: Maybe<Array<Maybe<Scalars['String']>> | Maybe<Scalars['String']>>;
+}>;
+
+
+export type UnauditBookMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'unauditBook'>
+);
+
+export type SubmitBooksMutationVariables = Exact<{
+  ids?: Maybe<Array<Maybe<Scalars['String']>> | Maybe<Scalars['String']>>;
+}>;
+
+
+export type SubmitBooksMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'submitBook'>
+);
+
+export type UnsubmitBooksMutationVariables = Exact<{
+  ids?: Maybe<Array<Maybe<Scalars['String']>> | Maybe<Scalars['String']>>;
+}>;
+
+
+export type UnsubmitBooksMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'unsubmitBook'>
+);
+
+export type BookBriefFragment = (
+  { __typename?: 'Book' }
+  & Pick<Book, 'id' | 'name' | 'auditStatus' | 'createdOn'>
+);
+
+export type BookDetailFragment = (
+  { __typename?: 'Book' }
+  & Pick<Book, 'id' | 'name' | 'auditStatus' | 'createdOn'>
+);
 
 export type RoleBriefFragment = (
   { __typename?: 'Role' }
@@ -2192,6 +2350,22 @@ export type OnBroadcastSubscription = (
   ) }
 );
 
+export const BookBriefGql = gql`
+    fragment BookBrief on Book {
+  id
+  name
+  auditStatus
+  createdOn
+}
+    ` as unknown as DocumentNode<BookBriefFragment, unknown>;
+export const BookDetailGql = gql`
+    fragment BookDetail on Book {
+  id
+  name
+  auditStatus
+  createdOn
+}
+    ` as unknown as DocumentNode<BookDetailFragment, unknown>;
 export const RoleBriefGql = gql`
     fragment RoleBrief on Role {
   createdOn
@@ -2411,6 +2585,64 @@ export const OrgCacheItemGql = gql`
   parentOrgCode
 }
     ` as unknown as DocumentNode<OrgCacheItemFragment, unknown>;
+export const BooksGql = gql`
+    query books($input: QueryBookInput!, $skip: Int, $take: Int, $where: BookFilterInput, $order: [BookSortInput!] = [{createdOn: DESC}]) {
+  books(input: $input, skip: $skip, take: $take, where: $where, order: $order) {
+    items {
+      ...BookBrief
+    }
+    pageInfo {
+      ...PageInfo
+    }
+    totalCount
+  }
+}
+    ${BookBriefGql}
+${PageInfoGql}` as unknown as DocumentNode<BooksQuery, BooksQueryVariables>;
+export const BookByIdGql = gql`
+    query bookById($id: String!) {
+  bookById(id: $id) {
+    ...BookDetail
+  }
+}
+    ${BookDetailGql}` as unknown as DocumentNode<BookByIdQuery, BookByIdQueryVariables>;
+export const CreateBooksGql = gql`
+    mutation createBooks($input: CreateBookInput!) {
+  createBook(input: $input) {
+    id
+  }
+}
+    ` as unknown as DocumentNode<CreateBooksMutation, CreateBooksMutationVariables>;
+export const DeleteBooksGql = gql`
+    mutation deleteBooks($ids: [String!]!) {
+  deleteBook(ids: $ids)
+}
+    ` as unknown as DocumentNode<DeleteBooksMutation, DeleteBooksMutationVariables>;
+export const EditBooksGql = gql`
+    mutation editBooks($id: String!, $input: EditBookInput!) {
+  editBook(id: $id, input: $input)
+}
+    ` as unknown as DocumentNode<EditBooksMutation, EditBooksMutationVariables>;
+export const AuditBookGql = gql`
+    mutation auditBook($ids: [String]) {
+  auditBook(ids: $ids)
+}
+    ` as unknown as DocumentNode<AuditBookMutation, AuditBookMutationVariables>;
+export const UnauditBookGql = gql`
+    mutation unauditBook($ids: [String]) {
+  unauditBook(ids: $ids)
+}
+    ` as unknown as DocumentNode<UnauditBookMutation, UnauditBookMutationVariables>;
+export const SubmitBooksGql = gql`
+    mutation submitBooks($ids: [String]) {
+  submitBook(ids: $ids)
+}
+    ` as unknown as DocumentNode<SubmitBooksMutation, SubmitBooksMutationVariables>;
+export const UnsubmitBooksGql = gql`
+    mutation unsubmitBooks($ids: [String]) {
+  unsubmitBook(ids: $ids)
+}
+    ` as unknown as DocumentNode<UnsubmitBooksMutation, UnsubmitBooksMutationVariables>;
 export const UserListsGql = gql`
     query userLists($skip: Int, $take: Int, $where: IUserFilterInput) {
   users(skip: $skip, take: $take, where: $where) {

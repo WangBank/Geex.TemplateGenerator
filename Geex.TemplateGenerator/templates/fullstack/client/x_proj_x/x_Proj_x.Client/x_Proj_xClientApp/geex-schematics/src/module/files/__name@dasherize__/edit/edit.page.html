@@ -1,11 +1,11 @@
-<page-header [title]="context.id?'<%= classify(aggregateName) %>：'+context.id:'新增'"
+<page-header [title]="context.id?'<%= classify(name) %>：'+context.id:'新增'"
              *ngIf="context"
              [extra]="phExtra"
              [action]="phActionTpl">
 
   <ng-template #phExtra>
     <nz-row>
-      <!-- [acl]="AppPermission.<%= classify(name) %>MutationAudit<%= classify(aggregateName) %>" -->
+    <!-- [acl]="AppPermission.<%= classify(name) %>MutationAudit<%= classify(name) %>" -->
       <!-- <button (click)="null"
                                       *ngIf="context.entity.auditable"
                                       nz-button
@@ -13,7 +13,7 @@
                                 <i nz-icon
                                    nzType="audit"></i>
                                 审批</button> -->
-      <!-- [acl]="AppPermission.<%= classify(name) %>MutationSubmit<%= classify(aggregateName) %>" -->
+    <!-- [acl]="AppPermission.<%= classify(name) %>MutationSubmit<%= classify(name) %>" -->
       <!-- <button (click)="null"
                                       *ngIf="context.entity.submittable"
                                       nz-button

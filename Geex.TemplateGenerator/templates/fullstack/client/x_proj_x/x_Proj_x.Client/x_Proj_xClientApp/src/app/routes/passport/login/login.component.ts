@@ -28,7 +28,7 @@ import { TenantSwitcherComponent } from "../../saas/components//tenant-switcher/
   providers: [SocialService],
 })
 export class UserLoginComponent implements OnDestroy {
-  activeLoginProviders: [`${LoginProviderEnum}`] = ["Geex"];
+  activeLoginProviders: [`${LoginProviderEnum}`] = ["x_Org_x"];
   submitting = false;
   verificationImgUrl = "";
   isMobile: boolean = false;
@@ -195,7 +195,7 @@ export class UserLoginComponent implements OnDestroy {
       // case "weibo":
       //   url = `https://api.weibo.com/oauth2/authorize?client_id=1239507802&response_type=code&redirect_uri=${encodeURIComponent(callback)}`;
       //   break;
-      case "Geex":
+      case "x_Org_x":
         this.oauthService.initCodeFlow(undefined, { redirect_uri: encodeURIComponent(callback) });
         break;
     }

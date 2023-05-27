@@ -32,7 +32,7 @@ namespace x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs
         /// 列表获取x_Aggregate_x
         /// </summary>
         /// <returns></returns>
-        public async Task<IQueryable<x_Aggregate_x>> x_Aggregate_xs(Queryx_Aggregate_xRequest input)
+        public async Task<IQueryable<x_Aggregate_x>> x_Aggregate_xs(Queryx_Aggregate_xInput input)
         {
             var result = _dbContext.Queryable<x_Aggregate_x>()
                 .WhereIf(!input.Name.IsNullOrEmpty(), x => x.Name.Contains(input.Name));

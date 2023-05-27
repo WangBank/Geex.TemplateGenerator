@@ -4,10 +4,11 @@ using x_Org_x.x_Proj_x.x_Mod_x.Core.Aggregates.x_Aggregate_xs;
 using x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs.Inputs;
 using Geex.Common.Abstraction.Gql.Types;
 using MongoDB.Entities;
+using Geex.Common.Abstraction.Auditing;
 
 namespace x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs
 {
-    public class x_Aggregate_xMutation : MutationExtension<x_Aggregate_xMutation>
+    public class x_Aggregate_xMutation : MutationExtension<x_Aggregate_xMutation>, IHasAuditMutation<x_Aggregate_x>
     {
         private readonly DbContext _dbContext;
 
@@ -21,7 +22,7 @@ namespace x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs
         /// <param name="input"></param>
         /// <returns></returns>
         public async Task<x_Aggregate_x> Createx_Aggregate_x(
-            Createx_Aggregate_xRequest input)
+            Createx_Aggregate_xInput input)
         {
             var entity = new x_Aggregate_x(input.Name);
             return _dbContext.Attach(entity);

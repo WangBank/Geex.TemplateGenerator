@@ -1,8 +1,8 @@
-# 获取<%= camelize(aggregateName) %>列表
-query <%= camelize(aggregateName) %>s($input: Query<%= classify(aggregateName) %>Input!, $skip: Int, $take: Int, $where: <%= classify(aggregateName) %>FilterInput, $order: [<%= classify(aggregateName) %>SortInput!] = [{ createdOn: DESC }]) {
-  <%= camelize(aggregateName) %>s(input: $input, skip: $skip, take: $take, where: $where, order: $order) {
+# 获取<%= camelize(name) %>列表
+query <%= camelize(name) %>s($input: Query<%= classify(name) %>Input!, $skip: Int, $take: Int, $where: <%= classify(name) %>FilterInput, $order: [<%= classify(name) %>SortInput!] = [{ createdOn: DESC }]) {
+  <%= camelize(name) %>s(input: $input, skip: $skip, take: $take, where: $where, order: $order) {
     items {
-      ...<%= classify(aggregateName) %>Brief
+      ...<%= classify(name) %>Brief
     }
     pageInfo {
       ...PageInfo
@@ -11,58 +11,58 @@ query <%= camelize(aggregateName) %>s($input: Query<%= classify(aggregateName) %
   }
 }
 
-# 获取全量的<%= camelize(aggregateName) %> （用于数据导出等场景）
-# query <%= camelize(aggregateName) %>s($where: I<%= classify(aggregateName) %>FilterInput) {
-#   <%= camelize(aggregateName) %>s(skip: 0, take: 999, where: $where, order: { createdOn: DESC }) {
+# 获取全量的<%= camelize(name) %> （用于数据导出等场景）
+# query <%= camelize(name) %>s($where: I<%= classify(name) %>FilterInput) {
+#   <%= camelize(name) %>s(skip: 0, take: 999, where: $where, order: { createdOn: DESC }) {
 #     items {
-#       ...<%= classify(aggregateName) %>Brief
+#       ...<%= classify(name) %>Brief
 #     }
 #   }
 # }
-# <%= camelize(aggregateName) %>详情
-query <%= camelize(aggregateName) %>ById($id: String!) {
-  <%= camelize(aggregateName) %>ById(id: $id) {
-    ...<%= classify(aggregateName) %>Detail
+# <%= camelize(name) %>详情
+query <%= camelize(name) %>ById($id: String!) {
+  <%= camelize(name) %>ById(id: $id) {
+    ...<%= classify(name) %>Detail
   }
 }
-# 新增<%= camelize(aggregateName) %>
-mutation create<%= classify(aggregateName) %>s($input: Create<%= classify(aggregateName) %>Input!) {
-  create<%= classify(aggregateName) %>(input: $input) {
+# 新增<%= camelize(name) %>
+mutation create<%= classify(name) %>s($input: Create<%= classify(name) %>Input!) {
+  create<%= classify(name) %>(input: $input) {
     id
   }
 }
-# 删除<%= camelize(aggregateName) %>
-mutation delete<%= classify(aggregateName) %>s($ids: [String!]!) {
-  delete<%= classify(aggregateName) %>(ids: $ids)
+# 删除<%= camelize(name) %>
+mutation delete<%= classify(name) %>s($ids: [String!]!) {
+  delete<%= classify(name) %>(ids: $ids)
 }
-# 编辑<%= camelize(aggregateName) %>
-mutation edit<%= classify(aggregateName) %>s($id: String!,$input: Edit<%= classify(aggregateName) %>Input!) {
-  edit<%= classify(aggregateName) %>(id: $id, input: $input)
+# 编辑<%= camelize(name) %>
+mutation edit<%= classify(name) %>s($id: String!,$input: Edit<%= classify(name) %>Input!) {
+  edit<%= classify(name) %>(id: $id, input: $input)
 }
-# 审核<%= camelize(aggregateName) %>
-mutation audit<%= classify(aggregateName) %>($ids: [String]) {
-  audit<%= classify(aggregateName) %>(ids: $ids)
+# 审核<%= camelize(name) %>
+mutation audit<%= classify(name) %>($ids: [String]) {
+  audit<%= classify(name) %>(ids: $ids)
 }
-# 取消审核<%= camelize(aggregateName) %>
-mutation unaudit<%= classify(aggregateName) %>($ids: [String]) {
-  unaudit<%= classify(aggregateName) %>(ids: $ids)
+# 取消审核<%= camelize(name) %>
+mutation unaudit<%= classify(name) %>($ids: [String]) {
+  unaudit<%= classify(name) %>(ids: $ids)
 }
-# 提交<%= camelize(aggregateName) %>
-mutation submit<%= classify(aggregateName) %>s($ids: [String]) {
-  submit<%= classify(aggregateName) %>(ids: $ids)
+# 提交<%= camelize(name) %>
+mutation submit<%= classify(name) %>s($ids: [String]) {
+  submit<%= classify(name) %>(ids: $ids)
 }
-# 取消提交<%= camelize(aggregateName) %>
-mutation unsubmit<%= classify(aggregateName) %>s($ids: [String]) {
-  unsubmit<%= classify(aggregateName) %>(ids: $ids)
+# 取消提交<%= camelize(name) %>
+mutation unsubmit<%= classify(name) %>s($ids: [String]) {
+  unsubmit<%= classify(name) %>(ids: $ids)
 }
 
-fragment <%= classify(aggregateName) %>Brief on <%= classify(aggregateName) %> {
+fragment <%= classify(name) %>Brief on <%= classify(name) %> {
   id
   name
   auditStatus
   createdOn
 }
-fragment <%= classify(aggregateName) %>Detail on <%= classify(aggregateName) %> {
+fragment <%= classify(name) %>Detail on <%= classify(name) %> {
   id
   name
   auditStatus

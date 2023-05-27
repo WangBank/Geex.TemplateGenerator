@@ -10,29 +10,29 @@ import {
   ListPageParams,
   RoutedListComponent,
 } from "../../../shared/components/routed-components/routed-list.component.base";
-import { <%= classify(aggregateName) %>BriefFragment,
-  <%= classify(aggregateName) %>sGql,
-  <%= classify(aggregateName) %>sQuery,
-  Delete<%= classify(aggregateName) %>sGql,
-  <%= classify(aggregateName) %>sQueryVariables,
+import { <%= classify(name) %>BriefFragment,
+  <%= classify(name) %>sGql,
+  <%= classify(name) %>sQuery,
+  Delete<%= classify(name) %>sGql,
+  <%= classify(name) %>sQueryVariables,
   SortEnumType } from "../../../shared/graphql/.generated/type";
-import { <%= classify(aggregateName) %>EditPage } from "../edit/edit.page";
+import { <%= classify(name) %>EditPage } from "../edit/edit.page";
 
-export type <%= classify(aggregateName) %>ListPageParam = ListPageParams<<%= classify(aggregateName) %>BriefFragment> & {
+export type <%= classify(name) %>ListPageParam = ListPageParams<<%= classify(name) %>BriefFragment> & {
   filterText: string;
 };
 
 @Component({
-  selector: "app-<%= dasherize(aggregateName) %>-list",
+  selector: "app-<%= dasherize(name) %>-list",
   templateUrl: "./list.page.html",
   styles: [],
 })
-export class <%= classify(aggregateName) %>ListPage extends RoutedListComponent<<%= classify(aggregateName) %>ListPageParam, <%= classify(aggregateName) %>BriefFragment> {
-  override async fetchData(): Promise<ListDataContext<Partial<<%= classify(aggregateName) %>BriefFragment>>> {
+export class <%= classify(name) %>ListPage extends RoutedListComponent<<%= classify(name) %>ListPageParam, <%= classify(name) %>BriefFragment> {
+  override async fetchData(): Promise<ListDataContext<Partial<<%= classify(name) %>BriefFragment>>> {
     let params = this.params.value;
     let res = await this.apollo
-      .query<<%= classify(aggregateName) %>sQuery, <%= classify(aggregateName) %>sQueryVariables>({
-        query: <%= classify(aggregateName) %>sGql,
+      .query<<%= classify(name) %>sQuery, <%= classify(name) %>sQueryVariables>({
+        query: <%= classify(name) %>sGql,
         variables: {
           input: { name: params.filterText },
           skip: Number(((params.pi ?? 1) - 1) * 10),
@@ -44,8 +44,8 @@ export class <%= classify(aggregateName) %>ListPage extends RoutedListComponent<
     this.loading = res.loading;
     this.selectedData = [];
     return {
-      total: res.data.<%= camelize(aggregateName) %>s.totalCount,
-      data: deepCopy(res.data.<%= camelize(aggregateName) %>s.items),
+      total: res.data.<%= camelize(name) %>s.totalCount,
+      data: deepCopy(res.data.<%= camelize(name) %>s.items),
       columns: [
         {
           title: "",
@@ -82,7 +82,7 @@ export class <%= classify(aggregateName) %>ListPage extends RoutedListComponent<
               icon: "edit",
               text: "编辑",
               click: item => this.router.navigate(["edit"], { queryParams: { id: item.id }, relativeTo: this.route }),
-              // acl: AppPermission.<%= classify(name) %>MutationEdit<%= classify(aggregateName) %>,
+              // acl: AppPermission.<%= classify(name) %>MutationEdit<%= classify(name) %>,
             },
           ],
           className: ["text-center"],
@@ -91,7 +91,7 @@ export class <%= classify(aggregateName) %>ListPage extends RoutedListComponent<
     };
   }
 
-  override async prepare(params: <%= classify(aggregateName) %>ListPageParam) {
+  override async prepare(params: <%= classify(name) %>ListPageParam) {
     await super.prepare(params);
   }
 
@@ -119,7 +119,7 @@ export class <%= classify(aggregateName) %>ListPage extends RoutedListComponent<
   async delete(id: string) {
     await this.apollo
       .mutate({
-        mutation: Delete<%= classify(aggregateName) %>sGql,
+        mutation: Delete<%= classify(name) %>sGql,
         variables: {
           ids: [id],
         },

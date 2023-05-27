@@ -60,7 +60,7 @@ export class StartupService {
       let user$ = this.injector.get(UserDataState$);
       let router = this.injector.get(Router);
 
-      oAuthService.configure(environment.auth.geex);
+      oAuthService.configure(environment.auth.x_org_x);
       try {
         await oAuthService.loadDiscoveryDocumentAndTryLogin({
           customRedirectUri: location.href.split(/[&\?#]code=[^&\$]*/)[0].trimEnd("/"),

@@ -4,14 +4,14 @@ import { merge } from "lodash";
 import { Observable } from "rxjs";
 
 import { RoutedComponentResolveBase } from "../../../shared/resolvers/route-component.resolver.base";
-import { <%= classify(aggregateName) %>EditPageParams } from "./edit.page";
+import { <%= classify(name) %>EditPageParams } from "./edit.page";
 
 @Injectable({
   providedIn: "root",
 })
-export class <%= classify(aggregateName) %>EditPageResolve extends RoutedComponentResolveBase<<%= classify(aggregateName) %>EditPageParams> {
-  override normalizeParams(queryParams: <%= classify(aggregateName) %>EditPageParams): <%= classify(aggregateName) %>EditPageParams {
-    let resolvedParams: <%= classify(aggregateName) %>EditPageParams = {
+export class <%= classify(name) %>EditPageResolve extends RoutedComponentResolveBase<<%= classify(name) %>EditPageParams> {
+  override normalizeParams(queryParams: <%= classify(name) %>EditPageParams): <%= classify(name) %>EditPageParams {
+    let resolvedParams: <%= classify(name) %>EditPageParams = {
       id: queryParams.id ?? undefined,
       name: queryParams.name ?? undefined,
     };

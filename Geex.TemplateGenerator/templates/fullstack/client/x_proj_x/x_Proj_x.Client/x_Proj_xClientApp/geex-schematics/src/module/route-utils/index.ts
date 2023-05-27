@@ -82,7 +82,7 @@ export function addRouteToNgModule(options: PageOptions): Rule {
 
     const routePath = strings.dasherize(options.routePath ? options.routePath : options.name);
     const ngModuleName = `${strings.classify(options.name)}Module`;
-    const changes = addRouteToRoutesArray(source, module, routePath, relativePath, ngModuleName);
+    const changes = addRouteToRoutesArray(source, module, routePath, relativePath, ngModuleName, options.addToLayout);
     const recorder = host.beginUpdate(module);
     for (const change of changes) {
       if (change instanceof InsertChange) {
@@ -102,6 +102,7 @@ export function addRouteToRoutesArray(
   routePath: string,
   routeLoadChildren: string,
   ngModuleName: string,
+  addToLayout?: string,
 ): Change[] {
   const keywords = findNodes(source, ts.SyntaxKind.VariableStatement);
 
@@ -111,23 +112,28 @@ export function addRouteToRoutesArray(
 
       if (ts.isVariableDeclaration(declaration) && declaration.initializer && declaration.name.getText() === "routes") {
         let node = declaration.initializer.getChildAt(1);
-        console.warn(0 + node.getFullText());
+        // console.warn(0 + node.getFullText());
 
-        try {
-          node = node.getChildren()!.find(x => x.getFullText().indexOf("LayoutBasicComponent"))!;
-          console.warn(1 + node.getFullText());
-          node = node.getChildren()!.find(x => x.getFullText().indexOf("LayoutBasicComponent") > 0)!;
-          console.warn(2 + node.getFullText());
-          node = node.getChildren()!.find(x => x.getFullText().indexOf("children") > 0)!;
-          console.warn(3 + node.getFullText());
-        } catch (e) {}
+        if (addToLayout?.length) {
+          try {
+            node = node.getChildren()!.find(x => x.getFullText().indexOf(addToLayout))!;
+            // console.warn(1 + node.getFullText());
+            node = node.getChildren()!.find(x => x.getFullText().indexOf(addToLayout) > 0)!;
+            // console.warn(2 + node.getFullText());
+            node = node.getChildren()!.find(x => x.getFullText().indexOf("children") > 0)!;
+            // console.warn(3 + node.getFullText());
+            if (!ts.isPropertyAssignment(node)) {
+              throw new Error("Could not find routes array.");
+            }
+            node = node.initializer.getChildAt(1);
+          } catch (e) {}
+        } else {
+          // console.warn(3, node.kind);
+        }
 
         // node = (node.getChildren()[0].getChildren()[1]?.getChildren()[6] as ts.PropertyDeclaration)!.initializer!.getChildAt(1);
-        if (!ts.isPropertyAssignment(node)) {
-          throw new Error("Could not find routes array.");
-        }
-        node = node.initializer.getChildAt(1);
-        console.warn(4 + node.getFullText());
+
+        // console.warn(4 + node.getFullText());
         // console.warn(node.getLastToken()?.getFullText());
         // console.warn(node.getChildren()[0].getChildren()[1]?.getFullText());
 

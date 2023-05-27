@@ -11,6 +11,11 @@
       "visible": false,
       "default": "/src/app/routes"
     },
+    "addToLayout": {
+      "type": "string",
+      "description": "The layout component to add the page to, either LayoutBasicComponent or LayoutBlankComponent",
+      "default": ""
+    },
     "project": {
       "type": "string",
       "description": "The name of the project",
@@ -20,18 +25,10 @@
     },
     "name": {
       "type": "string",
-      "description": "The name of the page",
+      "description": "The name of the module",
       "$default": {
         "$source": "argv",
         "index": 0
-      }
-    },
-    "aggregateName": {
-      "type": "string",
-      "description": "The name of the default aggregate",
-      "$default": {
-        "$source": "argv",
-        "index": 1
       }
     },
     "prefix": {

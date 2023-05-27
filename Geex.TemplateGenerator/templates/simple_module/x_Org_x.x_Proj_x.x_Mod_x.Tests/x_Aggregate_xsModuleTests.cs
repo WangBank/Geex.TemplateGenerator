@@ -23,11 +23,11 @@ namespace x_Org_x.x_Proj_x.x_Mod_x.Tests
             _mediator = GetRequiredService<IMediator>();
         }
 
-        public class Createx_Aggregate_xRequestTestData : TheoryData<Createx_Aggregate_xRequest>
+        public class Createx_Aggregate_xRequestTestData : TheoryData<Createx_Aggregate_xInput>
         {
             public Createx_Aggregate_xRequestTestData()
             {
-                Add(new Createx_Aggregate_xRequest()
+                Add(new Createx_Aggregate_xInput()
                 {
                     Name = nameof(Createx_Aggregate_xRequest_Should_Work),
                     //Code = nameof(Createx_Aggregate_xRequest_Should_Work),
@@ -36,13 +36,13 @@ namespace x_Org_x.x_Proj_x.x_Mod_x.Tests
         }
         [Theory]
         [ClassData(typeof(Createx_Aggregate_xRequestTestData))]
-        public async Task Createx_Aggregate_xRequest_Should_Work(Createx_Aggregate_xRequest request)
+        public async Task Createx_Aggregate_xRequest_Should_Work(Createx_Aggregate_xInput input)
         {
             // 测试功能
             await base.WithUow(async () =>
              {
                  var mutation = ServiceProvider.GetRequiredService<x_Aggregate_xMutation>();
-                 var result = await mutation.Createx_Aggregate_x(request);
+                 var result = await mutation.Createx_Aggregate_x(input);
                  result.Name.ShouldBe(nameof(Createx_Aggregate_xRequest_Should_Work));
                  //result.Code.ShouldBe(nameof(Createx_Aggregate_xRequest_Should_Work));
              });
@@ -60,7 +60,7 @@ namespace x_Org_x.x_Proj_x.x_Mod_x.Tests
             await base.WithUow(async () =>
              {
                  var query = ServiceProvider.GetRequiredService<x_Aggregate_xQuery>();
-                 var result = await query.x_Aggregate_xs(new Queryx_Aggregate_xRequest());
+                 var result = await query.x_Aggregate_xs(new Queryx_Aggregate_xInput());
                  result.Count().ShouldBeGreaterThan(0);
              });
         }
