@@ -16,6 +16,7 @@ import { UEditorModule } from "ngx-ueditor";
 import { filter, take } from "rxjs/operators";
 
 import { AuditButtonComponent } from "./components/audit-button.component";
+import { GeexUploadComponent } from "./components/geex-upload/geex-upload.component";
 import { InputPercentComponent } from "./components/input-percent/input-percent.component";
 import { PermissionsComponent } from "./components/permissions/permissions.component";
 import { StaticChartComponent } from "./components/static-chart/static-chart.component";
@@ -52,6 +53,7 @@ const COMPONENTS: Array<Type<any>> = [
   StaticChartComponent,
   WangEditorComponent,
   InputPercentComponent,
+  GeexUploadComponent,
   RenderTemplateComponent,
   TemplateComponent,
   AuditButtonComponent,

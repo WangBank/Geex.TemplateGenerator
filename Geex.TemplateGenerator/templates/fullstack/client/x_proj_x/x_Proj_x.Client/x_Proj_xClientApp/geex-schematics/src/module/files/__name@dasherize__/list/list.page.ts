@@ -84,6 +84,17 @@ export class <%= classify(name) %>ListPage extends RoutedListComponent<<%= class
               click: item => this.router.navigate(["edit"], { queryParams: { id: item.id }, relativeTo: this.route }),
               // acl: AppPermission.<%= classify(name) %>MutationEdit<%= classify(name) %>,
             },
+            {
+              icon: "delete",
+              text: "删除",
+              pop: {
+                title: "是否确认删除?",
+              },
+              click: item => {
+                this.delete(item.id);
+              },
+              // acl: AppPermission.,
+            },
           ],
           className: ["text-center"],
         },

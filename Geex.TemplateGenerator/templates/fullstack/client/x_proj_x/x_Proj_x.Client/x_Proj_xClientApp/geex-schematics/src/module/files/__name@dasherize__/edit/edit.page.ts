@@ -13,6 +13,7 @@ import {
   Edit<%= classify(name) %>Input,
   Edit<%= classify(name) %>sGql,
   <%= classify(name) %>,
+  <%= classify(name) %>DetailFragment,
 } from "../../../shared/graphql/.generated/type";
 import { EditMode } from "../../../shared/types/common";
 
@@ -22,7 +23,7 @@ export type <%= classify(name) %>EditPageParams = {
   id: string;
   name: string;
 };
-type <%= classify(name) %>EditPageContext = EditDataContext<<%= classify(name) %>, "name"> & {
+type <%= classify(name) %>EditPageContext = EditDataContext<<%= classify(name) %>DetailFragment, "name"> & {
   disabled: boolean;
 };
 
@@ -31,7 +32,7 @@ type <%= classify(name) %>EditPageContext = EditDataContext<<%= classify(name) %
   templateUrl: "./edit.page.html",
   styles: [],
 })
-export class <%= classify(name) %>EditPage extends RoutedEditComponent<<%= classify(name) %>EditPageParams, <%= classify(name) %>, "name"> {
+export class <%= classify(name) %>EditPage extends RoutedEditComponent<<%= classify(name) %>EditPageParams, <%= classify(name) %>DetailFragment, "name"> {
   mode: EditMode;
   context: <%= classify(name) %>EditPageContext;
 

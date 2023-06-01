@@ -64,10 +64,13 @@
 <nz-card *ngIf="context">
 
   <form nz-form
+  [formGroup]="context.entityForm"
         autocomplete="off">
     <nz-form-item>
-      <nz-form-label>名称</nz-form-label>
-      <nz-form-control>
+      <nz-form-label [nzSm]="4"
+                     [nzXs]="24" nzRequired>名称</nz-form-label>
+      <nz-form-control [nzSm]="20"
+                       [nzXs]="24">
         <input nz-input
                [formControl]="context.entityForm.controls.name">
       </nz-form-control>
@@ -88,7 +91,7 @@
       <button nz-button
               type="submit"
               nzType="primary"
-              [disabled]="context.disabled"
+              [disabled]="context.disabled  || !context.entityForm.valid"
               (click)="submit()">
         <i nz-icon
            nzType="save"
