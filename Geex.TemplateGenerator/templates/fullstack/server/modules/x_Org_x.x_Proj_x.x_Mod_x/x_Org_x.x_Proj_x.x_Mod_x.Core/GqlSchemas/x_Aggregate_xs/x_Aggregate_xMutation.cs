@@ -6,7 +6,7 @@ using Geex.Common.Abstraction.Gql.Types;
 
 using MongoDB.Entities;
 
-using x_Org_x.x_Proj_x.x_Mod_x.Core.Aggregates._aggregate_s;
+using x_Org_x.x_Proj_x.x_Mod_x.Core.Aggregates.x_Aggregate_xs;
 using x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs.Inputs;
 
 namespace x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs

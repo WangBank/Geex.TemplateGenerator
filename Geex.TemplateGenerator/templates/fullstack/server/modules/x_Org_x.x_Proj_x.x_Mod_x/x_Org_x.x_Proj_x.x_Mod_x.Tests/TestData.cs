@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using _org_._proj_._mod_.Core.Aggregates._aggregate_s;
+using _org_._proj_._mod_.Core.Aggregates.x_Aggregate_xs;
 
 using MongoDB.Entities;
 
@@ -8,17 +8,17 @@ namespace _org_._proj_._mod_.Tests
 {
     public class TestData
     {
-        public static List<_aggregate_> _aggregate_s = new()
+        public static List<_aggregate_> x_aggregate_xs = new()
         {
-            new _aggregate_("test")
+            new x_Aggregate_x("test")
         };
 
         public class _637632330490465147_TestDataMigration : DbMigration
         {
             public override async Task UpgradeAsync(DbContext dbContext)
             {
-                dbContext.Attach(_aggregate_s);
-                await _aggregate_s.SaveAsync();
+                dbContext.Attach(x_aggregate_xs);
+                await x_aggregate_xs.SaveAsync();
             }
         }
     }

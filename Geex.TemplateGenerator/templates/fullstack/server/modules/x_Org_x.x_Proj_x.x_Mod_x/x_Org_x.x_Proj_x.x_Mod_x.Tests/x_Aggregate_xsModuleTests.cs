@@ -2,15 +2,15 @@
 using System.Threading.Tasks;
 using Geex.Common.Testing;
 using _org_._proj_._mod_.Core;
-using _org_._proj_._mod_.Core.Aggregates._aggregate_s;
-using _org_._proj_._mod_.Core.GqlSchemas._aggregate_s;
+using _org_._proj_._mod_.Core.Aggregates.x_Aggregate_xs;
+using _org_._proj_._mod_.Core.GqlSchemas.x_Aggregate_xs;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Entities;
 
 using Shouldly;
 using Xunit;
-using _org_._proj_._mod_.Core.GqlSchemas._aggregate_s.Inputs;
+using _org_._proj_._mod_.Core.GqlSchemas.x_Aggregate_xs.Inputs;
 
 namespace _org_._proj_._mod_.Tests
 {

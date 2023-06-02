@@ -23,7 +23,7 @@ export type <%= classify(name) %>EditPageParams = {
   id: string;
   name: string;
 };
-type <%= classify(name) %>EditPageContext = EditDataContext<<%= classify(name) %>DetailFragment, "name"> & {
+type <%= classify(name) %>EditPageContext = EditDataContext<<%= classify(name) %>DetailFragment, keyof EntityEditablePart> & {
   disabled: boolean;
 };
 
@@ -32,7 +32,7 @@ type <%= classify(name) %>EditPageContext = EditDataContext<<%= classify(name) %
   templateUrl: "./edit.page.html",
   styles: [],
 })
-export class <%= classify(name) %>EditPage extends RoutedEditComponent<<%= classify(name) %>EditPageParams, <%= classify(name) %>DetailFragment, "name"> {
+export class <%= classify(name) %>EditPage extends RoutedEditComponent<<%= classify(name) %>EditPageParams, <%= classify(name) %>DetailFragment, keyof EntityEditablePart> {
   mode: EditMode;
   context: <%= classify(name) %>EditPageContext;
 
