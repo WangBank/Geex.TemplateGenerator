@@ -12,9 +12,9 @@ namespace x_Org_x.x_Proj_x.x_Mod_x.Core.Migrations
     //{
     //    public override async Task UpgradeAsync(DbContext dbContext)
     //    {
-    //        var _aggregate_Entity = new _aggregate_()
+    //        var _aggregate_Entity = new x_Aggregate_x()
     //        {
-    //            Name = "_aggregate_",
+    //            Name = "x_Aggregate_x",
     //        };
     //        dbContext.AttachContextSession(_aggregate_Entity);
     //        await _aggregate_Entity.SaveAsync();

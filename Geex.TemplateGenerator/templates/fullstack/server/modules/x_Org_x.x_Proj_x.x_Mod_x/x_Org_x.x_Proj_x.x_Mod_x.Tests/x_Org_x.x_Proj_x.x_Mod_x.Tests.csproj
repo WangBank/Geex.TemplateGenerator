@@ -6,7 +6,7 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\_org_._proj_._mod_.Core\_org_._proj_._mod_.Core.csproj" />
+    <ProjectReference Include="..\x_Org_x.x_Proj_x.x_Mod_x.Core\x_Org_x.x_Proj_x.x_Mod_x.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Geex.Common.Testing" Version="3.0.35" />

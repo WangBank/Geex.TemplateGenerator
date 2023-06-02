@@ -1,18 +1,18 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Geex.Common.Testing;
-using _org_._proj_._mod_.Core;
-using _org_._proj_._mod_.Core.Aggregates.x_Aggregate_xs;
-using _org_._proj_._mod_.Core.GqlSchemas.x_Aggregate_xs;
+using x_Org_x.x_Proj_x.x_Mod_x.Core;
+using x_Org_x.x_Proj_x.x_Mod_x.Core.Aggregates.x_Aggregate_xs;
+using x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Entities;
 
 using Shouldly;
 using Xunit;
-using _org_._proj_._mod_.Core.GqlSchemas.x_Aggregate_xs.Inputs;
+using x_Org_x.x_Proj_x.x_Mod_x.Core.GqlSchemas.x_Aggregate_xs.Inputs;
 
-namespace _org_._proj_._mod_.Tests
+namespace x_Org_x.x_Proj_x.x_Mod_x.Tests
 {
     public class _mod_ModuleTests : ModuleTestBase<_proj__mod_CoreModule>
     {
@@ -48,7 +48,7 @@ namespace _org_._proj_._mod_.Tests
              });
 
             // 副作用操作校验结果
-            var check = await GetRequiredService<DbContext>().Find<_aggregate_>().Match(x => x.Name == nameof(Create_aggregate_Request_Should_Work)).ExecuteSingleAsync();
+            var check = await GetRequiredService<DbContext>().Find<x_Aggregate_x>().Match(x => x.Name == nameof(Create_aggregate_Request_Should_Work)).ExecuteSingleAsync();
             check.Name.ShouldBe(nameof(Create_aggregate_Request_Should_Work));
             //check.Code.ShouldBe(nameof(Create_aggregate_Request_Should_Work));
         }

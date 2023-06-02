@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using _org_._proj_._mod_.Core.Aggregates.x_Aggregate_xs;
+using x_Org_x.x_Proj_x.x_Mod_x.Core.Aggregates.x_Aggregate_xs;
 
 using MongoDB.Entities;
 
-namespace _org_._proj_._mod_.Tests
+namespace x_Org_x.x_Proj_x.x_Mod_x.Tests
 {
     public class TestData
     {
-        public static List<_aggregate_> x_aggregate_xs = new()
+        public static List<x_Aggregate_x> x_aggregate_xs = new()
         {
             new x_Aggregate_x("test")
         };

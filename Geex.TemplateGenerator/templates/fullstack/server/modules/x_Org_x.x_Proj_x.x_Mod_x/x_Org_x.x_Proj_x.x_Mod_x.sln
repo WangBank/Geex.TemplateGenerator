@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31606.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_org_._proj_._mod_.Core", "_org_._proj_._mod_.Core\_org_._proj_._mod_.Core.csproj", "{12D94818-94FB-414A-A93B-1BCBAD44D17B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "x_Org_x.x_Proj_x.x_Mod_x.Core", "x_Org_x.x_Proj_x.x_Mod_x.Core\x_Org_x.x_Proj_x.x_Mod_x.Core.csproj", "{12D94818-94FB-414A-A93B-1BCBAD44D17B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_org_._proj_._mod_", "_org_._proj_._mod_\_org_._proj_._mod_.csproj", "{413DC0D3-505E-421C-B2C0-6CF7068810DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "x_Org_x.x_Proj_x.x_Mod_x", "x_Org_x.x_Proj_x.x_Mod_x\x_Org_x.x_Proj_x.x_Mod_x.csproj", "{413DC0D3-505E-421C-B2C0-6CF7068810DD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_org_._proj_._mod_.Tests", "_org_._proj_._mod_.Tests\_org_._proj_._mod_.Tests.csproj", "{995DAF8A-EF63-455A-97B1-6EE3B30CEC3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "x_Org_x.x_Proj_x.x_Mod_x.Tests", "x_Org_x.x_Proj_x.x_Mod_x.Tests\x_Org_x.x_Proj_x.x_Mod_x.Tests.csproj", "{995DAF8A-EF63-455A-97B1-6EE3B30CEC3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
